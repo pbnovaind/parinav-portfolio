@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 820" role="img" aria-labelledby="title desc">
+  <title id="title">Pulse collaborative workflow</title>
+  <desc id="desc">A workflow diagram connecting authors, reviewers, approvers, and a shared report.</desc>
+  <rect width="1400" height="820" rx="36" fill="#211d1b"/>
+  <g font-family="Arial,sans-serif">
+    <text x="72" y="88" fill="#ff8a3d" font-size="20" font-weight="700" letter-spacing="4">CONNECTED WORKFLOW</text>
+    <text x="72" y="140" fill="#fff" font-size="32" font-weight="700">One source of truth for every role</text>
+    <g fill="none" stroke="#ff8a3d" stroke-width="5"><path d="M270 334H515"/><path d="M885 334h245"/><path d="M700 486v132"/></g>
+    <g fill="#ff8a3d"><path d="m502 318 28 16-28 16Z"/><path d="m1117 318 28 16-28 16Z"/><path d="m684 605 16 28 16-28Z"/></g>
+    <g>
+      <rect x="72" y="250" width="210" height="168" rx="24" fill="#fffaf4"/><circle cx="120" cy="298" r="18" fill="#ef4f1e"/><text x="105" y="360" fill="#211d1b" font-size="25" font-weight="700">Author</text><text x="105" y="392" fill="#786b63" font-size="16">Creates and revises</text>
+      <rect x="515" y="220" width="370" height="266" rx="30" fill="#fffaf4"/><text x="560" y="278" fill="#6f1d2e" font-size="19" font-weight="700">SHARED REPORT</text><rect x="560" y="310" width="280" height="20" rx="10" fill="#f3dfd3"/><rect x="560" y="310" width="206" height="20" rx="10" fill="#ef4f1e"/><rect x="560" y="362" width="128" height="78" rx="14" fill="#f5e7db"/><rect x="710" y="362" width="130" height="78" rx="14" fill="#2b1530"/>
+      <rect x="1130" y="250" width="198" height="168" rx="24" fill="#fffaf4"/><circle cx="1178" cy="298" r="18" fill="#6526c7"/><text x="1163" y="360" fill="#211d1b" font-size="25" font-weight="700">Reviewer</text><text x="1163" y="392" fill="#786b63" font-size="16">Guides quality</text>
+      <rect x="580" y="633" width="240" height="132" rx="24" fill="#fffaf4"/><circle cx="625" cy="678" r="17" fill="#f59e0b"/><text x="610" y="733" fill="#211d1b" font-size="25" font-weight="700">Approver</text>
+    </g>
+  </g>
+</svg>

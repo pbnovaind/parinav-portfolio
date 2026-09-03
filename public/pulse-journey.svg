@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">Pulse report publishing journey</title>
+  <desc id="desc">A journey map showing planning, authoring, review, approval, and publishing stages.</desc>
+  <rect width="1400" height="760" rx="36" fill="#fffaf4"/>
+  <text x="72" y="82" fill="#211d1b" font-family="Arial,sans-serif" font-size="24" font-weight="700">IDENTIFYING THE JOURNEY</text>
+  <text x="72" y="124" fill="#7b6d64" font-family="Arial,sans-serif" font-size="18">One report, five connected moments</text>
+  <g font-family="Arial,sans-serif">
+    <g fill="#f5e7db"><rect x="72" y="178" width="230" height="92" rx="18"/><rect x="324" y="178" width="230" height="92" rx="18"/><rect x="576" y="178" width="230" height="92" rx="18"/><rect x="828" y="178" width="230" height="92" rx="18"/><rect x="1080" y="178" width="248" height="92" rx="18"/></g>
+    <g fill="#6f1d2e" font-size="21" font-weight="700"><text x="98" y="225">01  PLAN</text><text x="350" y="225">02  CREATE</text><text x="602" y="225">03  REVIEW</text><text x="854" y="225">04  APPROVE</text><text x="1106" y="225">05  PUBLISH</text></g>
+    <path d="M105 402 C230 325 330 470 450 400 S675 325 795 410 S1020 485 1180 370 S1270 350 1300 380" fill="none" stroke="#ef4f1e" stroke-width="10" stroke-linecap="round"/>
+    <path d="M105 506 C245 540 326 448 470 512 S700 570 830 500 S1080 450 1300 522" fill="none" stroke="#6526c7" stroke-width="5" stroke-dasharray="14 14" stroke-linecap="round"/>
+    <g fill="#ef4f1e"><circle cx="105" cy="402" r="13"/><circle cx="450" cy="400" r="13"/><circle cx="795" cy="410" r="13"/><circle cx="1180" cy="370" r="13"/><circle cx="1300" cy="380" r="13"/></g>
+    <g fill="#211d1b" font-size="17"><text x="72" y="650">Questions</text><text x="324" y="650">Drafts</text><text x="576" y="650">Feedback</text><text x="828" y="650">Decisions</text><text x="1080" y="650">Confidence</text></g>
+    <g fill="#8c7b70" font-size="15"><text x="72" y="683">What belongs here?</text><text x="324" y="683">Where is the latest version?</text><text x="576" y="683">What needs action?</text><text x="828" y="683">Who can sign off?</text><text x="1080" y="683">Is everything ready?</text></g>
+  </g>
+</svg>

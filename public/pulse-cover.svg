@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+  <title id="title">Pulse product dashboard</title>
+  <desc id="desc">An orange product design composition with a desktop dashboard and floating interface cards.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ff7a18"/>
+      <stop offset=".5" stop-color="#f4511e"/>
+      <stop offset="1" stop-color="#9f1239"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="1" x2="1" y2="0">
+      <stop stop-color="#ffca6a" stop-opacity=".1"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".55"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="30" stdDeviation="28" flood-color="#64132b" flood-opacity=".36"/>
+    </filter>
+  </defs>
+  <rect width="900" height="1125" fill="url(#bg)"/>
+  <circle cx="720" cy="190" r="330" fill="url(#glow)"/>
+  <path d="M0 770C180 610 360 740 520 590s250-110 380-210v745H0Z" fill="#4c102c" opacity=".22"/>
+  <g filter="url(#shadow)" transform="translate(105 215)">
+    <rect width="690" height="475" rx="24" fill="#17171b"/>
+    <rect x="22" y="22" width="646" height="410" rx="10" fill="#fffaf4"/>
+    <rect x="22" y="22" width="646" height="58" rx="10" fill="#25242a"/>
+    <circle cx="52" cy="51" r="7" fill="#ff7a18"/><circle cx="76" cy="51" r="7" fill="#ffd166"/>
+    <rect x="50" y="113" width="130" height="284" rx="10" fill="#f3eee8"/>
+    <rect x="207" y="113" width="420" height="112" rx="14" fill="#fff" stroke="#eadfd4"/>
+    <path d="M235 190c42-12 66-50 105-37s54 40 92 12 78-15 157-28" fill="none" stroke="#f4511e" stroke-width="9" stroke-linecap="round"/>
+    <g fill="#fff" stroke="#eadfd4">
+      <rect x="207" y="247" width="198" height="150" rx="14"/>
+      <rect x="429" y="247" width="198" height="150" rx="14"/>
+    </g>
+    <g fill="#f4511e">
+      <rect x="235" y="343" width="24" height="28" rx="5"/><rect x="271" y="316" width="24" height="55" rx="5"/><rect x="307" y="285" width="24" height="86" rx="5"/><rect x="343" y="328" width="24" height="43" rx="5"/>
+    </g>
+    <circle cx="528" cy="323" r="51" fill="none" stroke="#f4d9ce" stroke-width="20"/><path d="M528 272a51 51 0 0 1 45 75" fill="none" stroke="#f4511e" stroke-width="20" stroke-linecap="round"/>
+    <path d="M300 475h90l34 35H266Z" fill="#101014"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="78" y="754" width="300" height="218" rx="28" fill="#fffaf4"/>
+    <text x="112" y="808" fill="#7c2d12" font-family="Arial,sans-serif" font-size="23" font-weight="700">Signals at a glance</text>
+    <rect x="112" y="842" width="222" height="18" rx="9" fill="#f7ddd1"/><rect x="112" y="842" width="166" height="18" rx="9" fill="#f4511e"/>
+    <rect x="112" y="887" width="96" height="52" rx="12" fill="#fff0e6"/><rect x="224" y="887" width="110" height="52" rx="12" fill="#fff0e6"/>
+    <rect x="545" y="745" width="278" height="160" rx="28" fill="#2b1530"/>
+    <text x="581" y="806" fill="#fff" font-family="Arial,sans-serif" font-size="22" font-weight="700">Clear priorities</text>
+    <circle cx="591" cy="850" r="13" fill="#ff7a18"/><rect x="620" y="840" width="150" height="18" rx="9" fill="#fff" opacity=".72"/>
+  </g>
+  <text x="450" y="1047" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="30" font-weight="700" letter-spacing="6">PULSE</text>
+</svg>
