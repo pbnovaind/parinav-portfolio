@@ -3,6 +3,8 @@ import { ArrowDownRight, ArrowLeft, ArrowUp, ArrowUpRight, Menu, X } from 'lucid
 import { FaLinkedin } from 'react-icons/fa6'
 import { SiGmail } from 'react-icons/si'
 import logo from '../Images/logo.svg'
+import aboutImage from '../Images/aboutimage.png'
+import pulseLandingPage from '../Images/landing page.svg'
 import './App.css'
 
 const projects = [
@@ -10,16 +12,19 @@ const projects = [
     title: 'Arc Studio',
     description: 'A collaborative canvas that turns scattered thinking into clear product direction.',
     image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=88',
+    route: '/arc-studio',
   },
   {
     title: 'Roam',
     description: 'Making the messy work of planning a trip feel fluid, personal, and shared.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=88',
+    route: '/roam',
   },
   {
     title: 'Pulse',
     description: 'A clearer workflow for creating, reviewing, and publishing reports.',
     image: '/pulse-cover.svg',
+    route: '/pulse',
   },
 ]
 
@@ -209,7 +214,6 @@ const pixelRoles = [
 ]
 
 function AboutPage({ onBack }: { onBack: () => void }) {
-  const [activeTab, setActiveTab] = useState<'life' | 'work'>('life')
   return (
     <main className="about-page-shell">
       <section className="about-section about-page" id="about">
@@ -219,59 +223,24 @@ function AboutPage({ onBack }: { onBack: () => void }) {
           </a>
           <p>Parinav Badal / About</p>
         </div>
-        <div className="about-tabs">
-          <button 
-            className={`about-tab ${activeTab === 'life' ? 'active' : ''}`}
-            onClick={() => setActiveTab('life')}
-          >
-            Life
-          </button>
-          <button 
-            className={`about-tab ${activeTab === 'work' ? 'active' : ''}`}
-            onClick={() => setActiveTab('work')}
-          >
-            Work
-          </button>
-        </div>
         <div className="about-grid">
           <div className="about-copy scroll-reveal is-revealed">
-            {activeTab === 'life' && (
-              <>
+            <h1 className="about-life-title">Life</h1>
+            <>
                 <p>I've lived, travelled, and grown up in motion. I grew up in Bengal, moved to Purnia, Bihar, for schooling, and later lived and studied across Delhi, Hyderabad, Bengaluru, Chennai, and Odisha. New places, people and cultures became so normal that change almost feels like built-in DNA.</p>
                 
                 <p>With limited exposure to the world outside, Hollywood movie CDs became my first window into it. Eventually, watching wasn't enough—I wanted to go see it myself.</p>
                 
-                <p>Career-wise, I wasn't exactly sure what I wanted, but I was 200% sure what I didn't want. After failing my first NIFT attempt, I was given ₹1,500 to fill out college forms and I had a good party with it. 😄 Luckily, I cracked it the next time—and somehow, the ₹1,500 incident never made it into the family history books.</p>
+                <p>Career-wise, I wasn't exactly sure what I wanted, but I was 200% sure what I didn't want. After failing my first NIFT attempt, I was given ₹1,500 to fill out engineering college forms, and I spent it on a good party instead. 😛</p>
                 
-                <p>Since then, curiosity has taken me through design, studio photography and travel. I've travelled across 22 of India's 28 states and 5 of its 8 Union Territories, mostly on a motorcycle—a love since 10th standard. I've also travelled through Kenya, Tanzania and Mauritius, usually choosing roads and public transport over tourist itineraries. I like seeing how people live, getting a little lost, and figuring out what it feels like to belong somewhere.</p>
-                
-                <p>I'm also a CFI cyclist, with races including the HCL Cyclothon and Pedal for the Medal. Apparently, travelling long distances wasn't enough, so I decided to make my legs suffer too.</p>
+                <p>Since then, curiosity has taken me through design, studio photography and travel. I've travelled across 22 of India's 28 states and 5 of its 8 Union Territories, mostly on a motorcycle—a love since 10th standard. I've also travelled through Kenya, Tanzania and Mauritius, usually choosing roads and public transport over tourist itineraries. I like seeing how people live, getting a little lost, and figuring out what it feels like to belong somewhere. I'm also a CFI cyclist, with races including the HCL Cyclothon and Pedal for the Medal.</p>
                 
                 <p>And somewhere between all the moving, I learnt to cook and bake—because when life keeps changing your address, you might as well know how to make your own comfort food.</p>
-              </>
-            )}
-            {activeTab === 'work' && (
-              <>
-                <p>I'm a product designer focused on building clear, human-centered experiences. My work spans discovery, systems thinking, interaction design, and close collaboration with stakeholders—turning complex problems into usable solutions.</p>
-                
-                <p>I've led design initiatives across B2B SaaS products, specializing in workflow optimization and design systems. I believe good design is invisible—it should make complex tasks feel effortless and empower users to do their best work.</p>
-                
-                <p>Beyond the pixels, I'm passionate about mentoring, conducting design workshops, and facilitating cross-functional alignment. I've worked with distributed teams, facilitated design thinking sessions, and helped organizations build scalable design practices from the ground up.</p>
-                
-                <p>My toolkit includes user research, prototyping, interaction design, and design systems—but my real focus is on understanding context and creating experiences that solve real problems for real people.</p>
-              </>
-            )}
+
+            </>
           </div>
           <div className="about-collage scroll-reveal is-revealed">
-            <div className="collage-item collage-item-1" style={{'--delay': '0ms'} as React.CSSProperties}><img src="/20260703_113437.jpg" alt="Travel moments" /></div>
-            <div className="collage-item collage-item-2" style={{'--delay': '100ms'} as React.CSSProperties}><img src="/20260628_075247~3.jpg" alt="Adventure" /></div>
-            <div className="collage-item collage-item-3" style={{'--delay': '200ms'} as React.CSSProperties}><img src="/20260704_154206(3)~2.jpg" alt="Journey" /></div>
-            <div className="collage-item collage-item-4" style={{'--delay': '300ms'} as React.CSSProperties}><img src="/20260628_080652~3(1).jpg" alt="Exploration" /></div>
-            <div className="collage-item collage-item-5" style={{'--delay': '400ms'} as React.CSSProperties}><img src="/20260624_100244~3.jpg" alt="Moments" /></div>
-            <div className="collage-item collage-item-6" style={{'--delay': '500ms'} as React.CSSProperties}><img src="/20260713_231314~2.jpg" alt="Memories" /></div>
-            <div className="collage-item collage-item-7" style={{'--delay': '600ms'} as React.CSSProperties}><img src="/20250606_100816.jpg" alt="Wanderlust" /></div>
-            <div className="collage-item collage-item-8" style={{'--delay': '700ms'} as React.CSSProperties}><img src="/Screenshot%202026-09-01%20at%203.47.09%20AM.png" alt="Snapshot 1" /></div>
-            <div className="collage-item collage-item-9" style={{'--delay': '800ms'} as React.CSSProperties}><img src="/Screenshot%202026-09-01%20at%203.50.49%20AM.png" alt="Snapshot 2" /></div>
+            <img src={aboutImage} alt="A collage showing travel, cycling, road trips, landscapes, and wildlife" />
           </div>
         </div>
       </section>
@@ -279,7 +248,7 @@ function AboutPage({ onBack }: { onBack: () => void }) {
   )
 }
 
-function PulseCaseStudy({ onBack }: { onBack: () => void }) {
+export function PulseCaseStudy({ onBack }: { onBack: () => void }) {
   return (
     <main className="case-study-shell">
       <header className="case-study-nav">
@@ -451,6 +420,87 @@ function PulseCaseStudy({ onBack }: { onBack: () => void }) {
   )
 }
 
+type CaseStudyContent = {
+  title: string
+  summary: string
+  role: string
+  timeline: string
+  team: string[]
+  landscape: Record<string, string[]>
+  friction: string[]
+  opportunities: string[]
+  metrics: string[]
+  workshop: string[]
+  priorities: Record<string, string[]>
+  assets: string[]
+  assetImages?: string[]
+  heroImage?: string
+  phases: string[]
+}
+
+const caseStudies: Record<string, CaseStudyContent> = {
+  '/arc-studio': {
+    title: 'Arc Studio', summary: 'A collaborative canvas for turning scattered thinking into clear product direction.', role: 'Lead Product Designer', timeline: '14 weeks · Discovery to beta', team: ['Product designer', 'Product manager', '2 engineers', 'Research partner'],
+    landscape: { 'Business Focus': ['Increase planning confidence', 'Reduce alignment meetings'], 'User Intent': ['Find the signal quickly', 'Make a decision together'], 'System Boundaries': ['Workspace and permissions', 'Comments and decision history'], 'Design Strategy': ['Progressive disclosure', 'Shared source of truth'] },
+    friction: ['Teams entered planning with fragmented context.', 'Decisions disappeared across documents and meetings.', 'People could not tell what needed attention next.'], opportunities: ['Create one visible planning canvas.', 'Bring evidence beside the decision it supports.', 'Make ownership and momentum legible.'], metrics: ['94% Adoption', '88 SUS Score', '31% Faster alignment'], workshop: ['People needed orientation before contribution.', 'The most valuable artifact was a shared decision record.', 'Templates helped teams start without prescribing the answer.'], priorities: { 'Must Have': ['Canvas navigation', 'Decision history', 'Role permissions'], 'Should Have': ['Reusable templates', 'Comment mentions', 'Activity digest'], 'Could Have': ['Presentation mode', 'Calendar sync'], "Won't Have": ['Full project management', 'Automated strategy writing'] }, assets: ['Workspace overview', 'Decision canvas', 'Review state', 'Activity history'], phases: ['Phase 1 · Establish the canvas and decision record', 'Phase 2 · Expand templates and team rituals', 'Horizon · Connect planning signals across portfolios'] },
+  '/roam': {
+    title: 'Roam', summary: 'A calmer way for distributed teams to plan complex travel together.', role: 'Product Designer', timeline: '10 weeks · Research to launch', team: ['Product designer', 'Founder', 'Operations lead', '3 engineers'],
+    landscape: { 'Business Focus': ['Increase repeat planning', 'Lower support overhead'], 'User Intent': ['Compare options together', 'Keep plans flexible'], 'System Boundaries': ['Itineraries and collaboration', 'Bookings remain external'], 'Design Strategy': ['Shared visibility', 'Confidence through context'] },
+    friction: ['Plans lived in chat threads and spreadsheets.', 'Trade-offs were hard to compare as a group.', 'Last-minute changes created duplicate work.'], opportunities: ['Give every trip one flexible home.', 'Make alternatives easy to compare.', 'Keep changes visible without noise.'], metrics: ['91% Weekly Retention', '82 SUS Score', '42% Fewer support requests'], workshop: ['People planned around constraints, not destinations.', 'A useful comparison needed time, cost, and confidence together.', 'Shared edits required a clear activity rhythm.'], priorities: { 'Must Have': ['Trip overview', 'Shared itinerary', 'Change history'], 'Should Have': ['Option comparison', 'Saved places', 'Smart reminders'], 'Could Have': ['Local recommendations', 'Offline mode'], "Won't Have": ['In-app booking', 'Social discovery feed'] }, assets: ['Trip overview', 'Option comparison', 'Collaborative itinerary', 'Change summary'], phases: ['Phase 1 · Make the shared itinerary dependable', 'Phase 2 · Add comparison and planning intelligence', 'Horizon · Support multi-trip planning for teams'] },
+  '/pulse': {
+    title: 'Simplifying the report creation workflow', summary: 'Making complex reporting easier to understand, collaborate on, and move from first draft to final delivery.', role: 'Lead Product Designer', timeline: '12 weeks · Research to pilot', team: ['Lead product designer', 'Product manager', 'Content strategist', '4 engineers'], heroImage: pulseLandingPage,
+    landscape: { 'Business Focus': ['Reduce report production time', 'Improve delivery consistency'], 'User Intent': ['Know what to do next', 'Create with confidence'], 'System Boundaries': ['Briefs, drafts, and review', 'Publishing stays with the team'], 'Design Strategy': ['Make progress visible', 'Reduce cognitive load'] },
+    friction: ['Report creation was spread across disconnected tools.', 'People had to repeat the same work across planning and production.', 'The team could not easily tell what was ready, blocked, or missing.'], opportunities: ['Bring the report workflow into one clear workspace.', 'Make ownership and progress visible at a glance.', 'Turn scattered feedback into focused next steps.'], metrics: ['3000+ Reports supported', '3 Core workflows', '92.5% Task success', '85.6 SUS Score'], workshop: ['What problems does the current process create for people?', 'What does each role need to feel confident?', 'How might we reduce effort without removing control?'], priorities: { 'Must Have': ['Clear report brief', 'Structured authoring', 'Review and approval states'], 'Should Have': ['Reusable report templates', 'Role-based views', 'Activity history'], 'Could Have': ['Smart content suggestions', 'Custom workflow rules'], "Won't Have": ['A general project-management tool', 'Automated decisions without review'] }, assets: ['Report overview', 'Design montage', 'Review workspace', 'Publishing flow'], assetImages: ['/pulse-cover.svg', '/pulse-journey.svg', '/pulse-workflow.svg', '/pulse-cover.svg'], phases: ['Phase 1 · Simplify the report brief and creation flow', 'Phase 2 · Connect review, feedback, and approval', 'Horizon · Extend the system across enterprise reporting'] },
+}
+
+function CaseStudyPage({ content, onBack }: { content: CaseStudyContent; onBack: () => void }) {
+  const [showCaseTop, setShowCaseTop] = useState(false)
+  const columns = Object.entries(content.landscape)
+  const priorityColumns = Object.entries(content.priorities)
+
+  useEffect(() => {
+    const updateCaseTop = () => setShowCaseTop(window.scrollY > window.innerHeight * 4)
+    updateCaseTop()
+    window.addEventListener('scroll', updateCaseTop, { passive: true })
+    return () => window.removeEventListener('scroll', updateCaseTop)
+  }, [])
+
+  return (
+    <main className="portfolio-case-study">
+      <header className="case-template-nav"><a className="about-back" href="/" onClick={(event) => { event.preventDefault(); onBack() }}><ArrowLeft size={18} /> Back to projects</a><span>Case study template</span></header>
+      <article>
+        <section className={`case-template-hero ${content.title === 'Simplifying the report creation workflow' ? 'case-template-hero-pulse' : ''}`} aria-labelledby="case-title">
+          <div><p className="case-eyebrow">{content.title === 'Simplifying the report creation workflow' ? 'TCS X GSK 2024' : 'Enterprise product · UX case study'}</p><h1 id="case-title">{content.title}</h1><p className="case-template-summary">{content.summary}</p><dl className="case-template-meta"><div><dt>Role</dt><dd>{content.role}</dd></div><div><dt>Timeline</dt><dd>{content.timeline}</dd></div></dl></div>
+          <div className={`case-dashboard-placeholder ${content.heroImage ? 'has-hero-image' : ''}`} aria-label={content.heroImage ? `${content.title} landing page` : 'Placeholder for a browser or dashboard mockup'}>{content.heroImage ? <img src={content.heroImage} alt={`${content.title} landing page preview`} /> : <><div className="placeholder-toolbar"><i /><i /><i /><span>product.workspace / overview</span></div><div className="placeholder-layout"><div /><div><b /><b /><b /></div></div></>}</div>
+        </section>
+
+        <section className="case-template-section case-team" aria-labelledby="team-title"><div className="case-section-label">Team &amp; timeline</div><div className="case-team-grid"><div><h2 id="team-title">A small team aligned around a complex system.</h2><ul className="case-team-list">{content.team.map((member) => <li key={member}>{member}</li>)}</ul></div><div className="case-timeline"><div className="case-timeline-line"><span /></div><div><span>Discover</span><span>Define</span><span>Design</span><span>Pilot</span></div></div></div></section>
+
+        <section className="case-template-section" aria-labelledby="landscape-title"><div className="case-section-label">Strategic landscape</div><h2 id="landscape-title">A focused frame for making better product decisions.</h2><div className="case-landscape-grid">{columns.map(([heading, items]) => <div key={heading}><h3>{heading}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></div>)}</div></section>
+
+        <section className="case-template-section case-problem" aria-labelledby="problem-title"><div className="case-section-label">Problem statement</div><h2 id="problem-title">When the system hides the next useful action, people create their own workarounds.</h2><ul>{content.friction.map((item) => <li key={item}>{item}</li>)}</ul></section>
+
+        <section className="case-template-section" aria-labelledby="opportunity-title"><div className="case-section-label">Opportunity breakdown</div><h2 id="opportunity-title">Three vectors shaped the solution.</h2><div className="case-opportunity-grid">{content.opportunities.map((item) => <article key={item}><h3>{item}</h3><p>Design the smallest useful intervention that makes this behavior visible, understandable, and repeatable.</p></article>)}</div></section>
+
+        <section className="case-metrics" aria-labelledby="metrics-title"><div className="case-section-label">Impact metrics</div><h2 id="metrics-title">Signals that made the work worth extending.</h2><div>{content.metrics.map((metric) => <strong key={metric}>{metric}</strong>)}</div></section>
+
+        <section className="case-template-section" aria-labelledby="workshop-title"><div className="case-section-label">Design workshop synthesis</div><h2 id="workshop-title">What we heard became a set of usable principles.</h2><div className="case-workshop-grid">{content.workshop.map((item) => <article key={item}><p>{item}</p></article>)}</div></section>
+
+        <section className="case-template-section" aria-labelledby="moscow-title"><div className="case-section-label">MoSCoW prioritization canvas</div><h2 id="moscow-title">Protect the core experience before adding range.</h2><div className="case-moscow-grid">{priorityColumns.map(([heading, items]) => <div key={heading}><h3>{heading}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></div>)}</div></section>
+
+        <section className="case-template-section" aria-labelledby="designs-title"><div className="case-section-label">Core interactive designs</div><h2 id="designs-title">A flexible visual language for the moments that matter.</h2><div className="case-assets-grid">{content.assets.map((asset, index) => <figure key={asset}><div className="case-asset-placeholder">{content.assetImages?.[index] ? <img src={content.assetImages[index]} alt={`${asset} interface`} /> : <><span>Interface placeholder</span><i /><i /><i /></>}</div><figcaption>{asset}</figcaption></figure>)}</div></section>
+
+        <section className="case-template-section" aria-labelledby="release-title"><div className="case-section-label">Release blueprint</div><h2 id="release-title">A linear path from pilot to a durable product system.</h2><ol className="case-release-list">{content.phases.map((phase) => <li key={phase}><p>{phase}</p></li>)}</ol></section>
+
+        <footer className="case-template-footer"><p className="case-section-label">Thank you</p><h2>Let’s make complex products easier to trust.</h2><div><a href="mailto:pbadal520@gmail.com">Email</a><a href="https://www.linkedin.com/in/parinav-badal-2924ba32/" target="_blank" rel="noreferrer">LinkedIn</a><a href="/" onClick={(event) => { event.preventDefault(); onBack() }}>All projects</a></div></footer>
+      </article>
+      <button className={`case-back-to-top ${showCaseTop ? 'is-visible' : ''}`} type="button" aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <ArrowUp size={20} aria-hidden="true" />
+      </button>
+    </main>
+  )
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
@@ -508,7 +558,7 @@ function App() {
   }, [currentPath])
 
   useEffect(() => {
-    document.title = currentPath === '/about' ? 'About — Parinav Badal' : currentPath === '/pulse' ? 'Pulse case study — Parinav Badal' : 'Parinav Badal — Product Designer'
+    document.title = currentPath === '/about' ? 'About — Parinav Badal' : caseStudies[currentPath] ? `${caseStudies[currentPath].title} case study — Parinav Badal` : 'Parinav Badal — Product Designer'
   }, [currentPath])
 
   useEffect(() => {
@@ -577,7 +627,7 @@ function App() {
   }, [currentPath])
 
   useEffect(() => {
-    const revealTargets = document.querySelectorAll<HTMLElement>('.section-heading > *, .project, .about-section > .kicker, .about-grid > *, .post, footer > .kicker, .contact-cta-group > h2, .email-link, .about-page-top, .case-study-nav, .case-hero-copy > *, .case-hero-art, .case-section > .kicker, .case-section-grid > *, .case-impact > *, .case-showcase > *, .case-chapter > .kicker, .case-chapter-heading > *, .case-insights > *, .case-personas > *, .case-visual > *, .case-priority-list > *, .case-feature-grid > *, .case-system-grid > *, .case-test-results > *')
+    const revealTargets = document.querySelectorAll<HTMLElement>('.section-heading > *, .project, .about-section > .kicker, .about-grid > *, .post, footer > .kicker, .contact-cta-group > h2, .email-link, .about-page-top, .case-study-nav, .case-hero-copy > *, .case-hero-art, .case-section > .kicker, .case-section-grid > *, .case-impact > *, .case-showcase > *, .case-chapter > .kicker, .case-chapter-heading > *, .case-insights > *, .case-personas > *, .case-visual > *, .case-priority-list > *, .case-feature-grid > *, .case-system-grid > *, .case-test-results > *, .case-template-hero > *, .case-template-section > *, .case-template-footer > *, .case-opportunity-grid > *, .case-workshop-grid > *, .case-moscow-grid > *, .case-assets-grid > *, .case-release-list > *, .case-team-list > *')
     revealTargets.forEach((element, index) => {
       element.classList.add('scroll-reveal')
       element.style.setProperty('--reveal-delay', `${(index % 4) * 110}ms`)
@@ -604,11 +654,11 @@ function App() {
   }, [currentPath])
 
   if (currentPath === '/about') return <AboutPage onBack={() => navigateTo('/')} />
-  if (currentPath === '/pulse') return <PulseCaseStudy onBack={() => navigateTo('/')} />
+  if (caseStudies[currentPath]) return <CaseStudyPage content={caseStudies[currentPath]} onBack={() => navigateTo('/')} />
 
   return (
     <main>
-      <nav className={`nav-shell ${isScrolled ? 'is-scrolled' : ''}`} aria-label="Primary navigation">
+      <nav className={`nav-shell ${isScrolled ? 'is-scrolled' : ''} ${menuOpen ? 'is-menu-open' : ''}`} aria-label="Primary navigation">
         <a className="monogram" href="#projects" aria-label="Parinav Badal, home">
           <img src={logo} alt="" aria-hidden="true" />
         </a>
@@ -696,20 +746,25 @@ function App() {
       </section>
 
       <section className="work-section" id="selected-work">
-        <header className="section-heading"><h2>Projects</h2><p className="section-intro">A selection of projects made clear through research, prototyping, and close partnership.</p></header>
+        <header className="section-heading"><h2>Projects</h2><p className="section-intro">A selection of project highlights made through research and designed with close partnership. These are under NDA, so more can be presented in person.</p></header>
         <div className="project-list">
           {projects.map((project) => (
             <article className="project" key={project.title}>
               <a
                 className="project-tile"
-                href="#contact"
-                aria-label={`Preview ${project.title} case study`}
+                href={project.route}
+                aria-label={`View ${project.title} case study`}
                 data-sound-variation="nexus"
-                onClick={() => playProjectOpenSound()}
+                onClick={(event) => {
+                  event.preventDefault()
+                  event.stopPropagation()
+                  playProjectOpenSound()
+                  navigateTo(project.route, 'selected-work')
+                }}
               >
                 <img src={project.image} alt="" loading="lazy" />
                 <span className="project-card-title" aria-hidden="true">{project.title}</span>
-                <span className="project-preview-badge" aria-hidden="true">Private preview</span>
+                <span className="project-preview-badge" aria-hidden="true">View case study</span>
                 <span className="project-overlay">
                   <span className="project-overlay-copy">{project.description}</span>
                   <span className="project-tags" aria-hidden="true"><i>B2B</i><i>SaaS</i></span>
