@@ -1,11 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowDownRight, ArrowLeft, ArrowUp, ArrowUpRight, Menu, X } from 'lucide-react'
+import { ArrowDownRight, ArrowLeft, ArrowUp, ArrowUpRight, ChevronLeft, ChevronRight, Maximize2, Menu, X } from 'lucide-react'
 import { FaLinkedin } from 'react-icons/fa6'
 import { SiGmail } from 'react-icons/si'
 import logo from '../Images/logo.svg'
-import aboutImage from '../Images/aboutimage.png'
-import pulseLandingPage from '../Images/landing page.svg'
+import aboutImage from '../Images/life2.png'
+import pulseHeroImage from '../Images/landingpage.png'
+import journeyMapImage from '../Images/JM gsk.svg'
+import metricsGskImage from '../Images/1.svg'
+import designGskImage from '../Images/designgsk.svg'
 import './App.css'
+import workshopImage from '../Images/workshop.png'
+import thematicAnalysisImage from '../Images/thematic analysis.svg'
+import personalFileOneImage from '../Images/p1.svg'
+import personalFileTwoImage from '../Images/p2.svg'
 
 const projects = [
   {
@@ -29,9 +36,9 @@ const projects = [
 ]
 
 const posts = [
-  ['From Exposing What AI Knows to Designing What Humans Need', 'Rethinking AI agent scores, rankings, and signals', '10 min', '31st August 26', 'https://medium.com/@badalparina1/ai-agent-signals-rethinking-ai-scores-rankings-and-what-it-means-for-users-to-trust-system-f14a02dd6120?sharedUserId=badalparina1'],
-  ['What prototypes are really for', 'Using prototypes to answer the right questions before building', '5 min', '18th January 26', '#contact'],
-  ['Conducting Design Thinking Workshop', 'A practical guide to aligning stakeholders through hands-on collaboration', '5 min read', '21st August 23', 'https://medium.com/@uxandyouti/conducting-design-thinking-workshop-for-stakeholders-9fd25b2425e0'],
+  ['From Exposing What AI Knows to Designing What Humans Need', 'Rethinking AI agent scores, rankings, and signals', '10 min', 'September 2026', 'https://medium.com/@badalparina1/ai-agent-signals-rethinking-ai-scores-rankings-and-what-it-means-for-users-to-trust-system-f14a02dd6120?sharedUserId=badalparina1'],
+  ['Conducting Design Thinking Workshop', 'A practical guide to aligning stakeholders through hands-on collaboration', '5 min read', 'August 2023', 'https://medium.com/@uxandyouti/conducting-design-thinking-workshop-for-stakeholders-9fd25b2425e0'],
+  ['What deserves notification or dashboard', 'Deciding what deserves an interruption, and what belongs on main screen.', '5 min', 'January 2026', '#contact'],
 ]
 
 const navigation = ['Projects', 'About', 'Blog', 'Contact']
@@ -218,7 +225,7 @@ function AboutPage({ onBack }: { onBack: () => void }) {
     <main className="about-page-shell">
       <section className="about-section about-page" id="about">
         <div className="about-page-top">
-          <a className="about-back" href="/" onClick={(event) => { event.preventDefault(); playProjectBackSound(); onBack() }}>
+          <a className="about-back" href="/" onClick={(event) => { event.preventDefault(); onBack() }}>
             <ArrowLeft size={18} /> Back
           </a>
           <p>Parinav Badal / About</p>
@@ -252,7 +259,7 @@ export function PulseCaseStudy({ onBack }: { onBack: () => void }) {
   return (
     <main className="case-study-shell">
       <header className="case-study-nav">
-        <a className="about-back" href="/" onClick={(event) => { event.preventDefault(); playProjectBackSound(); onBack() }}>
+        <a className="about-back" href="/" onClick={(event) => { event.preventDefault(); onBack() }}>
           <ArrowLeft size={18} /> Back
         </a>
         <p>Parinav Badal / Case study</p>
@@ -429,6 +436,7 @@ type CaseStudyContent = {
   landscape: Record<string, string[]>
   friction: string[]
   opportunities: string[]
+  opportunityDetails?: { title: string; body: string }[]
   metrics: string[]
   workshop: string[]
   priorities: Record<string, string[]>
@@ -448,15 +456,27 @@ const caseStudies: Record<string, CaseStudyContent> = {
     landscape: { 'Business Focus': ['Increase repeat planning', 'Lower support overhead'], 'User Intent': ['Compare options together', 'Keep plans flexible'], 'System Boundaries': ['Itineraries and collaboration', 'Bookings remain external'], 'Design Strategy': ['Shared visibility', 'Confidence through context'] },
     friction: ['Plans lived in chat threads and spreadsheets.', 'Trade-offs were hard to compare as a group.', 'Last-minute changes created duplicate work.'], opportunities: ['Give every trip one flexible home.', 'Make alternatives easy to compare.', 'Keep changes visible without noise.'], metrics: ['91% Weekly Retention', '82 SUS Score', '42% Fewer support requests'], workshop: ['People planned around constraints, not destinations.', 'A useful comparison needed time, cost, and confidence together.', 'Shared edits required a clear activity rhythm.'], priorities: { 'Must Have': ['Trip overview', 'Shared itinerary', 'Change history'], 'Should Have': ['Option comparison', 'Saved places', 'Smart reminders'], 'Could Have': ['Local recommendations', 'Offline mode'], "Won't Have": ['In-app booking', 'Social discovery feed'] }, assets: ['Trip overview', 'Option comparison', 'Collaborative itinerary', 'Change summary'], phases: ['Phase 1 · Make the shared itinerary dependable', 'Phase 2 · Add comparison and planning intelligence', 'Horizon · Support multi-trip planning for teams'] },
   '/pulse': {
-    title: 'Simplifying the report creation workflow', summary: 'Making complex reporting easier to understand, collaborate on, and move from first draft to final delivery.', role: 'Lead Product Designer', timeline: '12 weeks · Research to pilot', team: ['Lead product designer', 'Product manager', 'Content strategist', '4 engineers'], heroImage: pulseLandingPage,
+    title: 'Simplifying report creation', summary: 'Making complex reporting easier to modify, collaborate on, and move from first draft to final delivery.', role: 'Product Designer - E2E', timeline: '12 weeks · Discovery to handoff', team: ['3 front-end developers', '1 senior developer', '1 project manager', '1 product owner'], heroImage: pulseHeroImage,
     landscape: { 'Business Focus': ['Reduce report production time', 'Improve delivery consistency'], 'User Intent': ['Know what to do next', 'Create with confidence'], 'System Boundaries': ['Briefs, drafts, and review', 'Publishing stays with the team'], 'Design Strategy': ['Make progress visible', 'Reduce cognitive load'] },
-    friction: ['Report creation was spread across disconnected tools.', 'People had to repeat the same work across planning and production.', 'The team could not easily tell what was ready, blocked, or missing.'], opportunities: ['Bring the report workflow into one clear workspace.', 'Make ownership and progress visible at a glance.', 'Turn scattered feedback into focused next steps.'], metrics: ['3000+ Reports supported', '3 Core workflows', '92.5% Task success', '85.6 SUS Score'], workshop: ['What problems does the current process create for people?', 'What does each role need to feel confident?', 'How might we reduce effort without removing control?'], priorities: { 'Must Have': ['Clear report brief', 'Structured authoring', 'Review and approval states'], 'Should Have': ['Reusable report templates', 'Role-based views', 'Activity history'], 'Could Have': ['Smart content suggestions', 'Custom workflow rules'], "Won't Have": ['A general project-management tool', 'Automated decisions without review'] }, assets: ['Report overview', 'Design montage', 'Review workspace', 'Publishing flow'], assetImages: ['/pulse-cover.svg', '/pulse-journey.svg', '/pulse-workflow.svg', '/pulse-cover.svg'], phases: ['Phase 1 · Simplify the report brief and creation flow', 'Phase 2 · Connect review, feedback, and approval', 'Horizon · Extend the system across enterprise reporting'] },
+    friction: ['Report creation was spread across disconnected tools.', 'People had to repeat the same work across planning and production.', 'The team could not easily tell what was ready, blocked, or missing.'], opportunities: ['Bring the report workflow into one clear workspace.', 'Make ownership and progress visible at a glance.', 'Turn scattered feedback into focused next steps.'], opportunityDetails: [{ title: 'Bringing the report workflow into one clear workspace.', body: 'Make it easier for users to create, review, and manage reports without switching between multiple places.' }, { title: 'Making report accuracy easier to maintain.', body: 'Give users better visibility and control over data, changes, and validation to reduce errors and improve confidence in reports.' }, { title: 'Making reporting faster and easier to complete.', body: 'Reduce unnecessary steps and simplify complex tasks so users can create and finalize reports more efficiently.' }], metrics: ['3000+ Reports supported', '3 Core workflows', '92.5% Task success', '85.6 SUS Score'], workshop: ['Improve report creation speed — Reduce manual steps and time needed to generate reports.', 'Improve data accuracy & GxP compliance — Ensure reports are reliable, validated, and meet regulatory requirements.', 'Simplify collaboration & review — Make it easier for teams to work together, provide feedback, and finalize reports.', 'Reduce manual work — Automate repetitive tasks and minimize dependency on manual user actions.', 'Make reports easier to find and navigate — Help users quickly access relevant reports, data, and insights.', 'Support flexible report creation — Enable templates and customization for different business and user needs.', 'Improve product performance & reliability — Ensure the experience is fast, stable, and dependable at scale.'], priorities: { 'Must Have': ['Clear report brief', 'Structured authoring', 'Review and approval states'], 'Should Have': ['Reusable report templates', 'Role-based views', 'Activity history'], 'Could Have': ['Smart content suggestions', 'Custom workflow rules'], "Won't Have": ['A general project-management tool', 'Automated decisions without review'] }, assets: ['Report overview', 'Design montage', 'Review workspace', 'Publishing flow'], assetImages: ['/pulse-cover.svg', '/pulse-journey.svg', '/pulse-workflow.svg', '/pulse-cover.svg'], phases: ['Phase 1 · Simplify the report brief and creation flow', 'Phase 2 · Connect review, feedback, and approval', 'Horizon · Extend the system across enterprise reporting'] },
 }
 
 function CaseStudyPage({ content, onBack }: { content: CaseStudyContent; onBack: () => void }) {
   const [showCaseTop, setShowCaseTop] = useState(false)
-  const columns = Object.entries(content.landscape)
+  const [openWorkshop, setOpenWorkshop] = useState<'workshop1' | 'workshop2' | 'personalFiles' | null>(null)
+  const [activePersonalFile, setActivePersonalFile] = useState(0)
   const priorityColumns = Object.entries(content.priorities)
+  const workshopTwoColumns: [string, string[]][] = content.title === 'Simplifying report creation'
+    ? [
+        ['Project & Timeline', ['Project visibility', 'Planning & coordination', 'Timeline management']],
+        ['Team Management', ['Team collaboration', 'Resource allocation']],
+        ['Role Mapping', ['Role swap', 'Role visibility']],
+        ['Report Output', ['Data accuracy & validation', 'Review & approval', 'Output flexibility']],
+      ]
+    : priorityColumns
+  const caseAssets = content.title === 'Simplifying report creation'
+    ? [{ name: 'Identified journey map', image: journeyMapImage }]
+    : content.assets.map((name, index) => ({ name, image: content.assetImages?.[index] }))
 
   useEffect(() => {
     const updateCaseTop = () => setShowCaseTop(window.scrollY > window.innerHeight * 4)
@@ -465,38 +485,54 @@ function CaseStudyPage({ content, onBack }: { content: CaseStudyContent; onBack:
     return () => window.removeEventListener('scroll', updateCaseTop)
   }, [])
 
+  useEffect(() => {
+    if (!openWorkshop) return
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpenWorkshop(null)
+    }
+    document.addEventListener('keydown', closeOnEscape)
+    return () => document.removeEventListener('keydown', closeOnEscape)
+  }, [openWorkshop])
+
   return (
     <main className="portfolio-case-study">
-      <header className="case-template-nav"><a className="about-back" href="/" onClick={(event) => { event.preventDefault(); onBack() }}><ArrowLeft size={18} /> Back to projects</a><span>Case study template</span></header>
+      <header className="case-template-nav"><a className="about-back" href="/" aria-label="Back to projects" onClick={(event) => { event.preventDefault(); playProjectBackSound(); onBack() }}><ArrowLeft size={18} aria-hidden="true" /></a></header>
       <article>
-        <section className={`case-template-hero ${content.title === 'Simplifying the report creation workflow' ? 'case-template-hero-pulse' : ''}`} aria-labelledby="case-title">
-          <div><p className="case-eyebrow">{content.title === 'Simplifying the report creation workflow' ? 'TCS X GSK 2024' : 'Enterprise product · UX case study'}</p><h1 id="case-title">{content.title}</h1><p className="case-template-summary">{content.summary}</p><dl className="case-template-meta"><div><dt>Role</dt><dd>{content.role}</dd></div><div><dt>Timeline</dt><dd>{content.timeline}</dd></div></dl></div>
-          <div className={`case-dashboard-placeholder ${content.heroImage ? 'has-hero-image' : ''}`} aria-label={content.heroImage ? `${content.title} landing page` : 'Placeholder for a browser or dashboard mockup'}>{content.heroImage ? <img src={content.heroImage} alt={`${content.title} landing page preview`} /> : <><div className="placeholder-toolbar"><i /><i /><i /><span>product.workspace / overview</span></div><div className="placeholder-layout"><div /><div><b /><b /><b /></div></div></>}</div>
+        <section className={`case-template-hero ${content.title === 'Simplifying report creation' ? 'case-template-hero-pulse' : ''}`} aria-labelledby="case-title">
+          <div>{content.title !== 'Simplifying report creation' && <p className="case-eyebrow">Enterprise product · UX case study</p>}<h1 id="case-title">{content.title}</h1><p className="case-template-summary">{content.summary}</p></div>
+          <div className="case-hero-visual-wrap"><div className={`case-dashboard-placeholder ${content.heroImage ? 'has-hero-image' : ''}`} aria-label={content.heroImage ? `${content.title} landing page` : 'Placeholder for a browser or dashboard mockup'}>{content.heroImage ? <img src={content.heroImage} alt={`${content.title} landing page preview`} /> : <><div className="placeholder-toolbar"><i /><i /><i /><span>product.workspace / overview</span></div><div className="placeholder-layout"><div /><div><b /><b /><b /></div></div></>}</div></div>{content.title === 'Simplifying report creation' && <div className="case-hero-pills" aria-label="Product areas"><span>Lab Reports</span><span>Generative AI</span><span>Pharma</span><span>B2B</span></div>}{content.heroImage && <span className="case-hero-image-caption">TCS X GSK 2024</span>}
         </section>
 
-        <section className="case-template-section case-team" aria-labelledby="team-title"><div className="case-section-label">Team &amp; timeline</div><div className="case-team-grid"><div><h2 id="team-title">A small team aligned around a complex system.</h2><ul className="case-team-list">{content.team.map((member) => <li key={member}>{member}</li>)}</ul></div><div className="case-timeline"><div className="case-timeline-line"><span /></div><div><span>Discover</span><span>Define</span><span>Design</span><span>Pilot</span></div></div></div></section>
+        <section className="case-meta-strip" aria-label="Project details"><dl><div><dt>My role</dt><dd>{content.role}</dd></div><div><dt>Timeline</dt><dd>{content.timeline}</dd></div><div><dt>Team</dt><dd>{content.team.map((member) => <span key={member}>{member}</span>)}</dd></div></dl></section>
 
-        <section className="case-template-section" aria-labelledby="landscape-title"><div className="case-section-label">Strategic landscape</div><h2 id="landscape-title">A focused frame for making better product decisions.</h2><div className="case-landscape-grid">{columns.map(([heading, items]) => <div key={heading}><h3>{heading}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></div>)}</div></section>
+        <section className="case-template-section case-background-investment" aria-labelledby="background-title">
+          <div className="case-background-column"><h2 className="case-problem-title" id="background-title">Problem</h2><p>Business noticed <strong>declining adoption</strong> highlighting gaps in report workflows, and accuracy along with speed of reporting. Stakeholders needed better solution to <strong>support further investment</strong> focused on addressing gaps.</p></div>
+          <div className="case-background-column"><h2 className="case-investment-title">Opportunity</h2><ol><li><strong>Identify user groups</strong> and design scalable report workflows that <strong>simplify collaboration</strong> and modification while improving the overall user experience and SUS score.</li></ol></div>
+        </section>
 
-        <section className="case-template-section case-problem" aria-labelledby="problem-title"><div className="case-section-label">Problem statement</div><h2 id="problem-title">When the system hides the next useful action, people create their own workarounds.</h2><ul>{content.friction.map((item) => <li key={item}>{item}</li>)}</ul></section>
+        <section className="case-template-section" aria-labelledby="opportunity-title"><div className="case-section-label">Opportunity breakdown</div><h2 id="opportunity-title">Three vectors shaped the solution.</h2><div className="case-opportunity-grid">{(content.opportunityDetails ?? content.opportunities.map((title) => ({ title, body: 'Design the smallest useful intervention that makes this behavior visible, understandable, and repeatable.' }))).map((opportunity) => <article key={opportunity.title}><h3>{opportunity.title}</h3><p>{opportunity.body}</p></article>)}</div></section>
 
-        <section className="case-template-section" aria-labelledby="opportunity-title"><div className="case-section-label">Opportunity breakdown</div><h2 id="opportunity-title">Three vectors shaped the solution.</h2><div className="case-opportunity-grid">{content.opportunities.map((item) => <article key={item}><h3>{item}</h3><p>Design the smallest useful intervention that makes this behavior visible, understandable, and repeatable.</p></article>)}</div></section>
+        <section className="case-metrics" aria-label="Impact and improvements"><img src={metricsGskImage} alt="Post redesign impact and improvements" /></section>
 
-        <section className="case-metrics" aria-labelledby="metrics-title"><div className="case-section-label">Impact metrics</div><h2 id="metrics-title">Signals that made the work worth extending.</h2><div>{content.metrics.map((metric) => <strong key={metric}>{metric}</strong>)}</div></section>
+        <section className="case-design-montage" aria-labelledby="design-montage-title"><h2 id="design-montage-title"><span>Design</span>{' '}<span>Montage</span></h2></section>
 
-        <section className="case-template-section" aria-labelledby="workshop-title"><div className="case-section-label">Design workshop synthesis</div><h2 id="workshop-title">What we heard became a set of usable principles.</h2><div className="case-workshop-grid">{content.workshop.map((item) => <article key={item}><p>{item}</p></article>)}</div></section>
+        <section className="case-template-section case-workshop-section" aria-labelledby="workshop-title"><div className="case-section-label-row"><div className="case-section-label">Workshop 1</div><button className="case-workshop-button" type="button" onClick={() => setOpenWorkshop('workshop1')}><Maximize2 size={12} aria-hidden="true" /><span>View</span></button></div><h2 id="workshop-title"><span className="workshop-heading-accent">What</span> do we solve?</h2><div className="case-workshop-grid">{content.workshop.map((item, index) => <article key={item}><span>{String(index + 1).padStart(2, '0')}</span><p>{item.split(' — ')[0]}</p></article>)}</div></section>
 
-        <section className="case-template-section" aria-labelledby="moscow-title"><div className="case-section-label">MoSCoW prioritization canvas</div><h2 id="moscow-title">Protect the core experience before adding range.</h2><div className="case-moscow-grid">{priorityColumns.map(([heading, items]) => <div key={heading}><h3>{heading}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></div>)}</div></section>
+        <section className="case-template-section case-workshop-section" aria-labelledby="workshop-2-title"><div className="case-section-label-row"><div className="case-section-label">Workshop 2</div><button className="case-workshop-button" type="button" onClick={() => setOpenWorkshop('workshop2')}><Maximize2 size={12} aria-hidden="true" /><span>View</span></button></div><h2 id="workshop-2-title"><span className="workshop-heading-accent">How</span> do we solve?</h2><div className="case-moscow-grid">{workshopTwoColumns.map(([heading, items]) => <div key={heading}><h3>{heading}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></div>)}</div></section>
 
-        <section className="case-template-section" aria-labelledby="designs-title"><div className="case-section-label">Core interactive designs</div><h2 id="designs-title">A flexible visual language for the moments that matter.</h2><div className="case-assets-grid">{content.assets.map((asset, index) => <figure key={asset}><div className="case-asset-placeholder">{content.assetImages?.[index] ? <img src={content.assetImages[index]} alt={`${asset} interface`} /> : <><span>Interface placeholder</span><i /><i /><i /></>}</div><figcaption>{asset}</figcaption></figure>)}</div></section>
+          <section className="case-template-section" aria-labelledby="designs-title"><div className="case-section-label-row"><div className="case-section-label">{content.title === 'Simplifying report creation' ? 'Identified journey map' : 'Core interactive designs'}</div>{content.title === 'Simplifying report creation' && <button className="case-workshop-button" type="button" onClick={() => { setActivePersonalFile(0); setOpenWorkshop('personalFiles') }}><span>Persona</span><Maximize2 size={12} aria-hidden="true" /></button>}</div><h2 id="designs-title">{content.title === 'Simplifying report creation' ? 'A shared view of the reporting journey.' : 'A flexible visual language for the moments that matter.'}</h2><div className={`case-assets-grid ${content.title === 'Simplifying report creation' ? 'case-assets-grid-pulse' : ''}`}>{caseAssets.map(({ name, image }) => <figure key={name}><div className="case-asset-placeholder">{image ? <img src={image} alt={`${name} interface`} /> : <><span>Interface placeholder</span><i /><i /><i /></>}</div>{content.title !== 'Simplifying report creation' && <figcaption>{name}</figcaption>}</figure>)}</div></section>
 
-        <section className="case-template-section" aria-labelledby="release-title"><div className="case-section-label">Release blueprint</div><h2 id="release-title">A linear path from pilot to a durable product system.</h2><ol className="case-release-list">{content.phases.map((phase) => <li key={phase}><p>{phase}</p></li>)}</ol></section>
+        <section className="case-template-section case-priorities-section" aria-labelledby="release-title"><h2 id="release-title">Setting Priorities</h2><div className="case-priorities-board"><article><em>Recommendations</em><p>post UX evaluation &amp; user research.</p><h3>Tech</h3><ul><li>Defining role &amp; responsibility of Approver, reviewer &amp; co-author.</li><li>Linking Spotfire with RR.</li><li>Linking VOD with RR for seamless approval and edit process.</li><li>Tool access for external (FDA, Vendor) &amp; internal users.</li><li>Anatomy for GenAI prompts for more user control on generated content.</li></ul><h3>Design</h3><ul><li>Document tray: loading all potential docs in advance to be utilized.</li><li>Report initiation process.</li><li>Archive of old reports.</li><li>Ability to quick access reports.</li><li>Improved overall UI of tool.</li><li>Refined dashboard view.</li><li>Dashboard widget for team allocation and tasks.</li><li>Personalized menu, sub-menu &amp; suggestions for respective team.</li><li>Correct taxonomy &amp; nomenclature.</li><li>Improve user control for notifications.</li></ul></article><article><em>Final design action plan</em><h3>Priority 1</h3><ul><li>Role mapping: Author, co-author, Reviewer &amp; Approver.</li><li>Report Creation Journey.</li><li>Template Creation Journey.</li><li>Version Control &amp; edits.</li><li>Template metadata settings.</li><li>Charts &amp; image import settings.</li><li>Email Notifications.</li></ul><h3>Priority 2</h3><ul><li>Approval process.</li><li>Admin control.</li></ul></article></div></section>
 
-        <footer className="case-template-footer"><p className="case-section-label">Thank you</p><h2>Let’s make complex products easier to trust.</h2><div><a href="mailto:pbadal520@gmail.com">Email</a><a href="https://www.linkedin.com/in/parinav-badal-2924ba32/" target="_blank" rel="noreferrer">LinkedIn</a><a href="/" onClick={(event) => { event.preventDefault(); onBack() }}>All projects</a></div></footer>
+        <section className="case-key-improvements" aria-labelledby="key-improvements-title"><h2 id="key-improvements-title">Key Improvements</h2></section>
+        <section className="case-design-gsk" aria-label="GSK design system"><img src={designGskImage} alt="GSK design system screens" /></section>
+
+        <footer className="case-template-footer"><button className="case-footer-back" type="button" onClick={onBack}>Go back to projects <ArrowLeft size={16} aria-hidden="true" /></button></footer>
       </article>
       <button className={`case-back-to-top ${showCaseTop ? 'is-visible' : ''}`} type="button" aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         <ArrowUp size={20} aria-hidden="true" />
       </button>
+      {openWorkshop && <div className="case-image-popover" role="dialog" aria-modal="true" aria-labelledby="workshop-image-title" onClick={() => setOpenWorkshop(null)}><div className={`case-image-popover-panel ${openWorkshop === 'personalFiles' ? 'case-personal-files-panel' : ''}`} onClick={(event) => event.stopPropagation()}><div className="case-image-popover-header"><p id="workshop-image-title">{openWorkshop === 'workshop1' ? 'Workshop 1' : openWorkshop === 'workshop2' ? 'Thematic analysis' : `Personal files ${activePersonalFile + 1}`}</p><button type="button" aria-label="Close image popover" onClick={() => setOpenWorkshop(null)}><X size={20} /></button></div>{openWorkshop === 'personalFiles' ? <><div className="case-image-popover-images"><img src={activePersonalFile === 0 ? personalFileOneImage : personalFileTwoImage} alt={`Personal file ${activePersonalFile + 1}`} /></div><div className="case-image-popover-controls"><button type="button" aria-label="Show previous personal file" onClick={() => setActivePersonalFile((current) => (current + 1) % 2)}><ChevronLeft size={22} /></button><span>{activePersonalFile + 1} / 2</span><button type="button" aria-label="Show next personal file" onClick={() => setActivePersonalFile((current) => (current + 1) % 2)}><ChevronRight size={22} /></button></div></> : <img src={openWorkshop === 'workshop1' ? workshopImage : thematicAnalysisImage} alt={openWorkshop === 'workshop1' ? 'Design thinking workshop materials and collaboration' : 'Thematic analysis workshop'} />}</div></div>}
     </main>
   )
 }
@@ -746,7 +782,7 @@ function App() {
       </section>
 
       <section className="work-section" id="selected-work">
-        <header className="section-heading"><h2>Projects</h2><p className="section-intro">A selection of project highlights made through research and designed with close partnership. These are under NDA, so more can be presented in person.</p></header>
+        <header className="section-heading"><h2>Projects</h2><p className="section-intro">Due to NDA restrictions, additional work and details can be shared in person.</p></header>
         <div className="project-list">
           {projects.map((project) => (
             <article className="project" key={project.title}>
@@ -804,8 +840,8 @@ function App() {
 
       <footer id="contact">
         <p className="kicker">
-          <span>Building a frontier team</span>
-          <span>&amp; AI-native product<span className="contact-question-mark">?</span></span>
+          <span>Building a frontier team or</span>
+          <span>an AI-native product<span className="contact-question-mark">?</span></span>
         </p>
         <div className="contact-cta-group">
           <h2>Connect with me @</h2>
