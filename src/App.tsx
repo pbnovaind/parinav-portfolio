@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, CircleHelp, Maximize2, Menu, X, XCircle } from 'lucide-react'
+import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, ChevronLeft, ChevronRight, Maximize2, Menu, X } from 'lucide-react'
 import { FaLinkedin } from 'react-icons/fa6'
 import { SiGmail } from 'react-icons/si'
 import logo from '../Images/logo.svg'
@@ -22,12 +22,17 @@ import financeProfileImage from '../Images/finance2.svg'
 import microsoft365Image from '../Images/M365.svg'
 import designMontageImage from '../Images/Designmontage.svg'
 import explorationImage from '../Images/exploration.svg'
-import finalDesignImage from '../Images/finaldesign.svg'
-import lastSlideImage from '../Images/last slide.svg'
-import mainDesignImage from '../Images/main design.png'
+import explorationCardOne from '../Images/Card1.svg'
+import explorationCardTwo from '../Images/Card2.svg'
+import explorationCardThree from '../Images/Card3.svg'
+import explorationCardFour from '../Images/Card4.svg'
+import cardTestImage from '../Images/Cardtest.svg'
+import cardTestTwoImage from '../Images/cardtest2.svg'
+import finalPageImage from '../Images/lastpageq.svg'
 import financeLaptopImage from '../Images/laptop365.svg'
-import financeCardsImage from '../Images/Card.svg'
 import workshopM365Image from '../Images/workshopm365.svg'
+import surveyVivaImage from '../Images/surveyviva.jpg'
+import surveyTwoImage from '../Images/survey2.svg'
 
 const projects = [
   {
@@ -62,6 +67,12 @@ const posts = [
 const navigation = ['Projects', 'About', 'Blog', 'Contact']
 const heroRoles = ['Designer', 'Mentor', 'CFI Cyclist', 'Motorsports Enthusiast']
 const greetings = ['Hello', 'नमस्ते', 'வணக்கம்', 'నమస్కారం', 'नमस्कार', 'Bonjour', 'Hola', 'Ciao', 'Hallo', 'Olá']
+const explorationCards = [
+  { src: explorationCardOne, label: 'Directly fill best possible?' },
+  { src: explorationCardTwo, label: 'List AI + past records in drop down ?', accent: true },
+  { src: explorationCardThree, label: 'Show available agent logic' },
+  { src: explorationCardFour, label: 'Let system throw an error and avoid guess work?' },
+]
 
 function playProjectOpenSound() {
   if (!('AudioContext' in window)) return
@@ -562,19 +573,47 @@ function CaseStudyPage({ content, onBack }: { content: CaseStudyContent; onBack:
 }
 
 function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
+  const [openArcImage, setOpenArcImage] = useState<'workshop' | 'landscape' | 'research' | null>(null)
+  const [researchTab, setResearchTab] = useState<'questions' | 'post'>('questions')
+  const [showArcTop, setShowArcTop] = useState(false)
   const sections = [
     { label: '01 / Overview', title: 'Invoice', accent: 'Extraction & Automation', body: 'AI-powered invoice processing that automates extraction, validation, and processing for Finance & Accounting.', image: financeLaptopImage, className: 'arc-figma-hero' },
     { label: '02 / My role', title: 'Product Designer', body: 'Customer interview & research synthesis\nDesign prototype\nProduct demo video', image: financeAgentLogo, className: 'arc-figma-role' },
     { label: '03 / Opportunity', title: 'Opportunity', body: '', image: financeLaptopImage, className: 'arc-figma-opportunity' },
     { label: '04 / Impact', title: 'Impact', body: 'Post redesign', image: financeProfileImage, className: 'arc-figma-impact' },
     { label: '05 / Design Montage', title: 'Design Montage', body: 'Exhausting tokens...', image: designMontageImage, className: 'arc-figma-montage' },
-    { label: '06 / Landscape', title: 'Understanding landscape ...', body: '', image: financeCardsImage, className: 'arc-figma-workshop' },
     { label: '07 / Customer research', title: 'Conducting workshop for alignment...', body: '', image: workshopM365Image, className: 'arc-figma-research' },
-    { label: '08 / Design decisions', title: 'Designing with underlying agent logic', body: 'Key design decisions 1', image: mainDesignImage, className: 'arc-figma-decisions' },
-    { label: '09 / Exploration', title: 'Key design decisions 2', body: 'Low-Fi\nExplorations focused on line-item extraction, alignment with stakeholders, and technical feasibility.', image: explorationImage, className: 'arc-figma-exploration' },
-    { label: '10 / Final design', title: 'Key design decisions 3', body: 'M365 Finance Agent for Invoice processing in Public preview', image: finalDesignImage, className: 'arc-figma-final' },
-    { label: '11 / Launch', title: 'M365 Copilot', accent: 'June 2026', body: 'M365 Finance Agent for Invoice processing in Public preview', image: lastSlideImage, className: 'arc-figma-launch' },
+    { label: '08 / Design decisions', title: 'Survey with AP clerks and customers', body: 'Key design decisions 1', image: surveyVivaImage, className: 'arc-figma-decisions' },
+    { label: '09 / Exploration', title: 'Key design decisions 1', body: "When the AI agent can't find a match, the AI agent should?",
+      image: explorationImage, className: 'arc-figma-exploration' },
+    { label: '10 / Exploration', title: 'Key design decisions 2', body: <><span>Mid-Fi</span><br />Range of <strong>edge cases</strong> and scenarios investigation with stakeholders for "<strong>Line items</strong>" rows</>, image: explorationImage, className: 'arc-figma-exploration' },
+    { label: '11 / Final design', title: 'Key design decisions 3', body: <>Can customers <strong>test Invoice</strong> against a sample?</>, image: cardTestImage, className: 'arc-figma-exploration' },
+    { label: '12 / Launch', title: 'M365 Copilot', accent: 'June 2026', body: 'M365 Finance Agent for Invoice processing in Public preview', image: finalPageImage, className: 'arc-figma-launch' },
   ]
+
+  useEffect(() => {
+    if (!openArcImage) return
+    const previousBodyOverflow = document.body.style.overflow
+    const previousDocumentOverflow = document.documentElement.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpenArcImage(null)
+    }
+    document.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.removeEventListener('keydown', closeOnEscape)
+      document.body.style.overflow = previousBodyOverflow
+      document.documentElement.style.overflow = previousDocumentOverflow
+    }
+  }, [openArcImage])
+
+  useEffect(() => {
+    const updateArcTopVisibility = () => setShowArcTop(window.scrollY > window.innerHeight * 3)
+    updateArcTopVisibility()
+    window.addEventListener('scroll', updateArcTopVisibility, { passive: true })
+    return () => window.removeEventListener('scroll', updateArcTopVisibility)
+  }, [])
 
   return (
     <main className="arc-figma-page">
@@ -636,24 +675,29 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
           ) : section.className === 'arc-figma-research' ? (
             <section className="arc-figma-section arc-figma-research" key={section.label}>
               <div className="arc-research-copy">
-                <h1>Conducting workshop for alignment...</h1>
+                <h1>Conducting workshop for <span className="arc-research-accent">alignment...</span></h1>
+                <span className="arc-research-almost">almost</span>
+                <div className="arc-research-actions">
+                  <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('workshop')}><Maximize2 size={14} aria-hidden="true" /><span>View workshop</span></button>
+                  <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('landscape')}><Maximize2 size={14} aria-hidden="true" /><span>View landscape</span></button>
+                </div>
+              </div>
+              <div className="arc-research-visual">
                 <div className="arc-research-outcomes">
-                  <h2>Outcome from workshop</h2>
                   <div className="arc-research-cards">
-                    <div className="arc-research-card"><CheckCircle2 aria-hidden="true" /><span>Less time manually entering invoices</span></div>
-                    <div className="arc-research-card"><CircleHelp aria-hidden="true" /><span>Extract PO number more accurately from ERPs or emails</span></div>
-                    <div className="arc-research-card"><CheckCircle2 aria-hidden="true" /><span>Prioritise what needs attention</span></div>
-                    <div className="arc-research-card"><CheckCircle2 aria-hidden="true" /><span>Quick approval for high value invoices</span></div>
-                    <div className="arc-research-card"><CheckCircle2 aria-hidden="true" /><span>Repeat errors on same vendor invoices</span></div>
-                    <div className="arc-research-card arc-research-card-out-of-scope"><XCircle aria-hidden="true" /><span>Inconsistent templates from vendor</span><small>Out of scope &amp; no design exploration needed</small></div>
+                    <span>Focus on semi-structured invoices as the primary target</span>
+                    <span>Improve PO number extraction across ERPs and emails</span>
+                    <span>Prioritise invoices that need human attention</span>
+                    <span>Enable admin approval of high-value invoices</span>
+                    <span>Identify and prevent recurring vendor-specific errors</span>
+                    <span>Inconsistent vendor invoice templates</span>
                   </div>
                 </div>
               </div>
-              <img src={section.image} alt="Workshop alignment board" />
             </section>
           ) : section.className === 'arc-figma-workshop' ? (
             <section className="arc-figma-section arc-figma-workshop" key={section.label}>
-              <h1 className="arc-landscape-title">Understanding landscape ...</h1>
+              <h1 className="arc-landscape-title">landscape ...</h1>
               <div className="arc-landscape-grid">
                 <div className="arc-landscape-col">
                   <h2 className="arc-landscape-head arc-landscape-business">Business</h2>
@@ -669,15 +713,72 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
                 </div>
               </div>
             </section>
+          ) : section.className === 'arc-figma-launch' ? (
+            <section className="arc-figma-section arc-figma-launch" key={section.label}>
+              <div className="arc-launch-art">
+                <img className="arc-launch-lastpage" src={section.image} alt="M365 Finance Agent project folder" />
+              </div>
+            </section>
           ) : (
-            <section className={`arc-figma-section ${section.className}`} key={section.label}>
-              <div className="arc-figma-copy">{section.className !== 'arc-figma-hero' && <span>{section.label}</span>}{section.className === 'arc-figma-hero' && <img className="arc-finance-agent" src={financeAgentLogo} alt="Finance Agent" />}<h1>{section.title}{section.accent && <><br /><em>{section.accent.split(' & ').map((part, index) => <span key={part}>{index > 0 && <small className="arc-ampersand">&amp;</small>}{part}</span>)}</em></>}</h1><p>{section.body}</p>{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
-              <img src={section.image} alt="" />
+            <section className={`arc-figma-section ${section.className} ${typeof section.title === 'string' && /^Key design decisions [123]$/.test(section.title) ? 'arc-key-decisions-gradient' : ''}`} key={section.label}>
+              <div className="arc-figma-copy">{section.className !== 'arc-figma-hero' && section.className !== 'arc-figma-decisions' && <span>{section.label}</span>}{section.className === 'arc-figma-hero' && <img className="arc-finance-agent" src={financeAgentLogo} alt="Finance Agent" />}{(() => {
+                const match = typeof section.title === 'string' ? section.title.match(/^(.*?)(\d+)$/) : null
+                return match ? (
+                  <h1>{match[1]} <span className="arc-decision-number">{match[2]}</span></h1>
+                ) : (
+                  <h1>{section.title}{section.accent && <><br /><em>{section.accent.split(' & ').map((part, index) => <span key={part}>{index > 0 && <small className="arc-ampersand">&amp;</small>}{part}</span>)}</em></>}</h1>
+                )
+              })()}{section.className !== 'arc-figma-decisions' && !((section.className === 'arc-figma-exploration') && section.title === 'Key design decisions 1') && <p>{section.body}</p>}{(section.className === 'arc-figma-exploration') && section.title === 'Key design decisions 1' && <p className="arc-ai-agent-copy">When the <span className="arc-ai-agent-hl">AI</span> <span className="arc-ai-agent-hl">agent</span> can't find a match, it <span className="arc-ai-agent-hl">should</span><span className="arc-ai-agent-hl">?</span></p>}{section.className === 'arc-figma-decisions' && <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('research')}><Maximize2 size={14} aria-hidden="true" /><span>View research</span></button>}{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
+              {section.className === 'arc-figma-decisions' ? <div className="arc-customer-research-visual">
+                <div className="arc-research-outcomes">
+                  <div className="arc-research-cards">
+                    <span>Focus on semi-structured invoices as the primary target</span>
+                    <span>Improve PO number extraction across ERPs and emails</span>
+                    <span>Prioritise invoices that need human attention</span>
+                    <span>Enable admin approval of high-value invoices</span>
+                    <span>Identify and prevent recurring vendor-specific errors</span>
+                    <span><s>Inconsistent vendor invoice templates</s> — <strong>Out of scope</strong></span>
+                  </div>
+                </div>
+                <img src={surveyTwoImage} alt="Customer research survey" />
+                <p className="arc-chart-takeaway"><strong>Key takeaway:</strong> Most users manually search and correct PO numbers, highlighting an opportunity to design clearer UI actions for reviewing and correcting extraction errors.</p>
+              </div> : section.className === 'arc-figma-exploration' && section.title === 'Key design decisions 1' ? <div className="arc-exploration-visual" aria-label="Exploration card concepts">
+                <div className="arc-exploration-cards">
+                  {explorationCards.map((card, index) => (
+                    <div key={card.label} className={`arc-exploration-card ${card.accent ? 'is-accent' : ''}`} style={{ '--card-index': index } as CSSProperties}>
+                      {card.accent && (
+                        <>
+                          <span className="arc-exploration-check" aria-label="Selected option">✓</span>
+                          <span className="arc-exploration-hover-tag">Scalable for future feature swap and actions.</span>
+                        </>
+                      )}
+                      <img src={card.src} alt={`Exploration card ${index + 1}`} />
+                      <p>{card.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div> : section.title === 'Key design decisions 3' ? <div className="arc-exploration-visual arc-final-decision-visual" aria-label="Final design card concepts">
+                <div className="arc-exploration-cards arc-final-decision-cards">
+                  <img src={cardTestImage} alt="Card test concept" />
+                  <div className="arc-final-decision-card arc-final-decision-card-selected">
+                    <span className="arc-final-decision-check" aria-label="Selected card">✓</span>
+                    <span className="arc-final-decision-note">Viable for loading shimmer and tenet token numbers</span>
+                    <img src={cardTestTwoImage} alt="Card test secondary concept" />
+                  </div>
+                </div>
+              </div> : <img src={section.image} alt="" />}
             </section>
           )
         ))}
+        <section className="arc-figma-section arc-figma-more" aria-label="More on in-person work">
+          <div className="arc-more-content scroll-reveal">
+            <p>More on In person</p>
+            <button className="case-footer-back" type="button" onClick={onBack}>Go back to projects <ArrowLeft size={16} aria-hidden="true" /></button>
+          </div>
+        </section>
       </article>
-      <button className="arc-figma-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top"><ArrowUp size={20} /></button>
+      {openArcImage && <div className="arc-research-image-popover" role="dialog" aria-modal="true" aria-label={openArcImage === 'workshop' ? 'Workshop image' : openArcImage === 'landscape' ? 'Landscape content' : 'Customer research survey'} onClick={() => setOpenArcImage(null)}><div className={`arc-research-image-panel ${openArcImage === 'landscape' ? 'arc-landscape-drawer' : openArcImage === 'research' ? 'arc-survey-drawer' : ''}`} onClick={(event) => event.stopPropagation()}><button className="arc-research-image-close" type="button" aria-label="Close image" onClick={() => setOpenArcImage(null)}><X size={20} /></button>{openArcImage === 'landscape' ? <><h2>Landscape</h2><div className="arc-landscape-drawer-grid"><div><h3>Business</h3><p>At the broader organizational level, Power Apps and other Microsoft teams had already invested in agentic capabilities for invoice processing and document intelligence. With M365 serving 15M+ paid seats, there was a clear opportunity to bring these capabilities closer to Finance &amp; Accounting users.</p></div><div><h3>Design</h3><p>I had to decide feature scope and scenario within a rapidly evolving M365 and AI landscape, aligning with partners on emerging capabilities and identifying where we could leverage existing patterns.</p></div><div><h3>Product</h3><p>PMs were navigating a fragmented product landscape, with capabilities spread across Microsoft platforms and ERP systems. The key question was what Finance Agent should own, leverage, or scale.</p></div></div></> : openArcImage === 'research' ? <><div className="arc-survey-tabs" role="tablist" aria-label="Customer research views"><button type="button" role="tab" aria-selected={researchTab === 'questions'} className={researchTab === 'questions' ? 'is-active' : ''} onClick={() => setResearchTab('questions')}>Questions</button><button type="button" role="tab" aria-selected={researchTab === 'post'} className={researchTab === 'post' ? 'is-active' : ''} onClick={() => setResearchTab('post')}>Post</button></div>{researchTab === 'questions' ? <ol className="arc-survey-questions"><li>What is your role and responsibility?</li><li>How many invoices do you process in a typical day?</li><li>Which part of invoice processing takes the most time?</li><li>How often do you manually enter or correct invoice information?</li><li>Where do you usually find the PO number?</li><li>How often do you encounter an incorrect or missing PO number?</li><li>What do you do when the PO number is incorrect?</li><li>What are the most common reasons for PO/invoice matching failures?</li><li>How much time do you spend resolving PO/invoice mismatches?</li><li>How often do vendors use inconsistent invoice formats?</li><li>How do you prioritize invoices that need attention?</li><li>How valuable would automated invoice extraction, PO matching be?</li></ol> : <img src={surveyVivaImage} alt="Customer research survey post" />}</> : <img src={workshopM365Image} alt="Workshop alignment board" />}</div></div>}
+      {showArcTop && <button className="arc-figma-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top"><ArrowUp size={20} /></button>}
     </main>
   )
 }
@@ -818,7 +919,7 @@ function App() {
   }, [currentPath])
 
   useEffect(() => {
-    const revealTargets = document.querySelectorAll<HTMLElement>('.section-heading > *, .project, .about-section > .kicker, .about-grid > *, .post, footer > .kicker, .contact-cta-group > h2, .email-link, .about-page-top, .case-study-nav, .case-hero-copy > *, .case-hero-art, .case-section > .kicker, .case-section-grid > *, .case-impact > *, .case-showcase > *, .case-chapter > .kicker, .case-chapter-heading > *, .case-insights > *, .case-personas > *, .case-visual > *, .case-priority-list > *, .case-feature-grid > *, .case-system-grid > *, .case-test-results > *, .case-template-hero > *, .case-template-section > *, .case-template-footer > *, .case-opportunity-grid > *, .case-workshop-grid > *, .case-moscow-grid > *, .case-assets-grid > *, .case-release-list > *, .case-team-list > *, .case-design-montage h2, .arc-figma-copy, .arc-figma-section > img, .arc-figma-montage, .arc-role-overview > *, .arc-tool-grid > *, .arc-opp-col > *, .arc-impact-head > *, .arc-impact-metric, .arc-landscape-col')
+    const revealTargets = document.querySelectorAll<HTMLElement>('.section-heading > *, .project, .about-section > .kicker, .about-grid > *, .post, footer > .kicker, .contact-cta-group > h2, .email-link, .about-page-top, .case-study-nav, .case-hero-copy > *, .case-hero-art, .case-section > .kicker, .case-section-grid > *, .case-impact > *, .case-showcase > *, .case-chapter > .kicker, .case-chapter-heading > *, .case-insights > *, .case-personas > *, .case-visual > *, .case-priority-list > *, .case-feature-grid > *, .case-system-grid > *, .case-test-results > *, .case-template-hero > *, .case-template-section > *, .case-template-footer > *, .case-opportunity-grid > *, .case-workshop-grid > *, .case-moscow-grid > *, .case-assets-grid > *, .case-release-list > *, .case-team-list > *, .case-design-montage h2, .arc-figma-copy:not(.arc-figma-final .arc-figma-copy), .arc-figma-section > img:not(.arc-figma-final > img), .arc-launch-art, .arc-exploration-cards, .arc-figma-montage, .arc-role-overview > *, .arc-tool-grid > *, .arc-opp-col > *, .arc-impact-head > *, .arc-impact-metric, .arc-landscape-title, .arc-landscape-col, .arc-research-copy > *, .arc-research-visual')
     revealTargets.forEach((element, index) => {
       element.classList.add('scroll-reveal')
       element.style.setProperty('--reveal-delay', `${(index % 4) * 110}ms`)
