@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowDownRight, ArrowLeft, ArrowUp, ArrowUpRight, ChevronLeft, ChevronRight, Maximize2, Menu, X } from 'lucide-react'
+import type { CSSProperties } from 'react'
+import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, CircleHelp, Maximize2, Menu, X, XCircle } from 'lucide-react'
 import { FaLinkedin } from 'react-icons/fa6'
 import { SiGmail } from 'react-icons/si'
 import logo from '../Images/logo.svg'
@@ -13,24 +14,41 @@ import workshopImage from '../Images/workshop.png'
 import thematicAnalysisImage from '../Images/thematic analysis.svg'
 import personalFileOneImage from '../Images/p1.svg'
 import personalFileTwoImage from '../Images/p2.svg'
+import projectThumbOne from '../Images/thumb1.svg'
+import projectThumbTwo from '../Images/thumb2.svg'
+import projectThumbThree from '../Images/thumb3.svg'
+import financeAgentLogo from '../Images/financeagent.svg'
+import financeProfileImage from '../Images/finance2.svg'
+import microsoft365Image from '../Images/M365.svg'
+import designMontageImage from '../Images/Designmontage.svg'
+import explorationImage from '../Images/exploration.svg'
+import finalDesignImage from '../Images/finaldesign.svg'
+import lastSlideImage from '../Images/last slide.svg'
+import mainDesignImage from '../Images/main design.png'
+import financeLaptopImage from '../Images/laptop365.svg'
+import financeCardsImage from '../Images/Card.svg'
+import workshopM365Image from '../Images/workshopm365.svg'
 
 const projects = [
   {
     title: 'Arc Studio',
+    status: 'Public preview',
     description: 'A collaborative canvas that turns scattered thinking into clear product direction.',
-    image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=88',
+    image: projectThumbOne,
     route: '/arc-studio',
   },
   {
     title: 'Roam',
+    status: 'GA',
     description: 'Making the messy work of planning a trip feel fluid, personal, and shared.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=88',
+    image: projectThumbTwo,
     route: '/roam',
   },
   {
-    title: 'Pulse',
+    title: 'Geni Reporter',
+    status: 'GA',
     description: 'A clearer workflow for creating, reviewing, and publishing reports.',
-    image: '/pulse-cover.svg',
+    image: projectThumbThree,
     route: '/pulse',
   },
 ]
@@ -463,7 +481,7 @@ const caseStudies: Record<string, CaseStudyContent> = {
 
 function CaseStudyPage({ content, onBack }: { content: CaseStudyContent; onBack: () => void }) {
   const [showCaseTop, setShowCaseTop] = useState(false)
-  const [openWorkshop, setOpenWorkshop] = useState<'workshop1' | 'workshop2' | 'personalFiles' | null>(null)
+  const [openWorkshop, setOpenWorkshop] = useState<'workshop1' | 'workshop2' | 'journeyMap' | 'personalFiles' | null>(null)
   const [activePersonalFile, setActivePersonalFile] = useState(0)
   const priorityColumns = Object.entries(content.priorities)
   const workshopTwoColumns: [string, string[]][] = content.title === 'Simplifying report creation'
@@ -487,15 +505,23 @@ function CaseStudyPage({ content, onBack }: { content: CaseStudyContent; onBack:
 
   useEffect(() => {
     if (!openWorkshop) return
+    const previousBodyOverflow = document.body.style.overflow
+    const previousDocumentOverflow = document.documentElement.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setOpenWorkshop(null)
     }
     document.addEventListener('keydown', closeOnEscape)
-    return () => document.removeEventListener('keydown', closeOnEscape)
+    return () => {
+      document.removeEventListener('keydown', closeOnEscape)
+      document.body.style.overflow = previousBodyOverflow
+      document.documentElement.style.overflow = previousDocumentOverflow
+    }
   }, [openWorkshop])
 
   return (
-    <main className="portfolio-case-study">
+    <main className={`portfolio-case-study ${content.title === 'Simplifying report creation' ? '' : 'portfolio-case-study-neutral'}`}>
       <header className="case-template-nav"><a className="about-back" href="/" aria-label="Back to projects" onClick={(event) => { event.preventDefault(); playProjectBackSound(); onBack() }}><ArrowLeft size={18} aria-hidden="true" /></a></header>
       <article>
         <section className={`case-template-hero ${content.title === 'Simplifying report creation' ? 'case-template-hero-pulse' : ''}`} aria-labelledby="case-title">
@@ -506,34 +532,163 @@ function CaseStudyPage({ content, onBack }: { content: CaseStudyContent; onBack:
         <section className="case-meta-strip" aria-label="Project details"><dl><div><dt>My role</dt><dd>{content.role}</dd></div><div><dt>Timeline</dt><dd>{content.timeline}</dd></div><div><dt>Team</dt><dd>{content.team.map((member) => <span key={member}>{member}</span>)}</dd></div></dl></section>
 
         <section className="case-template-section case-background-investment" aria-labelledby="background-title">
-          <div className="case-background-column"><h2 className="case-problem-title" id="background-title">Problem</h2><p>Business noticed <strong>declining adoption</strong> highlighting gaps in report workflows, and accuracy along with speed of reporting. Stakeholders needed better solution to <strong>support further investment</strong> focused on addressing gaps.</p></div>
-          <div className="case-background-column"><h2 className="case-investment-title">Opportunity</h2><ol><li><strong>Identify user groups</strong> and design scalable report workflows that <strong>simplify collaboration</strong> and modification while improving the overall user experience and SUS score.</li></ol></div>
+          {content.title === 'Simplifying report creation' ? <><div className="case-background-column"><h2 className="case-problem-title" id="background-title">Problem</h2><p>Business noticed <strong>declining adoption</strong> highlighting gaps in report workflows, and accuracy along with speed of reporting. Stakeholders needed better solution to <strong>support further investment</strong> focused on addressing gaps.</p><p className="problem-risk-note">Without sufficient traction and user adoption by Q4 2024, the product risked being discontinued. Despite being in development since 2020, it had not yet demonstrated enough value to justify sustained investment.</p></div><div className="case-background-column"><h2 className="case-investment-title">Opportunity</h2><ol><li>Identify user groups and design scalable workflows for <strong>report creation</strong>, <strong>collaboration</strong>, and modification, improving UX and SUS scores.</li></ol></div></> : <><div className="case-background-column"><h2 className="case-problem-title" id="background-title">Problem</h2><ul>{content.friction.map((item) => <li key={item}>{item}</li>)}</ul></div><div className="case-background-column"><h2 className="case-investment-title">Opportunity</h2><ol>{content.opportunities.map((item) => <li key={item}>{item}</li>)}</ol></div></>}
         </section>
 
-        <section className="case-template-section" aria-labelledby="opportunity-title"><div className="case-section-label">Opportunity breakdown</div><h2 id="opportunity-title">Three vectors shaped the solution.</h2><div className="case-opportunity-grid">{(content.opportunityDetails ?? content.opportunities.map((title) => ({ title, body: 'Design the smallest useful intervention that makes this behavior visible, understandable, and repeatable.' }))).map((opportunity) => <article key={opportunity.title}><h3>{opportunity.title}</h3><p>{opportunity.body}</p></article>)}</div></section>
+        <section className="case-template-section" aria-labelledby="opportunity-title"><div className="case-section-label">Opportunity breakdown</div><h2 id="opportunity-title">Three vectors shaped the solution.</h2><div className="case-opportunity-grid">{(content.opportunityDetails ?? content.opportunities.map((title) => ({ title, body: 'Design the smallest useful intervention that makes this behavior visible, understandable, and repeatable.' }))).map((opportunity) => <article key={opportunity.title}><h3>{opportunity.title}</h3><p>{opportunity.body.replace('multiple places', 'multiple tools')}</p></article>)}</div></section>
 
-        <section className="case-metrics" aria-label="Impact and improvements"><img src={metricsGskImage} alt="Post redesign impact and improvements" /></section>
+        {content.title === 'Simplifying report creation' && <section className="case-metrics" aria-label="Impact and improvements"><img src={metricsGskImage} alt="Post redesign impact and improvements" /></section>}
 
-        <section className="case-design-montage" aria-labelledby="design-montage-title"><h2 id="design-montage-title"><span>Design</span>{' '}<span>Montage</span></h2></section>
+        {content.title === 'Simplifying report creation' && <section className="case-design-montage" aria-labelledby="design-montage-title"><h2 id="design-montage-title"><span>Design</span>{' '}<span>Montage</span></h2></section>}
 
-        <section className="case-template-section case-workshop-section" aria-labelledby="workshop-title"><div className="case-section-label-row"><div className="case-section-label">Workshop 1</div><button className="case-workshop-button" type="button" onClick={() => setOpenWorkshop('workshop1')}><Maximize2 size={12} aria-hidden="true" /><span>View</span></button></div><h2 id="workshop-title"><span className="workshop-heading-accent">What</span> do we solve?</h2><div className="case-workshop-grid">{content.workshop.map((item, index) => <article key={item}><span>{String(index + 1).padStart(2, '0')}</span><p>{item.split(' — ')[0]}</p></article>)}</div></section>
+        <section className="case-template-section case-workshop-section" aria-labelledby="workshop-title"><div className="case-section-label-row"><div className="case-section-label">Workshop 1</div></div><h2 id="workshop-title"><span className="workshop-heading-accent">What</span> do we solve?</h2><p className="case-workshop-description">{content.title === 'Simplifying report creation' ? 'Planned the discovery workshop to align stakeholders, engineering, and solution architecture on priorities, limitations, scope, and project debrief.' : 'A focused workshop to align the team on the problem, priorities, and direction.'}</p><div className="case-workshop-actions"><button className="case-workshop-button case-workshop-cta case-workshop-cta-orange" type="button" onClick={() => setOpenWorkshop('workshop1')}><Maximize2 size={12} aria-hidden="true" /><span>View workshop</span></button>{content.title === 'Simplifying report creation' && <><button className="case-workshop-button case-workshop-cta case-workshop-cta-persona" type="button" onClick={() => { setActivePersonalFile(0); setOpenWorkshop('personalFiles') }}><span>Persona</span><Maximize2 size={12} aria-hidden="true" /></button><button className="case-workshop-button case-workshop-cta case-workshop-cta-persona" type="button" onClick={() => setOpenWorkshop('journeyMap')}><span>Journey map</span><Maximize2 size={12} aria-hidden="true" /></button></>}</div><div className="case-workshop-grid">{content.workshop.map((item, index) => <article key={item}><span>{String(index + 1).padStart(2, '0')}</span><p>{item.split(' — ')[0]}</p></article>)}</div></section>
 
-        <section className="case-template-section case-workshop-section" aria-labelledby="workshop-2-title"><div className="case-section-label-row"><div className="case-section-label">Workshop 2</div><button className="case-workshop-button" type="button" onClick={() => setOpenWorkshop('workshop2')}><Maximize2 size={12} aria-hidden="true" /><span>View</span></button></div><h2 id="workshop-2-title"><span className="workshop-heading-accent">How</span> do we solve?</h2><div className="case-moscow-grid">{workshopTwoColumns.map(([heading, items]) => <div key={heading}><h3>{heading}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></div>)}</div></section>
+        <section className="case-template-section case-workshop-section" aria-labelledby="workshop-2-title"><div className="case-section-label-row"><div className="case-section-label">Workshop 2</div></div><h2 id="workshop-2-title"><span className="workshop-heading-accent">How</span> do we solve?</h2><p className="case-workshop-description">{content.title === 'Simplifying report creation' ? 'A second workshop aligned stakeholders on the features and functions to prioritize in the designs.' : 'A collaborative working session to turn priorities into practical product decisions.'}</p><button className="case-workshop-button case-workshop-cta case-workshop-cta-orange" type="button" onClick={() => setOpenWorkshop('workshop2')}><Maximize2 size={12} aria-hidden="true" /><span>View workshop</span></button><div className="case-moscow-grid">{workshopTwoColumns.map(([heading, items]) => <div key={heading}><h3>{heading}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></div>)}</div></section>
 
-          <section className="case-template-section" aria-labelledby="designs-title"><div className="case-section-label-row"><div className="case-section-label">{content.title === 'Simplifying report creation' ? 'Identified journey map' : 'Core interactive designs'}</div>{content.title === 'Simplifying report creation' && <button className="case-workshop-button" type="button" onClick={() => { setActivePersonalFile(0); setOpenWorkshop('personalFiles') }}><span>Persona</span><Maximize2 size={12} aria-hidden="true" /></button>}</div><h2 id="designs-title">{content.title === 'Simplifying report creation' ? 'A shared view of the reporting journey.' : 'A flexible visual language for the moments that matter.'}</h2><div className={`case-assets-grid ${content.title === 'Simplifying report creation' ? 'case-assets-grid-pulse' : ''}`}>{caseAssets.map(({ name, image }) => <figure key={name}><div className="case-asset-placeholder">{image ? <img src={image} alt={`${name} interface`} /> : <><span>Interface placeholder</span><i /><i /><i /></>}</div>{content.title !== 'Simplifying report creation' && <figcaption>{name}</figcaption>}</figure>)}</div></section>
+          {content.title !== 'Simplifying report creation' && <section className="case-template-section" aria-labelledby="designs-title"><div className="case-section-label-row"><div className="case-section-label">Core interactive designs</div></div><h2 id="designs-title">A flexible visual language for the moments that matter.</h2><div className="case-assets-grid">{caseAssets.map(({ name, image }) => <figure key={name}><div className="case-asset-placeholder">{image ? <img src={image} alt={`${name} interface`} /> : <><span>Interface placeholder</span><i /><i /><i /></>}</div><figcaption>{name}</figcaption></figure>)}</div></section>}
 
-        <section className="case-template-section case-priorities-section" aria-labelledby="release-title"><h2 id="release-title">Setting Priorities</h2><div className="case-priorities-board"><article><em>Recommendations</em><p>post UX evaluation &amp; user research.</p><h3>Tech</h3><ul><li>Defining role &amp; responsibility of Approver, reviewer &amp; co-author.</li><li>Linking Spotfire with RR.</li><li>Linking VOD with RR for seamless approval and edit process.</li><li>Tool access for external (FDA, Vendor) &amp; internal users.</li><li>Anatomy for GenAI prompts for more user control on generated content.</li></ul><h3>Design</h3><ul><li>Document tray: loading all potential docs in advance to be utilized.</li><li>Report initiation process.</li><li>Archive of old reports.</li><li>Ability to quick access reports.</li><li>Improved overall UI of tool.</li><li>Refined dashboard view.</li><li>Dashboard widget for team allocation and tasks.</li><li>Personalized menu, sub-menu &amp; suggestions for respective team.</li><li>Correct taxonomy &amp; nomenclature.</li><li>Improve user control for notifications.</li></ul></article><article><em>Final design action plan</em><h3>Priority 1</h3><ul><li>Role mapping: Author, co-author, Reviewer &amp; Approver.</li><li>Report Creation Journey.</li><li>Template Creation Journey.</li><li>Version Control &amp; edits.</li><li>Template metadata settings.</li><li>Charts &amp; image import settings.</li><li>Email Notifications.</li></ul><h3>Priority 2</h3><ul><li>Approval process.</li><li>Admin control.</li></ul></article></div></section>
+        <section className="case-template-section case-priorities-section" aria-labelledby="release-title"><h2 id="release-title">Setting Priorities</h2><div className="case-priorities-board">{content.title === 'Simplifying report creation' ? <><article><em>Recommendations</em><p>post UX evaluation &amp; user research.</p><h3>Tech</h3><ul><li>Defining role &amp; responsibility of Approver, reviewer &amp; co-author.</li><li>Linking Spotfire with RR.</li><li>Linking VOD with RR for seamless approval and edit process.</li><li>Tool access for external (FDA, Vendor) &amp; internal users.</li><li>Anatomy for GenAI prompts for more user control on generated content.</li></ul><h3>Design</h3><ul><li>Document tray: loading all potential docs in advance to be utilized.</li><li>Report initiation process.</li><li>Archive of old reports.</li><li>Ability to quick access reports.</li><li>Improved overall UI of tool.</li><li>Refined dashboard view.</li><li>Dashboard widget for team allocation and tasks.</li><li>Personalized menu, sub-menu &amp; suggestions for respective team.</li><li>Correct taxonomy &amp; nomenclature.</li><li>Improve user control for notifications.</li></ul></article><article><em>Final design action plan</em><h3>Priority 1</h3><ul><li>Role mapping: Author, co-author, Reviewer &amp; Approver.</li><li>Report Creation Journey.</li><li>Template Creation Journey.</li><li>Version Control &amp; edits.</li><li>Template metadata settings.</li><li>Charts &amp; image import settings.</li><li>Email Notifications.</li></ul><h3>Priority 2</h3><ul><li>Approval process.</li><li>Admin control.</li></ul></article></> : Object.entries(content.priorities).slice(0, 2).map(([heading, items]) => <article key={heading}><em>{heading}</em><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}</div></section>
 
-        <section className="case-key-improvements" aria-labelledby="key-improvements-title"><h2 id="key-improvements-title">Key Improvements</h2></section>
-        <section className="case-design-gsk" aria-label="GSK design system"><img src={designGskImage} alt="GSK design system screens" /></section>
+        {content.title === 'Simplifying report creation' && <><section className="case-key-improvements" aria-labelledby="key-improvements-title"><h2 id="key-improvements-title">Key Improvements</h2></section><section className="case-design-gsk" aria-label="GSK design system"><img src={designGskImage} alt="GSK design system screens" /></section></>}
 
         <footer className="case-template-footer"><button className="case-footer-back" type="button" onClick={onBack}>Go back to projects <ArrowLeft size={16} aria-hidden="true" /></button></footer>
       </article>
       <button className={`case-back-to-top ${showCaseTop ? 'is-visible' : ''}`} type="button" aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         <ArrowUp size={20} aria-hidden="true" />
       </button>
-      {openWorkshop && <div className="case-image-popover" role="dialog" aria-modal="true" aria-labelledby="workshop-image-title" onClick={() => setOpenWorkshop(null)}><div className={`case-image-popover-panel ${openWorkshop === 'personalFiles' ? 'case-personal-files-panel' : ''}`} onClick={(event) => event.stopPropagation()}><div className="case-image-popover-header"><p id="workshop-image-title">{openWorkshop === 'workshop1' ? 'Workshop 1' : openWorkshop === 'workshop2' ? 'Thematic analysis' : `Personal files ${activePersonalFile + 1}`}</p><button type="button" aria-label="Close image popover" onClick={() => setOpenWorkshop(null)}><X size={20} /></button></div>{openWorkshop === 'personalFiles' ? <><div className="case-image-popover-images"><img src={activePersonalFile === 0 ? personalFileOneImage : personalFileTwoImage} alt={`Personal file ${activePersonalFile + 1}`} /></div><div className="case-image-popover-controls"><button type="button" aria-label="Show previous personal file" onClick={() => setActivePersonalFile((current) => (current + 1) % 2)}><ChevronLeft size={22} /></button><span>{activePersonalFile + 1} / 2</span><button type="button" aria-label="Show next personal file" onClick={() => setActivePersonalFile((current) => (current + 1) % 2)}><ChevronRight size={22} /></button></div></> : <img src={openWorkshop === 'workshop1' ? workshopImage : thematicAnalysisImage} alt={openWorkshop === 'workshop1' ? 'Design thinking workshop materials and collaboration' : 'Thematic analysis workshop'} />}</div></div>}
+      {openWorkshop && <div className="case-image-popover" role="dialog" aria-modal="true" aria-labelledby="workshop-image-title" onClick={() => setOpenWorkshop(null)}><div className={`case-image-popover-panel ${openWorkshop === 'personalFiles' ? 'case-personal-files-panel' : ''}`} onClick={(event) => event.stopPropagation()}><div className="case-image-popover-header"><p id="workshop-image-title">{openWorkshop === 'workshop1' ? 'Workshop 1' : openWorkshop === 'workshop2' ? 'Thematic analysis' : openWorkshop === 'journeyMap' ? 'Journey map' : 'Based on 5 interviews, 2 groups were identified'}</p><button type="button" aria-label="Close image popover" onClick={() => setOpenWorkshop(null)}><X size={20} /></button></div>{openWorkshop === 'personalFiles' ? <><div className="case-image-popover-images"><img src={activePersonalFile === 0 ? personalFileOneImage : personalFileTwoImage} alt={`Personal file ${activePersonalFile + 1}`} /></div><div className="case-image-popover-controls"><button type="button" aria-label="Show previous personal file" onClick={() => setActivePersonalFile((current) => (current + 1) % 2)}><ChevronLeft size={22} /></button><span>{activePersonalFile + 1} / 2</span><button type="button" aria-label="Show next personal file" onClick={() => setActivePersonalFile((current) => (current + 1) % 2)}><ChevronRight size={22} /></button></div></> : <img src={openWorkshop === 'workshop1' ? workshopImage : openWorkshop === 'journeyMap' ? journeyMapImage : thematicAnalysisImage} alt={openWorkshop === 'workshop1' ? 'Design thinking workshop materials and collaboration' : openWorkshop === 'journeyMap' ? 'Journey map showing the reporting experience' : 'Thematic analysis workshop'} />}</div></div>}
     </main>
+  )
+}
+
+function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
+  const sections = [
+    { label: '01 / Overview', title: 'Invoice', accent: 'Extraction & Automation', body: 'AI-powered invoice processing that automates extraction, validation, and processing for Finance & Accounting.', image: financeLaptopImage, className: 'arc-figma-hero' },
+    { label: '02 / My role', title: 'Product Designer', body: 'Customer interview & research synthesis\nDesign prototype\nProduct demo video', image: financeAgentLogo, className: 'arc-figma-role' },
+    { label: '03 / Opportunity', title: 'Opportunity', body: '', image: financeLaptopImage, className: 'arc-figma-opportunity' },
+    { label: '04 / Impact', title: 'Impact', body: 'Post redesign', image: financeProfileImage, className: 'arc-figma-impact' },
+    { label: '05 / Design Montage', title: 'Design Montage', body: 'Exhausting tokens...', image: designMontageImage, className: 'arc-figma-montage' },
+    { label: '06 / Landscape', title: 'Understanding landscape ...', body: '', image: financeCardsImage, className: 'arc-figma-workshop' },
+    { label: '07 / Customer research', title: 'Conducting workshop for alignment...', body: '', image: workshopM365Image, className: 'arc-figma-research' },
+    { label: '08 / Design decisions', title: 'Designing with underlying agent logic', body: 'Key design decisions 1', image: mainDesignImage, className: 'arc-figma-decisions' },
+    { label: '09 / Exploration', title: 'Key design decisions 2', body: 'Low-Fi\nExplorations focused on line-item extraction, alignment with stakeholders, and technical feasibility.', image: explorationImage, className: 'arc-figma-exploration' },
+    { label: '10 / Final design', title: 'Key design decisions 3', body: 'M365 Finance Agent for Invoice processing in Public preview', image: finalDesignImage, className: 'arc-figma-final' },
+    { label: '11 / Launch', title: 'M365 Copilot', accent: 'June 2026', body: 'M365 Finance Agent for Invoice processing in Public preview', image: lastSlideImage, className: 'arc-figma-launch' },
+  ]
+
+  return (
+    <main className="arc-figma-page">
+      <header className="arc-figma-nav"><button type="button" onClick={onBack} aria-label="Back to projects"><ArrowLeft size={18} /></button></header>
+      <article>
+        {sections.map((section) => (
+          section.className === 'arc-figma-role' ? (
+            <section className="arc-figma-section arc-figma-role" key={section.label}>
+              <div className="arc-role-overview">
+                <div><span>My role</span><h1>Product Designer</h1><p>Customer interview &amp; research synthesis<br />Design prototype<br />Product demo video</p></div>
+                <div><span>Team</span><h2>5</h2><p>1 Principal PM<br /><br />1 Principal Engineering Manager<br />3 Software engineers</p></div>
+                <div><span>Timeline</span><h2>16 weeks</h2><p>Kickoff to design handoff<br />Shipped in 2 phase</p></div>
+              </div>
+              <div className="arc-role-tools"><div className="arc-tool-grid"><div><strong>VS Code</strong><span>Prototype &amp;<br />handoff</span></div><div><strong>Figma</strong><span>Iteration &amp;<br />MCP lookup</span></div><div><strong>MS Clarity</strong><span>User testing<br />&amp; Heatmaps</span></div><div><strong>Viva Engage</strong><span>Customer survey and<br />feedback sessions</span></div></div></div>
+            </section>
+          ) : section.className === 'arc-figma-opportunity' ? (
+            <section className="arc-figma-section arc-figma-opportunity" key={section.label}>
+              <div className="arc-opp-col">
+                <h1>Opportunity</h1>
+                <ul><li>Accelerate financial period close</li><li>Leverage service agents</li><li>Achieve 100%~ Invoice Touchless rate</li></ul>
+                <p>Make Finance Agent in M365 the go-to destination for invoice processing &amp; financial period close and accelerate paid seats and adoption.</p>
+              </div>
+              <div className="arc-opp-col">
+                <h1>Design Challenge</h1>
+                <ul><li>Investigate customer pain</li><li>Assess existing capabilities and gaps.</li><li>Define feature scope &amp; scenario</li></ul>
+                <p>Identify where users struggle today, understand how existing capabilities and service agents can address those gaps, and define the right scenarios for <strong>automation, human-in-the-loop intervention, and decision-making.</strong></p>
+              </div>
+            </section>
+          ) : section.className === 'arc-figma-impact' ? (
+            <section className="arc-figma-section arc-figma-impact" key={section.label}>
+              <div className="arc-impact-head">
+                <h1>Impact</h1>
+                <p>Post redesign - June 2026</p>
+              </div>
+              <div className="arc-impact-grid">
+                <ImpactMetric value={95} format={(v) => `${Math.round(v)}%`} suffix="~" label="Invoice Touch-less rate" note="Compared to 5% ~ in PowerApps for semi structure invoices" />
+                <ImpactMetric value={2.5} format={(v) => v.toFixed(1)} suffix="minutes" label="Average invoice processing time" note="Compared to 10 minutes in PowerApps for complex and unstructured documents" />
+                <ImpactMetric value={14} format={(v) => `${Math.round(v)}+M`} label="Paid seats in M365" note="Thanks to accelerated clerks & finance user adoption" />
+              </div>
+            </section>
+          ) : section.className === 'arc-figma-montage' ? (
+            <section className="arc-figma-section arc-figma-montage" key={section.label}>
+              <ol className="arc-process-strip">
+                {[
+                  { step: 'Discovery workshop', sub: 'Stakeholder alignment' },
+                  { step: 'Customer Research', sub: 'Viva engage survey\nAdmin Interview' },
+                  { step: 'Road map workshop', sub: 'Moscow framework' },
+                  { step: 'Design Iteration on preview', sub: 'Design prototype\nEVALs tracking' },
+                  { step: 'Public preview', sub: 'Shipped in 2 phase' },
+                ].map(({ step, sub }, i, arr) => (
+                  <li key={step} className="arc-process-item" style={{ '--i': i } as CSSProperties}>
+                    <span className="arc-process-text"><span className="arc-process-step">{step}</span><span className="arc-process-sub">{sub}</span></span>
+                    {i < arr.length - 1 && <ArrowRight className="arc-process-arrow" size={20} strokeWidth={1.5} />}
+                  </li>
+                ))}
+              </ol>
+              <img src={section.image} alt="" />
+            </section>
+          ) : section.className === 'arc-figma-research' ? (
+            <section className="arc-figma-section arc-figma-research" key={section.label}>
+              <div className="arc-research-copy">
+                <h1>Conducting workshop for alignment...</h1>
+                <div className="arc-research-outcomes">
+                  <h2>Outcome from workshop</h2>
+                  <div className="arc-research-cards">
+                    <div className="arc-research-card"><CheckCircle2 aria-hidden="true" /><span>Less time manually entering invoices</span></div>
+                    <div className="arc-research-card"><CircleHelp aria-hidden="true" /><span>Extract PO number more accurately from ERPs or emails</span></div>
+                    <div className="arc-research-card"><CheckCircle2 aria-hidden="true" /><span>Prioritise what needs attention</span></div>
+                    <div className="arc-research-card"><CheckCircle2 aria-hidden="true" /><span>Quick approval for high value invoices</span></div>
+                    <div className="arc-research-card"><CheckCircle2 aria-hidden="true" /><span>Repeat errors on same vendor invoices</span></div>
+                    <div className="arc-research-card arc-research-card-out-of-scope"><XCircle aria-hidden="true" /><span>Inconsistent templates from vendor</span><small>Out of scope &amp; no design exploration needed</small></div>
+                  </div>
+                </div>
+              </div>
+              <img src={section.image} alt="Workshop alignment board" />
+            </section>
+          ) : section.className === 'arc-figma-workshop' ? (
+            <section className="arc-figma-section arc-figma-workshop" key={section.label}>
+              <h1 className="arc-landscape-title">Understanding landscape ...</h1>
+              <div className="arc-landscape-grid">
+                <div className="arc-landscape-col">
+                  <h2 className="arc-landscape-head arc-landscape-business">Business</h2>
+                  <p>At the broader organizational level, Power Apps and <strong>other Microsoft teams had already invested</strong> in agentic capabilities <strong>for invoice processing</strong> and document intelligence. With M365 serving 15M+ paid seats, there was a clear opportunity to bring these capabilities closer to Finance &amp; Accounting users and make invoice processing more accessible within M365 and leverage Microsoft ecosystem.</p>
+                </div>
+                <div className="arc-landscape-col">
+                  <h2 className="arc-landscape-head arc-landscape-design">Design</h2>
+                  <p>I had to <strong>decide feature scope &amp; scenario</strong> within a rapidly evolving M365 and AI landscape—<strong>aligning</strong> with partner <strong>on emerging capabilities</strong>, identifying where we could leverage existing patterns, and making early bets on what Finance Agent should enable.</p>
+                </div>
+                <div className="arc-landscape-col">
+                  <h2 className="arc-landscape-head arc-landscape-product">Product</h2>
+                  <p>PMs were navigating a fragmented product landscape—with capabilities spread across Microsoft platforms and ERP systems, multiple teams investing in overlapping use cases, and different dependencies shaping what could be delivered. The key product question was <strong>what Finance Agent should own, leverage, or scale</strong> while staying focused on the needs of M365.</p>
+                </div>
+              </div>
+            </section>
+          ) : (
+            <section className={`arc-figma-section ${section.className}`} key={section.label}>
+              <div className="arc-figma-copy">{section.className !== 'arc-figma-hero' && <span>{section.label}</span>}{section.className === 'arc-figma-hero' && <img className="arc-finance-agent" src={financeAgentLogo} alt="Finance Agent" />}<h1>{section.title}{section.accent && <><br /><em>{section.accent.split(' & ').map((part, index) => <span key={part}>{index > 0 && <small className="arc-ampersand">&amp;</small>}{part}</span>)}</em></>}</h1><p>{section.body}</p>{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
+              <img src={section.image} alt="" />
+            </section>
+          )
+        ))}
+      </article>
+      <button className="arc-figma-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top"><ArrowUp size={20} /></button>
+    </main>
+  )
+}
+
+function ImpactMetric({ value, format, suffix, label, note }: { value: number; format: (v: number) => string; suffix?: string; label: string; note: string }) {
+  return (
+    <div className="arc-impact-metric">
+      <div className="arc-impact-figure"><strong>{format(value)}</strong>{suffix && <span>{suffix}</span>}</div>
+      <p className="arc-impact-label">{label}</p>
+      <p className="arc-impact-note">{note}</p>
+    </div>
   )
 }
 
@@ -663,7 +818,7 @@ function App() {
   }, [currentPath])
 
   useEffect(() => {
-    const revealTargets = document.querySelectorAll<HTMLElement>('.section-heading > *, .project, .about-section > .kicker, .about-grid > *, .post, footer > .kicker, .contact-cta-group > h2, .email-link, .about-page-top, .case-study-nav, .case-hero-copy > *, .case-hero-art, .case-section > .kicker, .case-section-grid > *, .case-impact > *, .case-showcase > *, .case-chapter > .kicker, .case-chapter-heading > *, .case-insights > *, .case-personas > *, .case-visual > *, .case-priority-list > *, .case-feature-grid > *, .case-system-grid > *, .case-test-results > *, .case-template-hero > *, .case-template-section > *, .case-template-footer > *, .case-opportunity-grid > *, .case-workshop-grid > *, .case-moscow-grid > *, .case-assets-grid > *, .case-release-list > *, .case-team-list > *')
+    const revealTargets = document.querySelectorAll<HTMLElement>('.section-heading > *, .project, .about-section > .kicker, .about-grid > *, .post, footer > .kicker, .contact-cta-group > h2, .email-link, .about-page-top, .case-study-nav, .case-hero-copy > *, .case-hero-art, .case-section > .kicker, .case-section-grid > *, .case-impact > *, .case-showcase > *, .case-chapter > .kicker, .case-chapter-heading > *, .case-insights > *, .case-personas > *, .case-visual > *, .case-priority-list > *, .case-feature-grid > *, .case-system-grid > *, .case-test-results > *, .case-template-hero > *, .case-template-section > *, .case-template-footer > *, .case-opportunity-grid > *, .case-workshop-grid > *, .case-moscow-grid > *, .case-assets-grid > *, .case-release-list > *, .case-team-list > *, .case-design-montage h2, .arc-figma-copy, .arc-figma-section > img, .arc-figma-montage, .arc-role-overview > *, .arc-tool-grid > *, .arc-opp-col > *, .arc-impact-head > *, .arc-impact-metric, .arc-landscape-col')
     revealTargets.forEach((element, index) => {
       element.classList.add('scroll-reveal')
       element.style.setProperty('--reveal-delay', `${(index % 4) * 110}ms`)
@@ -690,6 +845,7 @@ function App() {
   }, [currentPath])
 
   if (currentPath === '/about') return <AboutPage onBack={() => navigateTo('/')} />
+  if (currentPath === '/arc-studio') return <ArcStudioFigmaPage onBack={() => navigateTo('/')} />
   if (caseStudies[currentPath]) return <CaseStudyPage content={caseStudies[currentPath]} onBack={() => navigateTo('/')} />
 
   return (
@@ -782,7 +938,7 @@ function App() {
       </section>
 
       <section className="work-section" id="selected-work">
-        <header className="section-heading"><h2>Projects</h2><p className="section-intro">Due to NDA restrictions, additional work and details can be shared in person.</p></header>
+        <header className="section-heading"><h2>Projects</h2><p className="section-intro">A curated selection of my work. Due to NDA restrictions, additional details and case studies are available to discuss in person.</p></header>
         <div className="project-list">
           {projects.map((project) => (
             <article className="project" key={project.title}>
@@ -799,12 +955,6 @@ function App() {
                 }}
               >
                 <img src={project.image} alt="" loading="lazy" />
-                <span className="project-card-title" aria-hidden="true">{project.title}</span>
-                <span className="project-preview-badge" aria-hidden="true">View case study</span>
-                <span className="project-overlay">
-                  <span className="project-overlay-copy">{project.description}</span>
-                  <span className="project-tags" aria-hidden="true"><i>B2B</i><i>SaaS</i></span>
-                </span>
               </a>
             </article>
           ))}
