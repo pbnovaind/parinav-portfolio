@@ -263,13 +263,12 @@ function AboutPage({ onBack }: { onBack: () => void }) {
           <div className="about-copy scroll-reveal is-revealed">
             <h1 className="about-life-title">Life</h1>
             <>
-                <p>I've lived, travelled, and grown up in motion. I grew up in Bengal, moved to Purnia, Bihar, for schooling, and later lived and studied across Delhi, Hyderabad, Bengaluru, Chennai, and Odisha. New places, people and cultures became so normal that change almost feels like built-in DNA.</p>
+                <p>I have lived, travelled, and grown up in motion. Domestically, I have lived in Purnia, Delhi, Bhuvaneshwar, Hyderabad, Chennai, and Bangalore. New places, people, and cultures became so normal that change almost feels like built-in DNA.</p>
                 
-                <p>With limited exposure to the world outside, Hollywood movie CDs became my first window into it. Eventually, watching wasn't enough—I wanted to go see it myself.</p>
+                <p>With limited exposure to the world outside, Hollywood movie CDs became my first window into the outside world, haha. Eventually, watching was not enough, so I wanted to travel and see it myself.</p>
                 
-                <p>Career-wise, I wasn't exactly sure what I wanted, but I was 200% sure what I didn't want. After failing my first NIFT attempt, I was given ₹1,500 to fill out engineering college forms, and I spent it on a good party instead. 😛</p>
                 
-                <p>Since then, curiosity has taken me through design, studio photography and travel. I've travelled across 22 of India's 28 states and 5 of its 8 Union Territories, mostly on a motorcycle—a love since 10th standard. I've also travelled through Kenya, Tanzania and Mauritius, usually choosing roads and public transport over tourist itineraries. I like seeing how people live, getting a little lost, and figuring out what it feels like to belong somewhere. I'm also a CFI cyclist, with races including the HCL Cyclothon and Pedal for the Medal.</p>
+                <p>Since then, curiosity has taken me through design, studio photography and travel. I've travelled across 22 of India's 28 states and 5 of its 8 Union Territories, mostly on a motorcycle—a love since 10th standard. I've also travelled through Kenya, Tanzania and Mauritius, usually choosing roads and public transport over tourist itineraries. I like seeing how people live, getting a little lost, and figuring out what it feels like to belong somewhere. I'm also a CFI cyclist, with races including the HCL Cyclothon and Pedal for the Planet.</p>
                 
                 <p>And somewhere between all the moving, I learnt to cook and bake—because when life keeps changing your address, you might as well know how to make your own comfort food.</p>
 
@@ -586,7 +585,7 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
     { label: '08 / Design decisions', title: 'Survey with AP clerks and customers', body: 'Key design decisions 1', image: surveyVivaImage, className: 'arc-figma-decisions' },
     { label: '09 / Exploration', title: 'Key design decisions 1', body: "When the AI agent can't find a match, the AI agent should?",
       image: explorationImage, className: 'arc-figma-exploration' },
-    { label: '10 / Exploration', title: 'Key design decisions 2', body: <><span>Mid-Fi</span><br />Range of <strong>edge cases</strong> and scenarios investigation with stakeholders for "<strong>Line items</strong>" rows</>, image: explorationImage, className: 'arc-figma-exploration' },
+    { label: '10 / Exploration', title: 'Key design decisions 2', body: <><span>Mid-Fi</span> range of <strong>edge cases</strong> <strong>and scenarios</strong> investigation with stakeholders for "<strong>Line items</strong>" rows</>, image: explorationImage, className: 'arc-figma-exploration' },
     { label: '11 / Final design', title: 'Key design decisions 3', body: <>Can customers <strong>test Invoice</strong> against a sample?</>, image: cardTestImage, className: 'arc-figma-exploration' },
     { label: '12 / Launch', title: 'M365 Copilot', accent: 'June 2026', body: 'M365 Finance Agent for Invoice processing in Public preview', image: finalPageImage, className: 'arc-figma-launch' },
   ]
@@ -624,8 +623,8 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
             <section className="arc-figma-section arc-figma-role" key={section.label}>
               <div className="arc-role-overview">
                 <div><span>My role</span><h1>Product Designer</h1><p>Customer interview &amp; research synthesis<br />Design prototype<br />Product demo video</p></div>
-                <div><span>Team</span><h2>5</h2><p>1 Principal PM<br /><br />1 Principal Engineering Manager<br />3 Software engineers</p></div>
-                <div><span>Timeline</span><h2>16 weeks</h2><p>Kickoff to design handoff<br />Shipped in 2 phase</p></div>
+                <div><span>Team</span><h2>5</h2><p>1 Principal PM<br />1 Product Designer<br />1 Principal Engineering Manager<br />3 Software engineers</p></div>
+                <div><span>Timeline</span><h2>16 weeks</h2><p>Kickoff to design handoff<br /><span className="arc-role-detail-muted">Shipped in 2 phases</span></p></div>
               </div>
               <div className="arc-role-tools"><div className="arc-tool-grid"><div><strong>VS Code</strong><span>Prototype &amp;<br />handoff</span></div><div><strong>Figma</strong><span>Iteration &amp;<br />MCP lookup</span></div><div><strong>MS Clarity</strong><span>User testing<br />&amp; Heatmaps</span></div><div><strong>Viva Engage</strong><span>Customer survey and<br />feedback sessions</span></div></div></div>
             </section>
@@ -644,14 +643,14 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
             </section>
           ) : section.className === 'arc-figma-impact' ? (
             <section className="arc-figma-section arc-figma-impact" key={section.label}>
-              <div className="arc-impact-head">
-                <h1>Impact</h1>
-                <p>Post redesign - June 2026</p>
-              </div>
               <div className="arc-impact-grid">
                 <ImpactMetric value={95} format={(v) => `${Math.round(v)}%`} suffix="~" label="Invoice Touch-less rate" note="Compared to 5% ~ in PowerApps for semi structure invoices" />
                 <ImpactMetric value={2.5} format={(v) => v.toFixed(1)} suffix="minutes" label="Average invoice processing time" note="Compared to 10 minutes in PowerApps for complex and unstructured documents" />
                 <ImpactMetric value={14} format={(v) => `${Math.round(v)}+M`} label="Paid seats in M365" note="Thanks to accelerated clerks & finance user adoption" />
+              </div>
+              <div className="arc-impact-head">
+                <h1>Impact</h1>
+                <p>Private preview June 2026</p>
               </div>
             </section>
           ) : section.className === 'arc-figma-montage' ? (
@@ -684,6 +683,7 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
               </div>
               <div className="arc-research-visual">
                 <div className="arc-research-outcomes">
+                  <h2>Outcome of workshop</h2>
                   <div className="arc-research-cards">
                     <span>Focus on semi-structured invoices as the primary target</span>
                     <span>Improve PO number extraction across ERPs and emails</span>
@@ -759,11 +759,15 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
                 </div>
               </div> : section.title === 'Key design decisions 3' ? <div className="arc-exploration-visual arc-final-decision-visual" aria-label="Final design card concepts">
                 <div className="arc-exploration-cards arc-final-decision-cards">
-                  <img src={cardTestImage} alt="Card test concept" />
+                  <div className="arc-final-decision-option">
+                    <img src={cardTestImage} alt="Card test concept" />
+                    <p>For a particular field or row?</p>
+                  </div>
                   <div className="arc-final-decision-card arc-final-decision-card-selected">
                     <span className="arc-final-decision-check" aria-label="Selected card">✓</span>
                     <span className="arc-final-decision-note">Viable for loading shimmer and tenet token numbers</span>
                     <img src={cardTestTwoImage} alt="Card test secondary concept" />
+                    <p>Against entire invoice in workspace view?</p>
                   </div>
                 </div>
               </div> : <img src={section.image} alt="" />}
@@ -772,7 +776,7 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
         ))}
         <section className="arc-figma-section arc-figma-more" aria-label="More on in-person work">
           <div className="arc-more-content">
-            <p>More details in person</p>
+            <p>Thanks! More details in person</p>
             <button className="case-footer-back" type="button" onClick={onBack}>Go back to projects <ArrowLeft size={16} aria-hidden="true" /></button>
           </div>
         </section>
