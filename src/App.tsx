@@ -577,7 +577,7 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
   const [showArcTop, setShowArcTop] = useState(false)
   const sections = [
     { label: '01 / Overview', title: 'Invoice', accent: 'Extraction & Automation', body: 'AI-powered invoice processing that automates extraction, validation, and processing for Finance & Accounting.', image: financeLaptopImage, className: 'arc-figma-hero' },
-    { label: '02 / My role', title: 'Product Designer', body: 'Customer interview & research synthesis\nDesign prototype\nProduct demo video', image: financeAgentLogo, className: 'arc-figma-role' },
+    { label: '02 / My role', title: 'Product Designer', body: 'Own & deliver design, research & product demo video', image: financeAgentLogo, className: 'arc-figma-role' },
     { label: '03 / Opportunity', title: 'Opportunity', body: '', image: financeLaptopImage, className: 'arc-figma-opportunity' },
     { label: '04 / Impact', title: 'Impact', body: 'Post redesign', image: financeProfileImage, className: 'arc-figma-impact' },
     { label: '05 / Design Montage', title: 'Design Montage', body: 'Exhausting tokens...', image: designMontageImage, className: 'arc-figma-montage' },
@@ -622,7 +622,7 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
           section.className === 'arc-figma-role' ? (
             <section className="arc-figma-section arc-figma-role" key={section.label}>
               <div className="arc-role-overview">
-                <div><span>My role</span><h1>Product Designer</h1><p>Customer interview &amp; research synthesis<br />Design prototype<br />Product demo video</p></div>
+                <div><span>My role</span><h1>Product Designer</h1><p>Own &amp; deliver design, research &amp; product demo video</p></div>
                 <div><span>Team</span><h2>5</h2><p>1 Principal PM<br />1 Product Designer<br />1 Principal Engineering Manager<br />3 Software engineers</p></div>
                 <div><span>Timeline</span><h2>16 weeks</h2><p>Kickoff to design handoff<br /><span className="arc-role-detail-muted">Shipped in 2 phases</span></p></div>
               </div>
