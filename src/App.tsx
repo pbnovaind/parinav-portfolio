@@ -583,10 +583,10 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
     { label: '05 / Design Montage', title: 'Design Montage', body: 'Exhausting tokens...', image: designMontageImage, className: 'arc-figma-montage' },
     { label: '07 / Customer research', title: 'Conducting workshop for alignment...', body: '', image: workshopM365Image, className: 'arc-figma-research' },
     { label: '08 / Design decisions', title: 'Survey with AP clerks and customers', body: 'Key design decisions 1', image: surveyVivaImage, className: 'arc-figma-decisions' },
-    { label: '09 / Exploration', title: 'Key design decisions 1', body: "When the AI agent can't find a match, the AI agent should?",
+    { label: '09 / Exploration', title: 'Key design decision 1', body: "When the AI agent can't find a match, the AI agent should?",
       image: explorationImage, className: 'arc-figma-exploration' },
-    { label: '10 / Exploration', title: 'Key design decisions 2', body: <><span>Mid-Fi</span> range of <strong>edge cases</strong> <strong>and scenarios</strong> investigation with stakeholders for "<strong>Line items</strong>" rows</>, image: explorationImage, className: 'arc-figma-exploration' },
-    { label: '11 / Final design', title: 'Key design decisions 3', body: <>Can customers <strong>test Invoice</strong> against a sample?</>, image: cardTestImage, className: 'arc-figma-exploration' },
+    { label: '10 / Exploration', title: 'Key design decision 2', body: <>Using TRIAD voting to resolve <strong>edge cases at scale</strong> and uncertainty, ensuring a timely release in a Mid-Fi, vibe-coded option before investing time in uncertain scenarios.</>, image: explorationImage, className: 'arc-figma-exploration' },
+    { label: '11 / Final design', title: 'Key design decision 3', body: <>Can customers <strong>test Invoice</strong> against a sample?</>, image: cardTestImage, className: 'arc-figma-exploration' },
     { label: '12 / Launch', title: 'M365 Copilot', accent: 'June 2026', body: 'M365 Finance Agent for Invoice processing in Public preview', image: finalPageImage, className: 'arc-figma-launch' },
   ]
 
@@ -661,7 +661,7 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
                   { step: 'Customer Research', sub: 'Viva engage survey\nAdmin Interview' },
                   { step: 'Road map workshop', sub: 'Moscow framework' },
                   { step: 'Design Iteration on preview', sub: 'Design prototype\nEVALs tracking' },
-                  { step: 'Public preview', sub: 'Shipped in 2 phase' },
+                  { step: 'Private preview', sub: 'Shipped in 2 phase' },
                 ].map(({ step, sub }, i, arr) => (
                   <li key={step} className="arc-process-item" style={{ '--i': i } as CSSProperties}>
                     <span className="arc-process-text"><span className="arc-process-step">{step}</span><span className="arc-process-sub">{sub}</span></span>
@@ -720,7 +720,7 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
               </div>
             </section>
           ) : (
-            <section className={`arc-figma-section ${section.className} ${typeof section.title === 'string' && /^Key design decisions [123]$/.test(section.title) ? 'arc-key-decisions-gradient' : ''}`} key={section.label}>
+            <section className={`arc-figma-section ${section.className} ${typeof section.title === 'string' && /^Key design decision [123]$/.test(section.title) ? 'arc-key-decisions-gradient' : ''}`} key={section.label}>
               <div className="arc-figma-copy">{section.className !== 'arc-figma-hero' && section.className !== 'arc-figma-decisions' && <span>{section.label}</span>}{section.className === 'arc-figma-hero' && <img className="arc-finance-agent" src={financeAgentLogo} alt="Finance Agent" />}{(() => {
                 const match = typeof section.title === 'string' ? section.title.match(/^(.*?)(\d+)$/) : null
                 return match ? (
@@ -728,7 +728,7 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
                 ) : (
                   <h1>{section.title}{section.accent && <><br /><em>{section.accent.split(' & ').map((part, index) => <span key={part}>{index > 0 && <small className="arc-ampersand">&amp;</small>}{part}</span>)}</em></>}</h1>
                 )
-              })()}{section.className !== 'arc-figma-decisions' && !((section.className === 'arc-figma-exploration') && section.title === 'Key design decisions 1') && <p>{section.body}</p>}{(section.className === 'arc-figma-exploration') && section.title === 'Key design decisions 1' && <p className="arc-ai-agent-copy">When the <span className="arc-ai-agent-hl">AI</span> <span className="arc-ai-agent-hl">agent</span> can't find a match, it <span className="arc-ai-agent-hl">should</span><span className="arc-ai-agent-hl">?</span></p>}{section.className === 'arc-figma-decisions' && <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('research')}><Maximize2 size={14} aria-hidden="true" /><span>View research</span></button>}{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
+              })()}{section.className !== 'arc-figma-decisions' && !((section.className === 'arc-figma-exploration') && section.title === 'Key design decision 1') && <p>{section.body}</p>}{(section.className === 'arc-figma-exploration') && section.title === 'Key design decision 1' && <p className="arc-ai-agent-copy">When the <span className="arc-ai-agent-hl">AI</span> <span className="arc-ai-agent-hl">agent</span> can't find a match, it <span className="arc-ai-agent-hl">should</span><span className="arc-ai-agent-hl">?</span></p>}{section.className === 'arc-figma-decisions' && <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('research')}><Maximize2 size={14} aria-hidden="true" /><span>View research</span></button>}{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
               {section.className === 'arc-figma-decisions' ? <div className="arc-customer-research-visual">
                 <div className="arc-research-outcomes">
                   <div className="arc-research-cards">
@@ -742,7 +742,7 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
                 </div>
                 <img src={surveyTwoImage} alt="Customer research survey" />
                 <p className="arc-chart-takeaway"><strong>Key takeaway:</strong> Most users manually search and correct PO numbers, highlighting an opportunity to design clearer UI actions for reviewing and correcting extraction errors.</p>
-              </div> : section.className === 'arc-figma-exploration' && section.title === 'Key design decisions 1' ? <div className="arc-exploration-visual" aria-label="Exploration card concepts">
+              </div> : section.className === 'arc-figma-exploration' && section.title === 'Key design decision 1' ? <div className="arc-exploration-visual" aria-label="Exploration card concepts">
                 <div className="arc-exploration-cards">
                   {explorationCards.map((card, index) => (
                     <div key={card.label} className={`arc-exploration-card ${card.accent ? 'is-accent' : ''}`} style={{ '--card-index': index } as CSSProperties}>
@@ -757,7 +757,7 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
                     </div>
                   ))}
                 </div>
-              </div> : section.title === 'Key design decisions 3' ? <div className="arc-exploration-visual arc-final-decision-visual" aria-label="Final design card concepts">
+              </div> : section.title === 'Key design decision 3' ? <div className="arc-exploration-visual arc-final-decision-visual" aria-label="Final design card concepts">
                 <div className="arc-exploration-cards arc-final-decision-cards">
                   <div className="arc-final-decision-option">
                     <img src={cardTestImage} alt="Card test concept" />
