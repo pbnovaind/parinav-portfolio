@@ -549,7 +549,7 @@ function CaseStudyPage({ content, onBack }: { content: CaseStudyContent; onBack:
 
         {content.title === 'Simplifying report creation' && <section className="case-metrics" aria-label="Impact and improvements"><img src={metricsGskImage} alt="Post redesign impact and improvements" /></section>}
 
-        {content.title === 'Simplifying report creation' && <section className="case-design-montage" aria-labelledby="design-montage-title"><h2 id="design-montage-title"><span>Design</span>{' '}<span>Montage</span></h2></section>}
+        {content.title === 'Simplifying report creation' && <section className="case-design-montage" aria-labelledby="design-montage-title"><h2 id="design-montage-title"><span className="arc-montage-design">Design</span><span className="arc-montage-montage">Montage</span></h2></section>}
 
         <section className="case-template-section case-workshop-section" aria-labelledby="workshop-title"><div className="case-section-label-row"><div className="case-section-label">Workshop 1</div></div><h2 id="workshop-title"><span className="workshop-heading-accent">What</span> do we solve?</h2><p className="case-workshop-description">{content.title === 'Simplifying report creation' ? 'Planned the discovery workshop to align stakeholders, engineering, and solution architecture on priorities, limitations, scope, and project debrief.' : 'A focused workshop to align the team on the problem, priorities, and direction.'}</p><div className="case-workshop-actions"><button className="case-workshop-button case-workshop-cta case-workshop-cta-orange" type="button" onClick={() => setOpenWorkshop('workshop1')}><Maximize2 size={12} aria-hidden="true" /><span>View workshop</span></button>{content.title === 'Simplifying report creation' && <><button className="case-workshop-button case-workshop-cta case-workshop-cta-persona" type="button" onClick={() => { setActivePersonalFile(0); setOpenWorkshop('personalFiles') }}><span>Persona</span><Maximize2 size={12} aria-hidden="true" /></button><button className="case-workshop-button case-workshop-cta case-workshop-cta-persona" type="button" onClick={() => setOpenWorkshop('journeyMap')}><span>Journey map</span><Maximize2 size={12} aria-hidden="true" /></button></>}</div><div className="case-workshop-grid">{content.workshop.map((item, index) => <article key={item}><span>{String(index + 1).padStart(2, '0')}</span><p>{item.split(' — ')[0]}</p></article>)}</div></section>
 
@@ -571,23 +571,24 @@ function CaseStudyPage({ content, onBack }: { content: CaseStudyContent; onBack:
   )
 }
 
-function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
+function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () => void; isReconciliation?: boolean }) {
   const [openArcImage, setOpenArcImage] = useState<'workshop' | 'landscape' | 'research' | null>(null)
   const [researchTab, setResearchTab] = useState<'questions' | 'post'>('questions')
   const [showArcTop, setShowArcTop] = useState(false)
   const sections = [
     { label: '01 / Overview', title: 'Invoice', accent: 'Extraction & Automation', body: 'AI-powered invoice processing that automates extraction, validation, and processing for Finance & Accounting.', image: financeLaptopImage, className: 'arc-figma-hero' },
-    { label: '02 / My role', title: 'Product Designer', body: 'Own & deliver design, research & product demo video', image: financeAgentLogo, className: 'arc-figma-role' },
-    { label: '03 / Opportunity', title: 'Opportunity', body: '', image: financeLaptopImage, className: 'arc-figma-opportunity' },
-    { label: '04 / Impact', title: 'Impact', body: 'Post redesign', image: financeProfileImage, className: 'arc-figma-impact' },
-    { label: '05 / Design Montage', title: 'Design Montage', body: 'Exhausting tokens...', image: designMontageImage, className: 'arc-figma-montage' },
-    { label: '07 / Customer research', title: 'Conducting workshop for alignment...', body: '', image: workshopM365Image, className: 'arc-figma-research' },
-    { label: '08 / Design decisions', title: 'Survey with AP clerks and customers', body: 'Key design decisions 1', image: surveyVivaImage, className: 'arc-figma-decisions' },
-    { label: '09 / Exploration', title: 'Key design decision 1', body: "When the AI agent can't find a match, the AI agent should?",
+    ...(isReconciliation ? [{ label: '02 / Fail faster', title: 'Fail faster', body: '', className: 'arc-fail-faster' }] : []),
+    { label: '03 / My role', title: 'Product Designer', body: 'Own & deliver design, research & product demo video', image: financeAgentLogo, className: 'arc-figma-role' },
+    { label: '04 / Opportunity', title: 'Opportunity', body: '', image: financeLaptopImage, className: 'arc-figma-opportunity' },
+    { label: '05 / Impact', title: 'Impact', body: 'Post redesign', image: financeProfileImage, className: 'arc-figma-impact' },
+    { label: '06 / Design Montage', title: 'Design Montage', body: 'Exhausting tokens...', image: designMontageImage, className: 'arc-figma-montage' },
+    { label: '08 / Customer research', title: 'Conducting workshop for alignment...', body: '', image: workshopM365Image, className: 'arc-figma-research' },
+    { label: '09 / Design decisions', title: 'Survey with AP clerks and customers', body: 'Key design decisions 1', image: surveyVivaImage, className: 'arc-figma-decisions' },
+    { label: '10 / Exploration', title: 'Key design decision 1', body: "When the AI agent can't find a match, the AI agent should?",
       image: explorationImage, className: 'arc-figma-exploration' },
-    { label: '10 / Exploration', title: 'Key design decision 2', body: <>Using TRIAD voting to resolve <strong>edge cases at scale</strong> and uncertainty, ensuring a timely release in a Mid-Fi, vibe-coded option before investing time in uncertain scenarios.</>, image: explorationImage, className: 'arc-figma-exploration' },
-    { label: '11 / Final design', title: 'Key design decision 3', body: <>Can customers <strong>test Invoice</strong> against a sample?</>, image: cardTestImage, className: 'arc-figma-exploration' },
-    { label: '12 / Launch', title: 'M365 Copilot', accent: 'June 2026', body: 'M365 Finance Agent for Invoice processing in Public preview', image: finalPageImage, className: 'arc-figma-launch' },
+    { label: '11 / Exploration', title: 'Key design decision 2', body: <>Using TRIAD voting to resolve <strong>edge cases at scale</strong> and uncertainty, ensuring a timely release in a Mid-Fi, vibe-coded option before investing time in uncertain scenarios.</>, image: explorationImage, className: 'arc-figma-exploration' },
+    { label: '12 / Final design', title: 'Key design decision 3', body: <>Can customers <strong>test Invoice</strong> against a sample?</>, image: cardTestImage, className: 'arc-figma-exploration' },
+    { label: '13 / Launch', title: 'M365 Copilot', accent: 'June 2026', body: 'M365 Finance Agent for Invoice processing in Public preview', image: finalPageImage, className: 'arc-figma-launch' },
   ]
 
   useEffect(() => {
@@ -619,7 +620,11 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
       <header className="arc-figma-nav"><button type="button" onClick={onBack} aria-label="Back to projects"><ArrowLeft size={18} /></button></header>
       <article>
         {sections.map((section) => (
-          section.className === 'arc-figma-role' ? (
+          section.className === 'arc-fail-faster' ? (
+            <section className="arc-figma-section arc-fail-faster" key={section.label} aria-labelledby="fail-faster-title">
+              <h1 id="fail-faster-title">FAIL FASTER...</h1>
+            </section>
+          ) : section.className === 'arc-figma-role' ? (
             <section className="arc-figma-section arc-figma-role" key={section.label}>
               <div className="arc-role-overview">
                 <div><span>My role</span><h1>Product Designer</h1><p>Own &amp; deliver design, research &amp; product demo video</p></div>
@@ -669,7 +674,10 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
                   </li>
                 ))}
               </ol>
-              <img src={section.image} alt="" />
+              <div className="arc-montage-title" aria-label="Design-Montage">
+                <span className="arc-montage-design">Design</span>
+                <span className="arc-montage-montage">Montage</span>
+              </div>
             </section>
           ) : section.className === 'arc-figma-research' ? (
             <section className="arc-figma-section arc-figma-research" key={section.label}>
@@ -723,7 +731,9 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
             <section className={`arc-figma-section ${section.className} ${typeof section.title === 'string' && /^Key design decision [123]$/.test(section.title) ? 'arc-key-decisions-gradient' : ''}`} key={section.label}>
               <div className="arc-figma-copy">{section.className !== 'arc-figma-hero' && section.className !== 'arc-figma-decisions' && <span>{section.label}</span>}{section.className === 'arc-figma-hero' && <img className="arc-finance-agent" src={financeAgentLogo} alt="Finance Agent" />}{(() => {
                 const match = typeof section.title === 'string' ? section.title.match(/^(.*?)(\d+)$/) : null
-                return match ? (
+                return isReconciliation && section.className === 'arc-figma-hero' ? (
+                  <h1>Accounting<br /><em>Reconciliation</em></h1>
+                ) : match ? (
                   <h1>{match[1]} <span className="arc-decision-number">{match[2]}</span></h1>
                 ) : (
                   <h1>{section.title}{section.accent && <><br /><em>{section.accent.split(' & ').map((part, index) => <span key={part}>{index > 0 && <small className="arc-ampersand">&amp;</small>}{part}</span>)}</em></>}</h1>
@@ -923,7 +933,7 @@ function App() {
   }, [currentPath])
 
   useEffect(() => {
-    const revealTargets = document.querySelectorAll<HTMLElement>('.section-heading > *, .project, .about-section > .kicker, .about-grid > *, .post, footer > .kicker, .contact-cta-group > h2, .email-link, .about-page-top, .case-study-nav, .case-hero-copy > *, .case-hero-art, .case-section > .kicker, .case-section-grid > *, .case-impact > *, .case-showcase > *, .case-chapter > .kicker, .case-chapter-heading > *, .case-insights > *, .case-personas > *, .case-visual > *, .case-priority-list > *, .case-feature-grid > *, .case-system-grid > *, .case-test-results > *, .case-template-hero > *, .case-template-section > *, .case-template-footer > *, .case-opportunity-grid > *, .case-workshop-grid > *, .case-moscow-grid > *, .case-assets-grid > *, .case-release-list > *, .case-team-list > *, .case-design-montage h2, .arc-figma-copy:not(.arc-figma-final .arc-figma-copy), .arc-figma-section > img:not(.arc-figma-final > img), .arc-launch-art, .arc-exploration-cards, .arc-figma-montage, .arc-role-overview > *, .arc-tool-grid > *, .arc-opp-col > *, .arc-impact-head > *, .arc-impact-metric, .arc-landscape-title, .arc-landscape-col, .arc-research-copy > *, .arc-research-visual')
+    const revealTargets = document.querySelectorAll<HTMLElement>('.section-heading > *, .project, .about-section > .kicker, .about-grid > *, .post, footer > .kicker, .contact-cta-group > h2, .email-link, .about-page-top, .case-study-nav, .case-hero-copy > *, .case-hero-art, .case-section > .kicker, .case-section-grid > *, .case-impact > *, .case-showcase > *, .case-chapter > .kicker, .case-chapter-heading > *, .case-insights > *, .case-personas > *, .case-visual > *, .case-priority-list > *, .case-feature-grid > *, .case-system-grid > *, .case-test-results > *, .case-template-hero > *, .case-template-section > *, .case-template-footer > *, .case-opportunity-grid > *, .case-workshop-grid > *, .case-moscow-grid > *, .case-assets-grid > *, .case-release-list > *, .case-team-list > *, .case-design-montage h2, .arc-figma-copy:not(.arc-figma-final .arc-figma-copy), .arc-figma-section > img:not(.arc-figma-final > img), .arc-launch-art, .arc-exploration-cards, .arc-figma-montage, .arc-fail-faster, .arc-role-overview > *, .arc-tool-grid > *, .arc-opp-col > *, .arc-impact-head > *, .arc-impact-metric, .arc-landscape-title, .arc-landscape-col, .arc-research-copy > *, .arc-research-visual')
     revealTargets.forEach((element, index) => {
       element.classList.add('scroll-reveal')
       element.style.setProperty('--reveal-delay', `${(index % 4) * 110}ms`)
@@ -951,6 +961,7 @@ function App() {
 
   if (currentPath === '/about') return <AboutPage onBack={() => navigateTo('/')} />
   if (currentPath === '/arc-studio') return <ArcStudioFigmaPage onBack={() => navigateTo('/')} />
+  if (currentPath === '/roam') return <ArcStudioFigmaPage onBack={() => navigateTo('/')} isReconciliation />
   if (caseStudies[currentPath]) return <CaseStudyPage content={caseStudies[currentPath]} onBack={() => navigateTo('/')} />
 
   return (
