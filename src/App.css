@@ -318,14 +318,31 @@
   display: block;
   max-width: 24rem;
   margin: 2.5rem 0 0;
-  color: var(--arc-muted);
+  color: var(--arc-ink);
   font-size: clamp(1rem, 1.35vw, 1.5rem);
+  font-weight: 700;
   line-height: 1.45;
   white-space: pre-line;
 }
+.arc-ai-agent-copy .arc-decision-number {
+  color: var(--arc-ink);
+}
+.arc-ai-agent-headline {
+  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+  line-height: 1.05;
+  text-transform: none;
+}
+.arc-figma-copy h1.arc-ai-agent-headline {
+  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+  text-transform: none;
+}
 .arc-ai-agent-hl {
   color: #7b5cf2;
-  font-weight: 400;
+  font-weight: inherit;
+}
+.arc-ai-agent-headline strong {
+  color: #7b5cf2;
+  font-weight: inherit;
 }
 .arc-exploration-visual {
   grid-column: 2;

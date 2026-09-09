@@ -586,7 +586,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
     { label: '09 / Design decisions', title: 'Survey with AP clerks and customers', body: 'Key design decisions 1', image: surveyVivaImage, className: 'arc-figma-decisions' },
     { label: '10 / Exploration', title: 'Key design decision 1', body: "When the AI agent can't find a match, the AI agent should?",
       image: explorationImage, className: 'arc-figma-exploration' },
-    { label: '11 / Exploration', title: 'Key design decision 2', body: <>Using TRIAD voting to resolve <strong>edge cases at scale</strong> and uncertainty, ensuring a timely release in a Mid-Fi, vibe-coded option before investing time in uncertain scenarios.</>, image: explorationImage, className: 'arc-figma-exploration' },
+    { label: '11 / Exploration', title: 'Key design decision 2', body: <><strong>Edge case</strong> or a rare occurrence?</>, image: explorationImage, className: 'arc-figma-exploration' },
     { label: '12 / Final design', title: 'Key design decision 3', body: <>Can customers <strong>test Invoice</strong> against a sample?</>, image: cardTestImage, className: 'arc-figma-exploration' },
     { label: '13 / Launch', title: 'M365 Copilot', accent: 'June 2026', body: 'M365 Finance Agent for Invoice processing in Public preview', image: finalPageImage, className: 'arc-figma-launch' },
   ]
@@ -733,12 +733,16 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                 const match = typeof section.title === 'string' ? section.title.match(/^(.*?)(\d+)$/) : null
                 return isReconciliation && section.className === 'arc-figma-hero' ? (
                   <h1>Accounting<br /><em>Reconciliation</em></h1>
+                ) : match && section.className === 'arc-figma-exploration' && section.title === 'Key design decision 1' ? (
+                  <h1 className="arc-ai-agent-headline">When the <span className="arc-ai-agent-hl">AI</span> <span className="arc-ai-agent-hl">agent</span> can't find a match, it <span className="arc-ai-agent-hl">should</span><span className="arc-ai-agent-hl">?</span></h1>
+                ) : match && section.className === 'arc-figma-exploration' ? (
+                  <h1 className="arc-ai-agent-headline">{section.body}</h1>
                 ) : match ? (
                   <h1>{match[1]} <span className="arc-decision-number">{match[2]}</span></h1>
                 ) : (
                   <h1>{section.title}{section.accent && <><br /><em>{section.accent.split(' & ').map((part, index) => <span key={part}>{index > 0 && <small className="arc-ampersand">&amp;</small>}{part}</span>)}</em></>}</h1>
                 )
-              })()}{section.className !== 'arc-figma-decisions' && !((section.className === 'arc-figma-exploration') && section.title === 'Key design decision 1') && <p>{section.body}</p>}{(section.className === 'arc-figma-exploration') && section.title === 'Key design decision 1' && <p className="arc-ai-agent-copy">When the <span className="arc-ai-agent-hl">AI</span> <span className="arc-ai-agent-hl">agent</span> can't find a match, it <span className="arc-ai-agent-hl">should</span><span className="arc-ai-agent-hl">?</span></p>}{section.className === 'arc-figma-decisions' && <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('research')}><Maximize2 size={14} aria-hidden="true" /><span>View research</span></button>}{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
+              })()}{section.className !== 'arc-figma-decisions' && !((section.className === 'arc-figma-exploration') && typeof section.title === 'string' && /^Key design decision [123]$/.test(section.title)) && <p>{section.body}</p>}{(section.className === 'arc-figma-exploration') && typeof section.title === 'string' && /^Key design decision [123]$/.test(section.title) && <p className="arc-ai-agent-copy">Key design decision <span className="arc-decision-number">{section.title.match(/(\d+)$/)?.[1]}</span></p>}{section.className === 'arc-figma-decisions' && <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('research')}><Maximize2 size={14} aria-hidden="true" /><span>View research</span></button>}{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
               {section.className === 'arc-figma-decisions' ? <div className="arc-customer-research-visual">
                 <div className="arc-research-outcomes">
                   <div className="arc-research-cards">
