@@ -810,26 +810,17 @@ main:has(> footer)::after {
   position: static;
   display: flex;
   align-items: center;
-  opacity: 0;
-  transform: translateX(-3rem);
-  transition: opacity 680ms cubic-bezier(.16, 1, .3, 1) 140ms, transform 760ms cubic-bezier(.16, 1, .3, 1) 140ms, filter 240ms ease;
 }
 .nav-links a {
   position: relative;
-  opacity: 0;
-  transform: translateX(-3rem);
-  transition: opacity 680ms cubic-bezier(.16, 1, .3, 1), transform 760ms cubic-bezier(.16, 1, .3, 1), filter 240ms ease;
+  display: flex;
   align-items: center;
-.arc-final-decision-cards.is-revealed .arc-final-decision-option,
-.arc-final-decision-cards.is-revealed .arc-final-decision-card { opacity: 1; transform: translateX(0); }
   padding: 0.75rem 1rem;
   border: 1px solid transparent;
   border-radius: 0;
-.arc-final-decision-cards.is-revealed .arc-final-decision-option:hover { transform: translateY(-.45rem) rotate(-3deg) scale(1.03); }
   color: rgba(0, 0, 0, 0.78);
   font-size: 1.125rem;
   font-weight: 500;
-.arc-final-decision-cards.is-revealed .arc-final-decision-card:hover { transform: translateY(-.45rem) rotate(3deg) scale(1.03); }
   text-decoration: none;
   transition: color 420ms ease, background 700ms cubic-bezier(.16, 1, .3, 1), box-shadow 700ms cubic-bezier(.16, 1, .3, 1);
 }
@@ -1994,6 +1985,8 @@ footer > .kicker > span { display: block; }
 .post { display: grid; grid-template-columns: 4rem 1fr auto 2rem; align-items: center; gap: 1.5rem; padding: 2rem 1.25rem; border-bottom: 1px solid rgba(255, 255, 255, 0.22); text-decoration: none; transition: background-color 220ms ease; }
 .blogs-section .post { opacity: 1; transform: none; filter: none; }
 .post:hover, .post:focus-visible { background-color: rgba(255, 255, 255, 0.075); }
+.post.is-inactive { cursor: default; }
+.post.is-inactive:hover { background-color: transparent; }
 .post > span, .post > p { margin: 0; color: rgba(255, 255, 255, 0.68); font-size: 0.78rem; text-transform: uppercase; }
 .post-source { display: flex; align-items: center; gap: 0.65rem; white-space: nowrap; }
 .post-source .medium-mark { color: #24183f; font-size: 14px; }

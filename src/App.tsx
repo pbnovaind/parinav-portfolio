@@ -61,7 +61,7 @@ const projects = [
 const posts = [
   ['From Exposing What AI Knows to Designing What Humans Need', 'Rethinking AI agent scores, rankings, and signals', '10 min', 'September 2026', 'https://medium.com/@badalparina1/ai-agent-signals-rethinking-ai-scores-rankings-and-what-it-means-for-users-to-trust-system-f14a02dd6120?sharedUserId=badalparina1'],
   ['Conducting Design Thinking Workshop', 'A practical guide to aligning stakeholders through hands-on collaboration', '5 min read', 'August 2023', 'https://medium.com/@uxandyouti/conducting-design-thinking-workshop-for-stakeholders-9fd25b2425e0'],
-  ['What deserves notification or dashboard', 'Deciding what deserves an interruption, and what belongs on main screen.', '5 min', 'January 2026', '#contact'],
+  ['What Deserves an Interruption?', 'Deciding what should trigger a notification - and what should simply live on the dashboard.', '5 min', 'January 2026', '#contact'],
 ]
 
 const navigation = ['Projects', 'About', 'Blog', 'Contact']
@@ -1088,7 +1088,7 @@ function App() {
         </header>
         <div className="post-list">
           {posts.map(([title, subtitle, readTime, date, href], index) => (
-            <a href={href} className="post" key={title} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined}><span>0{index + 1}</span><div className="post-copy"><h3>{title}</h3><p>{subtitle}</p></div><p className="post-source"><span className="medium-mark" aria-hidden="true">M</span>{date} · {readTime}</p><ArrowUpRight size={22} /></a>
+            <a href={href === '#contact' ? undefined : href} className={`post ${href === '#contact' ? 'is-inactive' : ''}`} key={title} aria-disabled={href === '#contact' || undefined} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined}><span>0{index + 1}</span><div className="post-copy"><h3>{title}</h3><p>{subtitle}</p></div><p className="post-source"><span className="medium-mark" aria-hidden="true">M</span>{date} · {readTime}</p><ArrowUpRight size={22} /></a>
           ))}
         </div>
       </section>
