@@ -623,16 +623,16 @@
 .arc-launch-lastpage { position: absolute; inset: 4%; width: 92%; height: 92%; object-fit: contain; }
 @keyframes arc-launch-background-cycle {
   0%, 100% { background-color: #f1ecff; }
-  33% { background-color: #e8f3ff; }
-  66% { background-color: #ffeaf4; }
+  50% { background-color: #e4f4ea; }
 }
 @media (prefers-reduced-motion: reduce) {
   .arc-figma-launch { animation: none; }
 }
-.arc-figma-more { min-height: 100svh; place-items: center; background: #f1f1f1; text-align: center; }
+.arc-figma-more { min-height: 50svh; padding-block: 4rem; place-items: center; background: #f1f1f1; text-align: center; }
 .arc-more-content { display: grid; justify-items: center; gap: 2rem; }
-.arc-more-content p { margin: 0; color: var(--arc-ink); font-size: clamp(2.5rem, 7vw, 6rem); font-weight: 700; letter-spacing: -.03em; line-height: .95; }
-.arc-more-content .case-footer-back { margin: 0; }
+.arc-more-content p { margin: 0; color: var(--arc-ink); font-size: 32px; font-weight: 400; line-height: 1.2; }
+.arc-more-content .case-footer-back { margin: 0; border: 1px solid #1d1d1d; color: #fff; background: #1d1d1d; }
+.arc-more-content .case-footer-back:hover, .arc-more-content .case-footer-back:focus-visible { color: #1d1d1d; background: #fff; }
 .arc-figma-top { position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 21; display: grid; place-items: center; width: 3rem; height: 3rem; border: 1px solid #d9d9d9; border-radius: 50%; color: var(--arc-ink); background: rgba(255, 255, 255, .9); cursor: pointer; }
 .arc-figma-top:hover, .arc-figma-top:focus-visible { background: #f0f0f0; }
 .arc-research-image-popover { position: fixed; z-index: 30; inset: 0; background: rgba(29, 29, 29, .28); }

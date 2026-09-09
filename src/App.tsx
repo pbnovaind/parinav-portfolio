@@ -771,8 +771,8 @@ function ArcStudioFigmaPage({ onBack }: { onBack: () => void }) {
           )
         ))}
         <section className="arc-figma-section arc-figma-more" aria-label="More on in-person work">
-          <div className="arc-more-content scroll-reveal">
-            <p>More on In person</p>
+          <div className="arc-more-content">
+            <p>More details in person</p>
             <button className="case-footer-back" type="button" onClick={onBack}>Go back to projects <ArrowLeft size={16} aria-hidden="true" /></button>
           </div>
         </section>
