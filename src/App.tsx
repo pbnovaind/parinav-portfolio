@@ -30,7 +30,9 @@ import cardTestImage from '../Images/Cardtest.svg'
 import cardTestTwoImage from '../Images/cardtest2.svg'
 import finalPageImage from '../Images/lastpageq.svg'
 import financeLaptopImage from '../Images/laptop365.svg'
-import workshopM365Image from '../Images/workshopm365.svg'
+import reconciliationHeroImage from '../Images/reconsidefirst.svg'
+import reconciliationHeroBackground from '../Images/Background reconcile.svg'
+import workshopM365Image from '../Images/workshop3.jpg'
 import surveyVivaImage from '../Images/surveyviva.jpg'
 import surveyTwoImage from '../Images/survey2.svg'
 
@@ -69,7 +71,7 @@ const heroRoles = ['Designer', 'Mentor', 'CFI Cyclist', 'Motorsports Enthusiast'
 const greetings = ['Hello', 'नमस्ते', 'வணக்கம்', 'నమస్కారం', 'नमस्कार', 'Bonjour', 'Hola', 'Ciao', 'Hallo', 'Olá']
 const explorationCards = [
   { src: explorationCardOne, label: 'Directly fill best possible?' },
-  { src: explorationCardTwo, label: 'List AI + past records in drop down ?', accent: true },
+  { src: explorationCardTwo, label: 'List AI + past records in a dropdown?', accent: true },
   { src: explorationCardThree, label: 'Show available agent logic' },
   { src: explorationCardFour, label: 'Let system throw an error and avoid guess work?' },
 ]
@@ -576,9 +578,9 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
   const [researchTab, setResearchTab] = useState<'questions' | 'post'>('questions')
   const [showArcTop, setShowArcTop] = useState(false)
   const sections = [
-    { label: '01 / Overview', title: 'Invoice', accent: 'Extraction & Automation', body: 'AI-powered invoice processing that automates extraction, validation, and processing for Finance & Accounting.', image: financeLaptopImage, className: 'arc-figma-hero' },
-    ...(isReconciliation ? [{ label: '02 / Fail faster', title: 'Fail faster', body: '', className: 'arc-fail-faster' }] : []),
+    { label: '01 / Overview', title: 'Invoice', accent: 'Extraction & Automation', body: isReconciliation ? 'Financial reconciliation' : 'AI-powered invoice processing that automates extraction, validation, and processing for Finance & Accounting.', image: isReconciliation ? reconciliationHeroImage : financeLaptopImage, className: 'arc-figma-hero' },
     { label: '03 / My role', title: 'Product Designer', body: 'Own & deliver design, research & product demo video', image: financeAgentLogo, className: 'arc-figma-role' },
+    ...(isReconciliation ? [{ label: '02 / Fail faster', title: 'Fail faster', body: '', className: 'arc-fail-faster' }] : []),
     { label: '04 / Opportunity', title: 'Opportunity', body: '', image: financeLaptopImage, className: 'arc-figma-opportunity' },
     { label: '05 / Impact', title: 'Impact', body: 'Post redesign', image: financeProfileImage, className: 'arc-figma-impact' },
     { label: '06 / Design Montage', title: 'Design Montage', body: 'Exhausting tokens...', image: designMontageImage, className: 'arc-figma-montage' },
@@ -627,17 +629,17 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
           ) : section.className === 'arc-figma-role' ? (
             <section className="arc-figma-section arc-figma-role" key={section.label}>
               <div className="arc-role-overview">
-                <div><span>My role</span><h1>Product Designer</h1><p>Own &amp; deliver design, research &amp; product demo video</p></div>
-                <div><span>Team</span><h2>5</h2><p>1 Principal PM<br />1 Product Designer<br />1 Principal Engineering Manager<br />3 Software engineers</p></div>
-                <div><span>Timeline</span><h2>16 weeks</h2><p>Kickoff to design handoff<br /><span className="arc-role-detail-muted">Shipped in 2 phases</span></p></div>
+                <div><span>My role</span><h1>Product Designer</h1><p>{isReconciliation ? 'Own & deliver design, insights & prototype' : 'Own & deliver design, research & product demo video'}</p></div>
+                <div><span>Team</span><h2>{isReconciliation ? 6 : 5}</h2><p>1 Principal PM<br />1 Product Designer<br />{isReconciliation && <>1 Senior Content Designer<br /></>}1 Principal Engineering Manager<br />3 Software engineers</p></div>
+                <div><span>Timeline</span><h2>{isReconciliation ? '8 weeks' : '16 weeks'}</h2>{isReconciliation ? <p>Design to handoff</p> : <p>Kickoff to design handoff<br /><span className="arc-role-detail-muted">Shipped in 2 phases</span></p>}</div>
               </div>
               <div className="arc-role-tools"><div className="arc-tool-grid"><div><strong>VS Code</strong><span>Prototype &amp;<br />handoff</span></div><div><strong>Figma</strong><span>Iteration &amp;<br />MCP lookup</span></div><div><strong>MS Clarity</strong><span>User testing<br />&amp; Heatmaps</span></div><div><strong>Viva Engage</strong><span>Customer survey and<br />feedback sessions</span></div></div></div>
             </section>
           ) : section.className === 'arc-figma-opportunity' ? (
             <section className="arc-figma-section arc-figma-opportunity" key={section.label}>
               <div className="arc-opp-col">
-                <h1>Opportunity</h1>
-                <ul><li>Accelerate financial period close</li><li>Leverage service agents</li><li>Achieve 100%~ Invoice Touchless rate</li></ul>
+                <h1>{isReconciliation ? 'Problem' : 'Opportunity'}</h1>
+                <ul><li>Leverage service agents from PowerApps</li><li>Achieve 100%~ Invoice Touchless rate</li><li><em>Advance the broader financial period-close strategy</em></li></ul>
                 <p>Make Finance Agent in M365 the go-to destination for invoice processing &amp; financial period close and accelerate paid seats and adoption.</p>
               </div>
               <div className="arc-opp-col">
@@ -663,10 +665,16 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
               <ol className="arc-process-strip">
                 {[
                   { step: 'Discovery workshop', sub: 'Stakeholder alignment' },
-                  { step: 'Customer Research', sub: 'Viva engage survey\nAdmin Interview' },
-                  { step: 'Road map workshop', sub: 'Moscow framework' },
-                  { step: 'Design Iteration on preview', sub: 'Design prototype\nEVALs tracking' },
-                  { step: 'Private preview', sub: 'Shipped in 2 phase' },
+                  { step: 'Customer Research', sub: 'Moderated testing\n1st draft' },
+                  ...(isReconciliation ? [
+                    { step: 'CELA Review', sub: 'Shipped in 2 phase' },
+                    { step: 'Design Iteration on preview', sub: 'Design prototype\nEVALs tracking' },
+                    { step: 'Final Design Handoff', sub: '' },
+                  ] : [
+                    { step: 'Road map workshop', sub: 'Moscow framework' },
+                    { step: 'Design Iteration on preview', sub: 'Design prototype\nEVALs tracking' },
+                    { step: 'Private preview', sub: 'Shipped in 2 phase' },
+                  ]),
                 ].map(({ step, sub }, i, arr) => (
                   <li key={step} className="arc-process-item" style={{ '--i': i } as CSSProperties}>
                     <span className="arc-process-text"><span className="arc-process-step">{step}</span><span className="arc-process-sub">{sub}</span></span>
@@ -684,14 +692,10 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
               <div className="arc-research-copy">
                 <h1>Conducting workshop for <span className="arc-research-accent">alignment...</span></h1>
                 <span className="arc-research-almost">almost</span>
-                <div className="arc-research-actions">
-                  <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('workshop')}><Maximize2 size={14} aria-hidden="true" /><span>View workshop</span></button>
-                  <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('landscape')}><Maximize2 size={14} aria-hidden="true" /><span>View landscape</span></button>
-                </div>
               </div>
               <div className="arc-research-visual">
                 <div className="arc-research-outcomes">
-                  <h2>Outcome of workshop</h2>
+                  <h2>Workshop outcome</h2>
                   <div className="arc-research-cards">
                     <span>Focus on semi-structured invoices as the primary target</span>
                     <span>Improve PO number extraction across ERPs and emails</span>
@@ -700,6 +704,10 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                     <span>Identify and prevent recurring vendor-specific errors</span>
                     <span>Inconsistent vendor invoice templates</span>
                   </div>
+                </div>
+                <div className="arc-research-actions">
+                  <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('workshop')}><Maximize2 size={14} aria-hidden="true" /><span>View workshop</span></button>
+                  <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('landscape')}><Maximize2 size={14} aria-hidden="true" /><span>View landscape</span></button>
                 </div>
               </div>
             </section>
@@ -732,7 +740,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
               <div className="arc-figma-copy">{section.className !== 'arc-figma-hero' && section.className !== 'arc-figma-decisions' && <span>{section.label}</span>}{section.className === 'arc-figma-hero' && <img className="arc-finance-agent" src={financeAgentLogo} alt="Finance Agent" />}{(() => {
                 const match = typeof section.title === 'string' ? section.title.match(/^(.*?)(\d+)$/) : null
                 return isReconciliation && section.className === 'arc-figma-hero' ? (
-                  <h1>Accounting<br /><em>Reconciliation</em></h1>
+                  <h1 className="arc-reconciliation-hero-title">AI powered<br /><em>key matching</em></h1>
                 ) : match && section.className === 'arc-figma-exploration' && section.title === 'Key design decision 1' ? (
                   <h1 className="arc-ai-agent-headline">When the <span className="arc-ai-agent-hl">AI</span> <span className="arc-ai-agent-hl">agent</span> can't find a match, it <span className="arc-ai-agent-hl">should</span><span className="arc-ai-agent-hl">?</span></h1>
                 ) : match && section.className === 'arc-figma-exploration' ? (
@@ -742,7 +750,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                 ) : (
                   <h1>{section.title}{section.accent && <><br /><em>{section.accent.split(' & ').map((part, index) => <span key={part}>{index > 0 && <small className="arc-ampersand">&amp;</small>}{part}</span>)}</em></>}</h1>
                 )
-              })()}{section.className !== 'arc-figma-decisions' && !((section.className === 'arc-figma-exploration') && typeof section.title === 'string' && /^Key design decision [123]$/.test(section.title)) && <p>{section.body}</p>}{(section.className === 'arc-figma-exploration') && section.title === 'Key design decision 2' && <p className="arc-ai-agent-copy">Key design decision <span className="arc-decision-number">2</span> on Low-Fi</p>}{(section.className === 'arc-figma-exploration') && typeof section.title === 'string' && section.title !== 'Key design decision 2' && /^Key design decision [123]$/.test(section.title) && <p className="arc-ai-agent-copy">Key design decision <span className="arc-decision-number">{section.title.match(/(\d+)$/)?.[1]}</span></p>}{section.className === 'arc-figma-decisions' && <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('research')}><Maximize2 size={14} aria-hidden="true" /><span>View research</span></button>}{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
+              })()}{section.className !== 'arc-figma-decisions' && !((section.className === 'arc-figma-exploration') && typeof section.title === 'string' && /^Key design decision [123]$/.test(section.title)) && <p className={isReconciliation && section.className === 'arc-figma-hero' ? 'arc-reconciliation-hero-body' : undefined}>{section.body}</p>}{(section.className === 'arc-figma-exploration') && section.title === 'Key design decision 2' && <p className="arc-ai-agent-copy">Key design decision <span className="arc-decision-number">2</span> on Low-Fi</p>}{(section.className === 'arc-figma-exploration') && typeof section.title === 'string' && section.title !== 'Key design decision 2' && /^Key design decision [123]$/.test(section.title) && <p className="arc-ai-agent-copy">Key design decision <span className="arc-decision-number">{section.title.match(/(\d+)$/)?.[1]}</span></p>}{section.className === 'arc-figma-decisions' && <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('research')}><Maximize2 size={14} aria-hidden="true" /><span>View research</span></button>}{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
               {section.className === 'arc-figma-decisions' ? <div className="arc-customer-research-visual">
                 <div className="arc-research-outcomes">
                   <div className="arc-research-cards">
@@ -784,7 +792,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                     <p>Against entire invoice in workspace view?</p>
                   </div>
                 </div>
-              </div> : <img src={section.image} alt="" />}
+              </div> : <>{isReconciliation && section.className === 'arc-figma-hero' && <img src={reconciliationHeroBackground} alt="" className="arc-reconciliation-hero-background" />}<img src={section.image} alt="" className={isReconciliation && section.className === 'arc-figma-hero' ? 'arc-reconciliation-hero-image' : undefined} /></>}
             </section>
           )
         ))}
