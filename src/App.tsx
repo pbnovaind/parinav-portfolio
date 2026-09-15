@@ -290,14 +290,13 @@ function AboutPage({ onBack }: { onBack: () => void }) {
           <div className="about-copy scroll-reveal is-revealed">
             <h1 className="about-life-title">Life</h1>
             <>
-                <p>I have lived, travelled, and grown up in motion. Domestically, I have lived in Purnia, Delhi, Bhuvaneshwar, Hyderabad, Chennai, and Bangalore. New places, people, and cultures became so normal that change almost feels like built-in DNA.</p>
+                <p>I have lived, travelled, and grown up in motion. Domestically, I have lived in Purnia, Delhi, Bhuvaneshwar, Hyderabad and Bangalore so far. New places, people, and cultures became such a natural part of life that adapting tfeels built intome. And cooking has been a savier in that.</p>
                 
                 <p>With limited exposure to the world outside, Hollywood movie CDs became my first window into the outside world, haha. Eventually, watching was not enough, so I wanted to travel and see it myself.</p>
                 
                 
                 <p>Since then, curiosity has taken me through design, studio photography and travel. I've travelled across 22 of India's 28 states and 5 of its 8 Union Territories, mostly on a motorcycle—a love since 10th standard. I've also travelled through Kenya, Tanzania and Mauritius, usually choosing roads and public transport over tourist itineraries. I like seeing how people live, getting a little lost, and figuring out what it feels like to belong somewhere. I'm also a CFI cyclist, with races including the HCL Cyclothon and Pedal for the Planet.</p>
                 
-                <p>And somewhere between all the moving, I learnt to cook and bake—because when life keeps changing your address, you might as well know how to make your own comfort food.</p>
 
             </>
           </div>
@@ -671,8 +670,8 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
             <section className="arc-figma-section arc-figma-role" key={section.label}>
               <div className="arc-role-overview">
                 <div><span>My role</span><h1>Product Designer</h1><p>{isReconciliation ? 'Own & deliver design, insights & prototype' : 'Own & deliver design, research & product demo video'}</p></div>
-                <div><span>Team</span><h2>{isReconciliation ? 6 : 5}</h2><p>1 Principal PM<br />1 Product Designer<br />{isReconciliation && <>1 Senior Content Designer<br /></>}1 Principal Engineering Manager<br />3 Software engineers</p></div>
-                <div><span>Timeline</span><h2>{isReconciliation ? '8 weeks' : '16 weeks'}</h2>{isReconciliation ? <p>Design to handoff</p> : <p>Kickoff to design handoff<br /><span className="arc-role-detail-muted">Shipped in 2 phases</span></p>}</div>
+                <div><span>Team</span><h2>{isReconciliation ? 7 : 5}</h2><p>1 Principal PM<br />1 Product Designer<br />{isReconciliation && <>1 Senior Content Designer<br /></>}1 Principal Engineering Manager<br />3 Software engineers</p></div>
+                <div><span>Timeline</span><h2>{isReconciliation ? '8 weeks' : '6 Months'}</h2>{isReconciliation ? <p>Kickoff to handoff</p> : <p>Kickoff to design handoff<br /><span className="arc-role-detail-muted">Shipped in 2 phases</span></p>}</div>
               </div>
               <div className="arc-role-tools"><div className="arc-tool-grid"><div><strong>VS Code</strong><span>Design &amp; prototype</span></div><div><strong>Figma</strong><span>Iteration &amp;<br />MCP lookup</span></div><div><strong>MS Clarity</strong><span>User testing<br />&amp; Heatmaps</span></div><div><strong>Viva Engage</strong><span>Customer survey and<br />feedback sessions</span></div></div></div>
             </section>
@@ -728,7 +727,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                   ...(isReconciliation ? [
                     { step: 'Customer Research', sub: 'A/B test\nPreview feedback' },
                   ] : [
-                    { step: 'Customer Research', sub: 'Customer interview' },
+                    { step: 'Customer Research', sub: 'Customer interview & survey' },
                   ]),
                   ...(isReconciliation ? [
                     { step: 'CELA Review', sub: 'Shipped in 2 phase' },
@@ -822,7 +821,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                 ) : match && section.className === 'arc-figma-exploration' && section.label === '10 / Exploration' && !isReconciliation ? (
                   <h1 className="arc-ai-agent-headline">When the <span className="arc-ai-agent-hl">AI agent</span> can&apos;t find a match, it <span className="arc-ai-agent-hl">should?</span></h1>
                 ) : match && section.className === 'arc-figma-exploration' && section.label === '10 / Exploration' ? (
-                  <h1 className="arc-ai-agent-headline">How can I make <span className="arc-ai-agent-hl">modifier</span> recognizable in such <span className="arc-ai-agent-hl">small real estate</span>?</h1>
+                  <h1 className="arc-ai-agent-headline">How can I make <span className="arc-ai-agent-hl arc-ai-agent-modifier">modifier</span> recognizable in such <span className="arc-ai-agent-hl">small real estate</span>?</h1>
                 ) : section.label === '12 / CELA outcome' ? (
                   <h1 className="arc-ai-agent-headline">CELA compliance changed <em className="arc-cela-accent"><span className="arc-cela-small-caps">no</span> AI disclaimer needed</em></h1>
                 ) : match && section.className === 'arc-figma-exploration' ? (
@@ -832,7 +831,8 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                 ) : (
                   <h1>{section.title}{section.accent && <><br /><em>{section.accent.split(' & ').map((part, index) => <span key={part}>{index > 0 && <small className="arc-ampersand">&amp;</small>}{part}</span>)}</em></>}</h1>
                 )
-                })()}{section.className === 'arc-figma-exploration' && /^Key design decision [12]$/.test(String(section.title)) && <p className="arc-ai-agent-copy">Key design decision <span className="arc-decision-number">{String(section.title).match(/(\d+)$/)?.[1]}</span></p>}{isReconciliation && section.label === '10 / Exploration' && <p className="arc-cela-disclaimer-copy">The challenge was to make modifiers recognizable within a constrained viewport and complex data structure. I tested the design with the same group of users who had provided the initial feedback.</p>}{section.className !== 'arc-figma-decisions' && !((section.className === 'arc-figma-exploration') && typeof section.title === 'string' && /^Key design decision [123]$/.test(section.title)) && <p className={isReconciliation && section.className === 'arc-figma-hero' ? 'arc-reconciliation-hero-body' : undefined}>{section.body}</p>}{isReconciliation && section.label === '11 / Exploration' && <p className="arc-cela-disclaimer-copy">A mandatory review of content and AI disclaimer in our products which we ship <span className="arc-cela-accent">before designs could be finalized.</span></p>}{(section.className === 'arc-figma-exploration') && typeof section.title === 'string' && section.title !== 'Key design decision 2' && section.title !== 'Key design decision 1' && /^Key design decision [123]$/.test(section.title) && <p className="arc-ai-agent-copy">Key design decision <span className="arc-decision-number">{section.title.match(/(\d+)$/)?.[1]}</span></p>}{isReconciliation && section.label === '11.5 / Exploration' && <p className="arc-cela-disclaimer-copy">Reconciliation and insights could take up to five minutes—or fail altogether. I therefore had to define what users needed to know during processing, what they could act on, and how much visibility the system should provide before the final result was ready.</p>}{section.className === 'arc-figma-decisions' && isReconciliation && <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('research')}><Maximize2 size={14} aria-hidden="true" /><span>View research</span></button>}{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
+                })()}{section.className === 'arc-figma-exploration' && /^Key design decision [12]$/.test(String(section.title)) && <p className="arc-ai-agent-copy">Key design decision <span className="arc-decision-number">{String(section.title).match(/(\d+)$/)?.[1]}</span></p>}{!isReconciliation && section.title === 'Key design decision 1' && <p className="arc-ai-agent-body">Discovering &amp; identifying the right patterns to ensure when an error occurs, customers know what to do next or what they should see next.</p>}{!isReconciliation && section.title === 'Key design decision 2' && <p className="arc-ai-agent-body">Mid-fi exploration with PM &amp; Engineering to identify complex line-item scenarios, then brought these explorations into broader design critiques to uncover similar use cases and patterns across teams and drive a consistent One Microsoft experience.</p>}{isReconciliation && section.label === '10 / Exploration' && <p className="arc-cela-disclaimer-copy">The challenge was to make modifiers recognizable within a constrained viewport and complex data structure. I tested the design with the same group of users who had provided the initial feedback.</p>}{section.className !== 'arc-figma-decisions' && !((section.className === 'arc-figma-exploration') && typeof section.title === 'string' && /^Key design decision [123]$/.test(section.title)) && <p className={isReconciliation && section.className === 'arc-figma-hero' ? 'arc-reconciliation-hero-body' : undefined}>{section.body}</p>}{isReconciliation && section.label === '11 / Exploration' && <p className="arc-cela-disclaimer-copy">A mandatory review of content and AI disclaimer in our products which we ship <span className="arc-cela-accent">before designs could be finalized.</span></p>}{(section.className === 'arc-figma-exploration') && typeof section.title === 'string' && section.title !== 'Key design decision 2' && section.title !== 'Key design decision 1' && /^Key design decision [123]$/.test(section.title) && <p className="arc-ai-agent-copy">Key design decision <span className="arc-decision-number">{section.title.match(/(\d+)$/)?.[1]}</span></p>}{isReconciliation && section.label === '11.5 / Exploration' && <p className="arc-cela-disclaimer-copy">Reconciliation and insights could take up to five minutes—or fail altogether. I therefore had to define what users needed to know during processing, what they could act on, and how much visibility the system should provide before the final result was ready.</p>}{section.className === 'arc-figma-decisions' && isReconciliation && <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('research')}><Maximize2 size={14} aria-hidden="true" /><span>View research</span></button>}{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
+              {!isReconciliation && section.title === 'Key design decision 3' && <p className="arc-ai-agent-body">Evaluating two placement options for &ldquo;Test&rdquo; actions with scalability in mind, considering future requirements like token consumption and richer execution details.</p>}
               {section.className === 'arc-figma-decisions' ? <div className="arc-customer-research-visual">
                 <div className="arc-research-outcomes">
                   <div className="arc-research-cards">
@@ -1023,7 +1023,6 @@ function App() {
         return
       }
       const beginScroll = () => {
-        cancelAnimationFrame(animationFrame)
         const start = window.scrollY
         const targetOffset = target.id === 'selected-work'
           ? 0
@@ -1218,7 +1217,8 @@ function App() {
             <span className="approach-line">people, &amp; societies.</span>
           </h2>
           <div className="about-copy">
-            <p>I’m a seasoned product designer who turns ambiguous product questions into clear systems, useful interactions, and stories teams can build around.</p>
+            <p><strong>A seasoned product designer with 8+ years of experinec in B2B &amp; e-com domain.</strong></p>
+            <p>As a designer, one of my inherent strengths is to observe, whether it’s popular, unconventional or overlooked—and utilize those reasoning.</p>
             <a className="about-more" href="/about" onClick={(event) => { event.preventDefault(); navigateTo('/about') }}>Read more about me <ArrowUpRight size={18} /></a>
           </div>
         </div>
