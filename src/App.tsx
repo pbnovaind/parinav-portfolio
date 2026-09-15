@@ -813,7 +813,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
               </div>
             </section>
           ) : (
-            <section className={`arc-figma-section ${section.className} ${isReconciliation && section.className === 'arc-figma-hero' ? 'arc-reconciliation-hero' : ''} ${typeof section.title === 'string' && /^Key design decision [123]$/.test(section.title) ? 'arc-key-decisions-gradient' : ''}`} key={section.label}>
+            <section className={`arc-figma-section ${section.className} ${!isReconciliation && section.className === 'arc-figma-decisions' ? 'arc-arc-studio-decisions' : ''} ${isReconciliation && section.className === 'arc-figma-hero' ? 'arc-reconciliation-hero' : ''} ${typeof section.title === 'string' && /^Key design decision [123]$/.test(section.title) ? 'arc-key-decisions-gradient' : ''}`} key={section.label}>
               <div className="arc-figma-copy">{section.className !== 'arc-figma-hero' && section.className !== 'arc-figma-decisions' && section.className !== 'arc-reconciliation-before-scroll' && <span>{section.label}</span>}{section.className === 'arc-figma-hero' && <img className="arc-finance-agent" src={financeAgentLogo} alt="Finance Agent" />}{(() => {
                 const match = typeof section.title === 'string' ? section.title.match(/^(.*?)(\d+)$/) : null
                 return isReconciliation && section.className === 'arc-figma-hero' ? (

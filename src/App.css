@@ -803,6 +803,7 @@
 }
 
 .arc-figma-decisions > img { right: -5vw; width: min(60vw, 72rem); height: min(76vh, 48rem); object-fit: cover; object-position: left center; }
+.arc-arc-studio-decisions { padding-top: clamp(5rem, 8vh, 7rem); padding-bottom: clamp(4rem, 6vh, 5rem); row-gap: 1.5rem; }
 .arc-customer-research-visual { grid-column: 2; display: flex; flex-direction: column; align-self: start; justify-self: end; gap: 1.5rem; width: 100%; max-width: 40rem; min-width: 0; }
 .arc-customer-research-visual .arc-research-outcomes { margin: 0; }
 .arc-customer-research-visual .arc-research-view-button { align-self: flex-start; margin-top: 1.5rem; }
@@ -816,6 +817,39 @@
   object-position: center;
   filter: grayscale(1);
 }
+.arc-arc-studio-decisions .arc-customer-research-visual { display: contents; }
+.arc-arc-studio-decisions .arc-customer-research-visual .arc-research-outcomes {
+  grid-column: 2;
+  grid-row: 1;
+  transform: translateX(5rem);
+}
+.arc-arc-studio-decisions .arc-chart-takeaway {
+  grid-column: 2;
+  grid-row: 2;
+  position: static;
+  margin-top: 1rem;
+  transform: translateX(5rem);
+}
+.arc-arc-studio-decisions .arc-customer-research-visual > img {
+  grid-column: 1;
+  grid-row: 3;
+  justify-self: start;
+  width: 72%;
+  max-height: min(34vh, 20rem);
+  margin: 1.5rem 0 0;
+}
+.arc-arc-studio-decisions .arc-research-view-button {
+  grid-column: 2;
+  grid-row: 3;
+  width: fit-content;
+  position: static;
+  margin-top: 0;
+  transform: translateX(5rem);
+}
+.arc-arc-studio-decisions {
+  align-content: start;
+}
+.arc-arc-studio-decisions .arc-research-cards { gap: .75rem; }
 .arc-chart-takeaway { align-self: flex-start; width: 85%; margin: -1rem 0 0; color: var(--arc-muted); font-size: clamp(.8rem, 1vw, .95rem); line-height: 1.45; text-align: left; }
 .arc-chart-takeaway strong { color: var(--arc-ink); }
 .arc-research-copy {
@@ -843,8 +877,6 @@
   padding-left: 1rem;
 }
 .arc-research-view-button:hover, .arc-research-view-button:focus-visible { color: #1d1d1d; background: #e5e5e5; }
-.arc-figma-decisions .arc-research-view-button > span { display: none; }
-.arc-figma-decisions .arc-research-view-button::after { content: 'View Survey'; }
 .arc-research-view-button:focus-visible { outline: 2px solid #1d1d1d; outline-offset: 3px; }
 .arc-research-visual { position: relative; left: 0; grid-column: 2; display: flex; flex-direction: column; gap: 1.5rem; min-width: 0; }
 .arc-reconciliation-research .arc-research-visual { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
@@ -990,6 +1022,20 @@
   .arc-research-cards { width: 100%; }
   .arc-research-cards > span { padding-left: 1.4rem; }
   .arc-research-cards > span::before { left: 0; }
+  .arc-arc-studio-decisions { align-content: initial; gap: 1.25rem; }
+  .arc-arc-studio-decisions .arc-figma-copy { order: 1; }
+  .arc-arc-studio-decisions .arc-customer-research-visual .arc-research-outcomes { order: 2; grid-column: auto; grid-row: auto; transform: none; }
+  .arc-arc-studio-decisions .arc-research-view-button { order: 3; grid-column: auto; grid-row: auto; position: static; margin-top: 0; transform: none; }
+  .arc-arc-studio-decisions .arc-chart-takeaway { order: 4; grid-column: auto; grid-row: auto; position: static; margin: 0; transform: none; }
+  .arc-arc-studio-decisions .arc-customer-research-visual > img { order: 5; grid-column: auto; grid-row: auto; width: 85%; max-height: 30vh; margin: 0; }
+}
+@media (max-width: 900px) {
+  .arc-arc-studio-decisions { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-height: 100svh; gap: 1.25rem; padding: 6rem 2rem 3rem; }
+  .arc-arc-studio-decisions .arc-figma-copy { order: 1; left: 0; }
+  .arc-arc-studio-decisions .arc-customer-research-visual .arc-research-outcomes { order: 2; width: 100%; transform: none; }
+  .arc-arc-studio-decisions .arc-research-view-button { order: 3; position: static; margin-top: 0; transform: none; }
+  .arc-arc-studio-decisions .arc-chart-takeaway { order: 4; width: 100%; margin: 0; transform: none; }
+  .arc-arc-studio-decisions .arc-customer-research-visual > img { order: 5; width: 85%; max-height: 30vh; margin: 0; }
 }
 .case-back-to-top { position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 10; display: grid; place-items: center; width: 3.25rem; aspect-ratio: 1; border: 1px solid #dfe2e4; border-radius: 50%; color: var(--case-ink); background: rgba(253, 253, 253, .92); box-shadow: 0 .75rem 2rem rgba(31, 36, 42, .1); opacity: 0; pointer-events: none; transform: translateY(.75rem); transition: opacity .35s ease, transform .35s ease, background .2s ease; }
 .case-back-to-top.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }.case-back-to-top:hover, .case-back-to-top:focus-visible { background: #eef0f1; }
