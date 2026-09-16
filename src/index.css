@@ -47,7 +47,7 @@
   --cp-role-yellow: #ffd43b;
   --cp-role-teal: #087f8c;
   --cp-role-ink: #242424;
-  font-family: 'Afacad', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--cp-text);
   background: var(--cp-bg);
   font-synthesis: none;

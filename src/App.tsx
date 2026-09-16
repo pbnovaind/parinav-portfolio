@@ -45,6 +45,7 @@ import workshopM365Image from '../Images/workshop inv.png'
 import surveyVivaImage from '../Images/surveyviva.jpg'
 import surveyTwoImage from '../Images/survey2.svg'
 import personaInvoiceImage from '../Images/personainvoice.svg'
+import logicTwoImage from '../Images/logic2.svg'
 import feasibilityWorkshopImage from '../Images/feasibility workshop.png'
 import celaOneImage from '../Images/cela1.svg'
 import celaTwoImage from '../Images/cela2.svg'
@@ -613,6 +614,8 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
     ...(!isReconciliation ? [{ label: '09 / Design decisions', title: 'Survey with Admin customers', body: 'Key design decisions 1', image: surveyVivaImage, className: 'arc-figma-decisions' }] : []),
     ...(!isReconciliation ? [{ label: '09.25 / User feedback', title: 'Influencing in a room of PMs & Eng. leaders needs strong evidence to push', body: '', image: surveyVivaImage, className: 'arc-user-comment' }] : []),
     ...(!isReconciliation ? [{ label: '09.5 / Persona', title: 'Invoice persona', body: '', image: personaInvoiceImage, className: 'arc-persona-invoice' }] : []),
+    ...(!isReconciliation ? [{ label: '09.6 / Logic connection', title: '+', body: '', className: 'arc-logic-plus' }] : []),
+    ...(!isReconciliation ? [{ label: '09.8 / Logic', title: 'Logic', body: '', image: logicTwoImage, className: 'arc-logic-two' }] : []),
     ...(isReconciliation ? [
       { label: '11 / Exploration', title: 'Key design decision 1', body: <>What <span className="arc-cela-accent">CELA</span> has on <span className="arc-cela-accent">compliance</span> for this feature</>, image: explorationImage, className: 'arc-figma-exploration' },
       { label: '10 / Exploration', title: 'Key design decision 2', body: "When the AI agent can't find a match, the AI agent should?", image: explorationImage, className: 'arc-figma-exploration' },
@@ -805,6 +808,14 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
           ) : section.className === 'arc-persona-invoice' ? (
             <section className="arc-persona-invoice" key={section.label} aria-label="Invoice persona">
               <img src={section.image} alt="Invoice persona project folder" />
+            </section>
+          ) : section.className === 'arc-logic-plus' ? (
+            <section className="arc-logic-plus" key={section.label} aria-label="Two logic approaches">
+              <span aria-hidden="true">+</span>
+            </section>
+          ) : section.className === 'arc-logic-two' ? (
+            <section className="arc-logic-two" key={section.label} aria-label="Logic project folder">
+              <img src={section.image} alt="Logic project folder" />
             </section>
           ) : section.className === 'arc-figma-launch' ? (
             <section className="arc-figma-section arc-figma-launch" key={section.label}>
