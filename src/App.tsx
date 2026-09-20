@@ -876,7 +876,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                 ) : match && section.className === 'arc-figma-exploration' && section.label === '10 / Exploration' && !isReconciliation ? (
                   <h1 className="arc-ai-agent-headline">When the <span className="arc-ai-agent-hl">AI agent</span> can&apos;t find a match, it <span className="arc-ai-agent-hl">should?</span></h1>
                 ) : match && section.className === 'arc-figma-exploration' && section.label === '10 / Exploration' ? (
-                  <h1 className="arc-ai-agent-headline">How can I make <span className="arc-ai-agent-hl arc-ai-agent-modifier">modifier</span> recognizable in such <span className="arc-ai-agent-hl">small real estate</span>?</h1>
+                  <h1 className="arc-ai-agent-headline">How can I make <span className="arc-ai-agent-hl arc-ai-agent-modifier">modifier</span> recognizable in such <span>small real estate</span>?</h1>
                 ) : section.label === '12 / CELA outcome' ? (
                   <h1 className="arc-ai-agent-headline">CELA compliance changed <em className="arc-cela-accent"><span className="arc-cela-small-caps">no</span> AI disclaimer needed</em></h1>
                 ) : match && section.className === 'arc-figma-exploration' ? (
