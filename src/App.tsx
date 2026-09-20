@@ -82,8 +82,8 @@ const projects = [
 
 const posts = [
   ['From Exposing What AI Knows to Designing What Humans Need', 'Rethinking AI agent scores, rankings, and signals', '10 min', 'September 2026', 'https://medium.com/@badalparina1/ai-agent-signals-rethinking-ai-scores-rankings-and-what-it-means-for-users-to-trust-system-f14a02dd6120?sharedUserId=badalparina1'],
+  ['Chat zones- The next unit for Enterprise chat sessions', 'From chat history to zones', '5 min', 'January 2026', 'https://medium.com/@badalparina1/chat-zones-the-next-unit-for-enterprise-chat-sessions-09f58f729f44'],
   ['Conducting Design Thinking Workshop', 'A practical guide to aligning stakeholders through hands-on collaboration', '5 min read', 'August 2023', 'https://medium.com/@uxandyouti/conducting-design-thinking-workshop-for-stakeholders-9fd25b2425e0'],
-  ['What Deserves an Interruption?', 'Deciding what should trigger a notification - and what should simply live on the dashboard.', '5 min', 'January 2026', '#contact'],
 ]
 
 const navigation = ['Projects', 'About', 'Blog', 'Contact']
@@ -671,7 +671,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
             !isReconciliation ? (
               <section className="arc-figma-section arc-figma-role arc-figma-role-compact" key={section.label}>
                 <div className="arc-role-overview arc-role-overview-compact">
-                  <div><h2><span className="arc-role-title-accent">My role</span></h2><p className="arc-role-description-accent">Own end to end-<br />Design, customer insights &amp; product demo video</p></div>
+                  <div><h2><span className="arc-role-title-accent">My role</span></h2><p className="arc-role-description-accent">Own end to end-<br />Design, customer insights &amp;<br />product demo video</p></div>
                   <div><h2>Timeline</h2><p>6 months-<br />Kickoff to final<br />design handoff</p></div>
                   <div><h2>Team</h2><p>1 Principal PM<br />1 Eng. PM<br />1 Senior Data Scientist<br />3 Developers<br /><span className="arc-product-designer-accent">1 Product Designer 2</span></p></div>
                   <div className="arc-role-tools-compact"><h2>Tools</h2><ul>
@@ -731,7 +731,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                   </div>
                   <div className="arc-opp-col arc-business-statement-col">
                     <h1 className="arc-business-statement-heading">Business statement</h1>
-                    <p className="arc-body-copy arc-business-statement-copy"><strong>Finance Agent needs to drive paid-seat adoption by delivering more reliable invoice automation and moving customers toward continuous, touchless financial period close.</strong></p>
+                    <p className="arc-body-copy arc-business-statement-copy"><strong>Finance Agent needs to drive paid-seat adoption by delivering reliable invoice automation and moving customers toward continuous, touchless financial period close.</strong></p>
                   </div>
                 </section>
               )}
@@ -762,8 +762,8 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
             <section className={`arc-figma-section arc-figma-impact${isReconciliation ? ' arc-reconciliation-impact' : ''}`} key={section.label}>
               <div className="arc-impact-grid">
                 <ImpactMetric value={isReconciliation ? 90 : 95} format={(v) => `${Math.round(v)}%`} suffix="~" label={isReconciliation ? 'Drop in complaint tickets' : 'Invoice Touch-less rate'} note={!isReconciliation ? 'Compared to 5% ~ in PowerApps semi structure invoices' : undefined} noteBreakAfter={!isReconciliation ? 5 : undefined} />
-                {!isReconciliation && <ImpactMetric value={2.5} format={(v) => v.toFixed(1)} suffix="minutes" label="Average invoice processing time" note="Compared to 10 minutes in PowerApps for complex and unstructured documents" noteBreakAfter={5} />}
-                {isReconciliation && <ImpactMetric value={400} format={(v) => `${Math.round(v)}K+`} label="Report reconciliation with positive thumb" note="Compared to less than 1K" />}
+                {!isReconciliation && <><ImpactMetric value={2.5} format={(v) => v.toFixed(1)} suffix="minutes" label="Average invoice processing time" note="Compared to 10 minutes in PowerApps for complex and unstructured documents" noteBreakAfter={5} /><ImpactMetric value={20} format={(v) => `${Math.round(v)}+M`} label="Q1 2026 Paid seats" /></>}
+                {isReconciliation && <><ImpactMetric value={66.5} format={(v) => `${v.toFixed(1)}%`} label="Improvement in CSAT rating" /><ImpactMetric value={400} format={(v) => `${Math.round(v)}K+`} label="Report reconciliation with positive thumb" note="Compared to less than 1K" /></>}
               </div>
               <div className="arc-impact-head">
                 {!isReconciliation ? <><h1>Impact</h1><p>Private preview June 2026</p></> : <><h1>Impact</h1><p>Post design - shipped in GA from Oct 25-Jan 26</p></>}
