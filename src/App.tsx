@@ -618,7 +618,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
     ...(!isReconciliation ? [{ label: '09.5 / Persona', title: 'Invoice persona', body: '', image: personaInvoiceImage, className: 'arc-persona-invoice' }] : []),
     ...(!isReconciliation ? [{ label: '09.8 / Logic', title: 'Logic', body: '', className: 'arc-logic-two' }] : []),
     ...(isReconciliation ? [
-      { label: '11 / Exploration', title: 'Key design decision 1', body: <>What <span className="arc-cela-accent">CELA</span> has on <span className="arc-cela-accent">compliance</span> for this feature</>, image: explorationImage, className: 'arc-figma-exploration' },
+      { label: '11 / Exploration', title: 'Key design decision 1', body: <>How <span className="arc-cela-accent">CELA</span> approaches <span className="arc-cela-accent">compliance</span> for this feature.</>, image: explorationImage, className: 'arc-figma-exploration' },
       { label: '10 / Exploration', title: 'Key design decision 2', body: "When the AI agent can't find a match, the AI agent should?", image: explorationImage, className: 'arc-figma-exploration' },
     ] : [
       { label: '10 / Exploration', title: 'Key design decision 1', body: "When the AI agent can't find a match, the AI agent should?", image: explorationImage, className: 'arc-figma-exploration' },
@@ -916,9 +916,15 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                   ))}
                 </div>
               </div> : section.label === '11 / Exploration' && isReconciliation ? <div className="arc-cela-visual" aria-label="CELA compliance review screens">
-                <figure><img src={celaOneImage} alt="CELA compliance review screen 1" /><figcaption>1. No AI needed for later screens as it&apos;s in App</figcaption></figure>
-                <figure><img src={celaTwoImage} alt="CELA compliance review screen 2" /><figcaption>2. Copilot AI suggestions</figcaption></figure>
-                <figure><img src={celaThreeImage} alt="CELA compliance review screen 3" /><span className="arc-cela-check-badge" aria-label="Approved"><Check size={13} strokeWidth={3} /></span><figcaption>3. Copilot suggestions</figcaption></figure>
+                {[
+                  { image: celaThreeImage, caption: 'Copilot suggestions', approved: true },
+                  { image: celaOneImage, caption: "No AI needed for later screens as it's in App" },
+                  { image: celaTwoImage, caption: 'Copilot AI suggestions' },
+                ].map((card, index) => <figure key={card.caption}>
+                  <img src={card.image} alt={`CELA compliance review screen ${index + 1}`} />
+                  {card.approved && <span className="arc-cela-check-badge" aria-label="Approved"><Check size={13} strokeWidth={3} /></span>}
+                  <figcaption>{index + 1}. {card.caption}</figcaption>
+                </figure>)}
               </div> : section.label === '12 / CELA outcome' && isReconciliation ? <div className="arc-cela-visual arc-cela-outcome-visual" aria-label="CELA compliance outcome screen">
                 <img src={reconciliationOutcomeImage} alt="CELA compliance outcome screen" />
               </div> : section.className === 'arc-reconciliation-before-scroll' ? <div className="arc-reconciliation-before-scroll-container" aria-label="Customer feedback - Before reconcile">
