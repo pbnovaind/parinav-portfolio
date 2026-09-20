@@ -1286,7 +1286,7 @@ function App() {
           <div className="about-copy">
             <p><strong>8+ years of experience in Enterprise &amp; E-com</strong></p>
             <p>I look beyond established patterns—popular, unconventional, or overlooked—to uncover opportunities and turn those observations into meaningful product decisions.</p>
-            <p>My day-to-day role involves partnering with PM, Engineering, Research, and Content Design to shape cohesive product experiences.</p>
+            <p>My day-to-day role involves partnering with PM, Engineering, Research, and Content Designer to shape cohesive product experiences.</p>
             <a className="about-more" href="/about" onClick={(event) => { event.preventDefault(); navigateTo('/about') }}>Read more about me <ArrowUpRight size={18} /></a>
           </div>
         </div>
