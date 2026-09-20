@@ -86,7 +86,7 @@ const posts = [
   ['Conducting Design Thinking Workshop', 'A practical guide to aligning stakeholders through hands-on collaboration', '5 min read', 'August 2023', 'https://medium.com/@uxandyouti/conducting-design-thinking-workshop-for-stakeholders-9fd25b2425e0'],
 ]
 
-const navigation = ['Projects', 'About', 'Blog', 'Contact']
+const navigation = ['Projects', 'Blog', 'About', 'Contact']
 const heroRoles = ['Designer', 'Mentor', 'CFI Cyclist', 'Motorsports Enthusiast']
 const greetings = ['Hello', 'नमस्ते', 'வணக்கம்', 'నమస్కారం', 'नमस्कार', 'Bonjour', 'Hola', 'Ciao', 'Hallo', 'Olá']
 type ExplorationCard = { src: string; label?: string; accent?: boolean }
@@ -1263,6 +1263,17 @@ function App() {
         </div>
       </section>
 
+      <section className="blogs-section" id="blogs">
+        <header className="section-heading compact">
+          <h2>Blog</h2>
+        </header>
+        <div className="post-list">
+          {posts.map(([title, subtitle, readTime, date, href], index) => (
+            <a href={href === '#contact' ? undefined : href} className={`post ${href === '#contact' ? 'is-inactive' : ''}`} key={title} aria-disabled={href === '#contact' || undefined} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined}><span>0{index + 1}</span><div className="post-copy"><h3>{title}</h3><p>{subtitle}</p></div><p className="post-source"><span className="medium-mark" aria-hidden="true">M</span>{date} · {readTime}</p><ArrowUpRight size={22} /></a>
+          ))}
+        </div>
+      </section>
+
       <section className="about-section about-teaser" id="about">
         <p className="kicker">Who am I</p>
         <div className="about-grid">
@@ -1273,21 +1284,11 @@ function App() {
             <span className="approach-line">people, &amp; societies.</span>
           </h2>
           <div className="about-copy">
-            <p><strong>A seasoned product designer with 8+ years of experinec in B2B &amp; e-com domain.</strong></p>
-            <p>As a designer, one of my inherent strengths is to observe, whether it’s popular, unconventional or overlooked—and utilize those reasoning.</p>
+            <p><strong>8+ years of experience in Enterprise &amp; E-COM</strong></p>
+            <p>I look beyond established patterns—popular, unconventional, or overlooked—to uncover opportunities and turn those observations into meaningful product decisions.</p>
+            <p>My day-to-day role involves partnering with PM, Engineering, Research, and Content Design to shape cohesive product experiences.</p>
             <a className="about-more" href="/about" onClick={(event) => { event.preventDefault(); navigateTo('/about') }}>Read more about me <ArrowUpRight size={18} /></a>
           </div>
-        </div>
-      </section>
-
-      <section className="blogs-section" id="blogs">
-        <header className="section-heading compact">
-          <h2>Blog</h2>
-        </header>
-        <div className="post-list">
-          {posts.map(([title, subtitle, readTime, date, href], index) => (
-            <a href={href === '#contact' ? undefined : href} className={`post ${href === '#contact' ? 'is-inactive' : ''}`} key={title} aria-disabled={href === '#contact' || undefined} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined}><span>0{index + 1}</span><div className="post-copy"><h3>{title}</h3><p>{subtitle}</p></div><p className="post-source"><span className="medium-mark" aria-hidden="true">M</span>{date} · {readTime}</p><ArrowUpRight size={22} /></a>
-          ))}
         </div>
       </section>
 
