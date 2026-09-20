@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { AlertTriangle, ArrowDownRight, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, CheckCircle2, ChevronLeft, ChevronRight, Info, Maximize2, Menu, X } from 'lucide-react'
+import { AlertTriangle, ArrowDownRight, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, Check, CheckCircle2, ChevronLeft, ChevronRight, CircleHelp, Info, Maximize2, Menu, X } from 'lucide-react'
 import { FaLinkedin } from 'react-icons/fa6'
 import { SiGmail } from 'react-icons/si'
 import logo from '../Images/logo.svg'
@@ -30,8 +30,8 @@ import modifierOneImage from '../Images/MODIFIER1.svg'
 import modifierTwoImage from '../Images/MODIFIER2.svg'
 import modifierThreeImage from '../Images/MODIFIER3.svg'
 import modifierFourImage from '../Images/MODIFIER4.svg'
-import cardTestImage from '../Images/Cardtest.svg'
-import cardTestTwoImage from '../Images/cardtest2.svg'
+import runTestTwoImage from '../Images/runtest2.svg'
+import runTestThreeImage from '../Images/runtest3.svg'
 import lastInvImage from '../Images/lastinv.svg'
 import financeLaptopImage from '../Images/laptop365.svg'
 import reconciliationHeroImage from '../Images/reconsidefirst.svg'
@@ -45,8 +45,10 @@ import workshopM365Image from '../Images/workshop inv.png'
 import surveyVivaImage from '../Images/surveyviva.jpg'
 import surveyTwoImage from '../Images/survey2.svg'
 import personaInvoiceImage from '../Images/personainvoice.svg'
+import logicOneImage from '../Images/logic1.svg'
 import logicTwoImage from '../Images/logic2.svg'
 import feasibilityWorkshopImage from '../Images/feasibility workshop.png'
+import cardTestImage from '../Images/Cardtest.svg'
 import celaOneImage from '../Images/cela1.svg'
 import celaTwoImage from '../Images/cela2.svg'
 import celaThreeImage from '../Images/cela3.svg'
@@ -91,9 +93,9 @@ type ExplorationCard = { src: string; label?: string; accent?: boolean }
 
 const arcStudioExplorationCards: ExplorationCard[] = [
   { src: explorationCardOne, label: 'Directly fill best possible?' },
-  { src: explorationCardTwo, label: 'List AI + past records in a dropdown?', accent: true },
+  { src: explorationCardTwo, label: 'List AI + past records in a dropdown?' },
   { src: explorationCardThree, label: 'Show available agent logic' },
-  { src: explorationCardFour, label: 'Let system throw an error and avoid guess work?' },
+  { src: explorationCardFour, label: 'Let system throw an error and avoid guess work?', accent: true },
 ]
 const reconciliationExplorationCards: ExplorationCard[] = [
   { src: modifierOneImage, accent: true },
@@ -572,7 +574,7 @@ function CaseStudyPage({ content, onBack }: { content: CaseStudyContent; onBack:
           {content.title === 'Simplifying report creation' ? <><div className="case-background-column"><h2 className="case-problem-title" id="background-title">Problem</h2><p>Business noticed <strong>declining adoption</strong> highlighting gaps in report workflows, and accuracy along with speed of reporting. Stakeholders needed better solution to <strong>support further investment</strong> focused on addressing gaps.</p><p className="problem-risk-note">Without sufficient traction and user adoption by Q4 2024, the product risked being discontinued. Despite being in development since 2020, it had not yet demonstrated enough value to justify sustained investment.</p></div><div className="case-background-column"><h2 className="case-investment-title">Opportunity</h2><ol><li>Identify user groups and design scalable workflows for <strong>report creation</strong>, <strong>collaboration</strong>, and modification, improving UX and SUS scores.</li></ol></div></> : <><div className="case-background-column"><h2 className="case-problem-title" id="background-title">Problem</h2><ul>{content.friction.map((item) => <li key={item}>{item}</li>)}</ul></div><div className="case-background-column"><h2 className="case-investment-title">Opportunity</h2><ol>{content.opportunities.map((item) => <li key={item}>{item}</li>)}</ol></div></>}
         </section>
 
-        <section className="case-template-section" aria-labelledby="opportunity-title"><div className="case-section-label">Opportunity breakdown</div><h2 id="opportunity-title">Three vectors shaped the solution.</h2><div className="case-opportunity-grid">{(content.opportunityDetails ?? content.opportunities.map((title) => ({ title, body: 'Design the smallest useful intervention that makes this behavior visible, understandable, and repeatable.' }))).map((opportunity) => <article key={opportunity.title}><h3>{opportunity.title}</h3><p>{opportunity.body.replace('multiple places', 'multiple tools')}</p></article>)}</div></section>
+        {content.title !== 'Simplifying report creation' && <section className="case-template-section" aria-labelledby="opportunity-title"><div className="case-section-label">Opportunity breakdown</div><h2 id="opportunity-title">Three vectors shaped the solution.</h2><div className="case-opportunity-grid">{(content.opportunityDetails ?? content.opportunities.map((title) => ({ title, body: 'Design the smallest useful intervention that makes this behavior visible, understandable, and repeatable.' }))).map((opportunity) => <article key={opportunity.title}><h3>{opportunity.title}</h3><p>{opportunity.body.replace('multiple places', 'multiple tools')}</p></article>)}</div></section>}
 
         {content.title === 'Simplifying report creation' && <section className="case-metrics" aria-label="Impact and improvements"><img src={metricsGskImage} alt="Post redesign impact and improvements" /></section>}
 
@@ -604,18 +606,17 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
   const [showArcTop, setShowArcTop] = useState(false)
   const sections = [
     { label: '01 / Context', title: 'Context', body: 'Easily described to a 10 year old', image: isReconciliation ? contextMatchingImage : contextInvoiceImage, className: 'arc-context' },
+    ...(isReconciliation ? [{ label: '01.5 / Fail faster', title: 'Fail faster', body: '', className: 'arc-fail-faster' }] : []),
     { label: '02 / Overview', title: 'Invoice', accent: 'Extraction & Automation', body: isReconciliation ? 'Financial reconciliation key\nmatching & configuration' : 'AI-powered invoice processing that automates extraction, validation, and processing for Finance & Accounting.', image: isReconciliation ? reconciliationHeroImage : financeLaptopImage, className: 'arc-figma-hero' },
     { label: '03 / My role', title: 'Product Designer', body: 'Own & deliver design, research & product demo video', image: financeAgentLogo, className: 'arc-figma-role' },
     { label: '04 / Opportunity', title: 'Opportunity', body: '', image: financeLaptopImage, className: 'arc-figma-opportunity' },
     { label: '05 / Impact', title: 'Impact', body: 'Post redesign', image: financeProfileImage, className: 'arc-figma-impact' },
-    ...(isReconciliation ? [{ label: '02 / Fail faster', title: 'Fail faster', body: '', className: 'arc-fail-faster' }] : []),
     { label: '06 / Design Montage', title: 'Design Montage', body: 'Exhausting tokens...', image: designMontageImage, className: 'arc-figma-montage' },
     { label: '08 / Customer research', title: 'Conducting workshop for alignment...', body: '', image: workshopM365Image, className: 'arc-figma-research' },
     ...(!isReconciliation ? [{ label: '09 / Design decisions', title: 'Survey with Admin customers', body: 'Key design decisions 1', image: surveyVivaImage, className: 'arc-figma-decisions' }] : []),
     ...(!isReconciliation ? [{ label: '09.25 / User feedback', title: 'Influencing in a room of PMs & Eng. leaders needs strong evidence to push', body: '', image: surveyVivaImage, className: 'arc-user-comment' }] : []),
     ...(!isReconciliation ? [{ label: '09.5 / Persona', title: 'Invoice persona', body: '', image: personaInvoiceImage, className: 'arc-persona-invoice' }] : []),
-    ...(!isReconciliation ? [{ label: '09.6 / Logic connection', title: '+', body: '', className: 'arc-logic-plus' }] : []),
-    ...(!isReconciliation ? [{ label: '09.8 / Logic', title: 'Logic', body: '', image: logicTwoImage, className: 'arc-logic-two' }] : []),
+    ...(!isReconciliation ? [{ label: '09.8 / Logic', title: 'Logic', body: '', className: 'arc-logic-two' }] : []),
     ...(isReconciliation ? [
       { label: '11 / Exploration', title: 'Key design decision 1', body: <>What <span className="arc-cela-accent">CELA</span> has on <span className="arc-cela-accent">compliance</span> for this feature</>, image: explorationImage, className: 'arc-figma-exploration' },
       { label: '10 / Exploration', title: 'Key design decision 2', body: "When the AI agent can't find a match, the AI agent should?", image: explorationImage, className: 'arc-figma-exploration' },
@@ -624,7 +625,6 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
       { label: '11 / Exploration', title: 'Key design decision 2', body: <><strong>Edge case</strong> or a rare occurrence?</>, image: explorationImage, className: 'arc-figma-exploration' },
     ]),
     ...(isReconciliation ? [{ label: '11.5 / Exploration', title: 'Key design decision 3', body: <>What should a <span className="arc-cela-accent">status</span> toast suggest?</>, image: explorationImage, className: 'arc-figma-exploration' }] : []),
-    ...(isReconciliation ? [{ label: '04.2 / Before & after reconcile', title: '', body: '', image: beforeAfterImage, className: 'arc-reconciliation-before-after' }] : []),
     ...(isReconciliation ? [{ label: '', title: '', body: '', image: undefined, className: 'arc-reconciliation-empty-scroll' }] : []),
     ...(!isReconciliation ? [{ label: '12 / Final design', title: 'Key design decision 3', body: <>Can customers <strong>test Invoice</strong> against a sample?</>, image: cardTestImage, className: 'arc-figma-exploration' }] : []),
     { label: '13 / Launch', title: 'M365 Copilot', accent: 'June 2026', body: 'M365 Finance Agent for Invoice processing in Public preview', image: isReconciliation ? last2Image : lastInvImage, className: 'arc-figma-launch' },
@@ -655,7 +655,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
   }, [])
 
   return (
-    <main className="arc-figma-page">
+    <main className={`arc-figma-page${isReconciliation ? ' arc-roam-page' : ''}`}>
       <header className="arc-figma-nav"><button type="button" onClick={onBack} aria-label="Back to projects"><ArrowLeft size={18} /></button></header>
       <article>
         {sections.map((section) => (
@@ -663,21 +663,40 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
             <section className={`arc-figma-section arc-fail-faster${isReconciliation ? ' arc-reconciliation-fail-faster' : ''}`} key={section.label} aria-labelledby="fail-faster-title">
               <h1 id="fail-faster-title">FAIL<br />FASTER</h1>
               <div className="arc-fail-faster-copy">
-                <p className="arc-fail-faster-lead"><span><span className="arc-fail-faster-lead-intro">As time was limited</span>, I proposed testing a slightly imperfect but holistic design solution in a steel-thread build rather than releasing features incrementally and testing in Private Preview.</span> Fragmented releases would have made it harder for me to assess the overall experience.</p>
-                <div className="arc-fail-faster-body">
-                  <p className="arc-fail-faster-learning">This initial test with <span>1 customer group</span> became a foundation for learning—helping us gather meaningful customer feedback, understand how the features worked together, and test how the solution could scale within a constrained UI viewport, where there was little room for experimentation.</p>
-                </div>
+                <p className="arc-fail-faster-callout"><strong>Adding a feature takes a meeting; removing one takes a seminar</strong></p>
+                <p className="arc-fail-faster-description">As time was limited, I proposed testing a slightly imperfect but holistic design solution in a steel-thread build rather than releasing features incrementally and testing in Private Preview. Fragmented releases would have made it harder for me to assess the overall experience.</p>
               </div>
             </section>
           ) : section.className === 'arc-figma-role' ? (
-            <section className="arc-figma-section arc-figma-role" key={section.label}>
-              <div className="arc-role-overview">
-                <div><span>My role</span><h1>Product Designer</h1><p>{isReconciliation ? 'Own & deliver design, insights & prototype' : 'Own & deliver design, research & product demo video'}</p></div>
-                <div><span>Team</span><h2>{isReconciliation ? 7 : 5}</h2><p>1 Principal PM<br />1 Product Designer<br />{isReconciliation && <>1 Senior Content Designer<br /></>}1 Principal Engineering Manager<br />3 Software engineers</p></div>
-                <div><span>Timeline</span><h2>{isReconciliation ? '8 weeks' : '6 Months'}</h2>{isReconciliation ? <p>Kickoff to handoff</p> : <p>Kickoff to design handoff<br /><span className="arc-role-detail-muted">Shipped in 2 phases</span></p>}</div>
-              </div>
-              <div className="arc-role-tools"><div className="arc-tool-grid"><div><strong>VS Code</strong><span>Design &amp; prototype</span></div><div><strong>Figma</strong><span>Iteration &amp;<br />MCP lookup</span></div><div><strong>MS Clarity</strong><span>User testing<br />&amp; Heatmaps</span></div><div><strong>Viva Engage</strong><span>Customer survey and<br />feedback sessions</span></div></div></div>
-            </section>
+            !isReconciliation ? (
+              <section className="arc-figma-section arc-figma-role arc-figma-role-compact" key={section.label}>
+                <div className="arc-role-overview arc-role-overview-compact">
+                  <div><h2><span className="arc-role-title-accent">My role</span></h2><p className="arc-role-description-accent">Own end to end-<br />Design, customer insights &amp; product demo video</p></div>
+                  <div><h2>Timeline</h2><p>6 months-<br />Kickoff to final<br />design handoff</p></div>
+                  <div><h2>Team</h2><p>1 Principal PM<br />1 Eng. PM<br />1 Senior Data Scientist<br />3 Developers<br /><span className="arc-product-designer-accent">1 Product Designer 2</span></p></div>
+                  <div className="arc-role-tools-compact"><h2>Tools</h2><ul>
+                    <li>VS Code + GithubCopilot</li>
+                    <li>MS Clarity</li>
+                    <li>Figma</li>
+                    <li>Viva engage</li>
+                  </ul></div>
+                </div>
+              </section>
+            ) : (
+              <section className="arc-figma-section arc-figma-role arc-figma-role-compact" key={section.label}>
+                <div className="arc-role-overview arc-role-overview-compact">
+                  <div><h2><span className="arc-role-title-accent">My role</span></h2><p className="arc-role-description-accent">Own &amp; deliver design,<br />insights &amp; prototype</p></div>
+                  <div><h2>Timeline</h2><p>8 weeks<br />Kickoff to handoff</p></div>
+                  <div><h2>Team</h2><p>1 Principal PM<br />1 Product Designer 2<br />1 Senior Content Designer<br />1 Principal Engineering Manager<br />1 Senior Data Scientist</p></div>
+                  <div className="arc-role-tools-compact"><h2>Tools</h2><ul>
+                    <li>VS Code + GithubCopilot</li>
+                    <li>Figma</li>
+                    <li>MS Clarity</li>
+                    <li>Viva Engage</li>
+                  </ul></div>
+                </div>
+              </section>
+            )
           ) : section.className === 'arc-context' ? (
             <section className="arc-figma-section arc-context" key={section.label}>
               <div className="arc-context-copy">
@@ -688,14 +707,15 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
             </section>
           ) : section.className === 'arc-figma-opportunity' ? (
             <>
-              <section className={`arc-figma-section arc-figma-opportunity${isReconciliation ? ' arc-reconciliation-opportunity' : ''}`} key={`${section.label}-problem`}>
-                <div className="arc-opp-col">
-                  <h1>{isReconciliation ? 'Problem' : 'Opportunity'}</h1>
-                  {isReconciliation ? <ul><li><strong>&lt;1K</strong> reconciled reports with positive feedback</li><li><strong>Increased complaint tickets &amp; reduced CSAT rating</strong></li></ul> : <ul><li>Leverage service agents from PowerApps</li><li>Achieve 100%~ Invoice Touchless rate</li><li><em>Advance the broader financial period-close strategy</em></li></ul>}
-                  {isReconciliation && <p>The first release of the Reconciliation Agent exposed a critical gap: customers could see the output, but not understand how the agent got there. Complaints centered on report accuracy, limited visibility into what was happening, and unclear explanations for the actions and decisions the agent made.</p>}
-                  {!isReconciliation && <p>Make Finance Agent in Copilot M365 the go-to destination for invoice processing &amp; financial period close and accelerate paid seats and adoption.</p>}
-                </div>
-              </section>
+              {isReconciliation && (
+                <section className={`arc-figma-section arc-figma-opportunity arc-reconciliation-opportunity`} key={`${section.label}-problem`}>
+                  <div className="arc-opp-col">
+                    <h1>Problem</h1>
+                    <ul><li><strong>&lt;1K</strong> reconciled reports with positive feedback</li><li><strong>Increased complaint tickets &amp; reduced CSAT rating</strong></li></ul>
+                    <p>The first release of Reconciliation exposed a critical gap: customers could see the output, but not understand how it got there. Complaints centered on report accuracy, limited visibility into what was happening, and unclear explanations for the actions and decisions it made.</p>
+                  </div>
+                </section>
+              )}
               {isReconciliation && (
                 <section className="arc-figma-section arc-reconciliation-before-scroll" key={`${section.label}-before`}>
                   <div className="arc-reconciliation-before-scroll-container" aria-label="Customer feedback - Before reconcile">
@@ -703,11 +723,38 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                   </div>
                 </section>
               )}
+              {!isReconciliation && (
+                <section className="arc-figma-section arc-figma-opportunity" key={`${section.label}-business`}>
+                  <div className="arc-opp-col">
+                    <h1>Opportunity</h1>
+                    <p><strong>Extend invoice automation into Finance Agent in Microsoft 365 Copilot, enabling AI to handle exceptions and move invoice processing toward a near-touchless experience.</strong></p>
+                  </div>
+                  <div className="arc-opp-col arc-business-statement-col">
+                    <h1 className="arc-business-statement-heading">Business statement</h1>
+                    <p className="arc-body-copy arc-business-statement-copy"><strong>Finance Agent needs to drive paid-seat adoption by delivering more reliable invoice automation and moving customers toward continuous, touchless financial period close.</strong></p>
+                  </div>
+                </section>
+              )}
               <section className={`arc-figma-section arc-figma-challenge${isReconciliation ? ' arc-reconciliation-challenge' : ''}`} key={`${section.label}-challenge`}>
                 <div className="arc-opp-col">
                   <h1>Design Challenge</h1>
-                  {isReconciliation ? <ul><li>How might we make the agent's selection and prioritization transparent, and easy for users to adjust when needed?</li></ul> : <ul><li>How might we design invoice automation that learns<br />from user correction and prevents recurring errors?</li></ul>}
-                  {!isReconciliation && <p>Identify where users struggle today, understand how existing capabilities<br />and service agents can address those gaps, and define the right scenarios<br />for <strong>automation, human-in-the-loop intervention, and decision-making.</strong></p>}
+                  {isReconciliation ? <ul><li>How might we make the agent's selection and prioritization transparent, and easy for users to adjust when needed?</li></ul> : <ul><li>How might we help Finance Agent handle invoice exceptions more intelligently while creating a continuous learning loop that improves touchless processing over time?</li></ul>}
+                  {!isReconciliation && (
+                    <div className="arc-design-tasks-wrap">
+                      <h2 className="arc-design-tasks-heading">3 Design Tasks</h2>
+                      <ol className="arc-design-tasks">
+                        <li>
+                          <h3>01 — Understand the customer</h3>
+                        </li>
+                        <li>
+                          <h3>02 — Define the AI experience</h3>
+                        </li>
+                        <li>
+                          <h3>03 — Deliver a One Microsoft experience</h3>
+                        </li>
+                      </ol>
+                    </div>
+                  )}
                 </div>
               </section>
             </>
@@ -733,13 +780,13 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                     { step: 'Customer Research', sub: 'Customer interview & survey' },
                   ]),
                   ...(isReconciliation ? [
-                    { step: 'CELA Review', sub: 'Shipped in 2 phase' },
+                    { step: 'CELA Review', sub: 'AI Disclaimer compliance in UI' },
                     { step: 'Design iteration', sub: 'Design prototype\nEVALs tracking' },
                     { step: 'Final Design Handoff', sub: '' },
                   ] : [
                     { step: 'Road map workshop', sub: 'Moscow framework' },
                     { step: 'Design Iteration on preview', sub: 'Design prototype\nEVALs tracking' },
-                    { step: 'Private preview', sub: 'Shipped in 2 phase' },
+                    { step: 'Private preview', sub: 'May - June 2026 in phases' },
                   ]),
                 ].map(({ step, sub }, i, arr) => (
                   <li key={step} className="arc-process-item" style={{ '--i': i } as CSSProperties}>
@@ -756,7 +803,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
           ) : section.className === 'arc-figma-research' ? (
             <section className={`arc-figma-section arc-figma-research${isReconciliation ? ' arc-reconciliation-research' : ''}`} key={section.label}>
               <div className="arc-research-copy">
-                {isReconciliation ? <h1 className="arc-prioritization-heading">What should the team <span className="arc-research-accent">prioritize?</span></h1> : <><h1>Conducting workshop for <span className="arc-research-accent">alignment...</span></h1><span className="arc-research-almost">almost</span></>}
+                {isReconciliation ? <h1 className="arc-prioritization-heading">Conducting <span className="arc-reconciliation-workshop-word">workshop</span> for alignment</h1> : <><h1>Conducting workshop for <span className="arc-research-accent">alignment...</span></h1><span className="arc-research-almost">almost</span></>}
               </div>
               <div className="arc-research-visual">
                 <div className="arc-research-outcomes">
@@ -768,11 +815,11 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                       <span><strong>3. Control</strong> — Preserve AI recommendations as the starting point while keeping final configuration user-controlled.</span>
                     </> : <>
                       <span>Focus on semi-structured invoices as the primary target</span>
-                      <span>Improve PO number extraction across ERPs and emails</span>
+                      <span>Improve PO number extraction across ERPs and emails<CircleHelp className="arc-research-card-icon arc-research-card-icon-info" size={20} aria-label="More information" /></span>
                       <span>Prioritise invoices that need human attention</span>
                       <span>Enable admin approval of high-value invoices</span>
                       <span>Identify and prevent recurring vendor-specific errors</span>
-                      <span>Vendor invoice templates</span>
+                      <span>Vendor invoice templates<Info className="arc-research-card-icon arc-research-card-icon-info" size={20} aria-label="Information" /></span>
                     </>}
                   </div>
                 </div>
@@ -809,13 +856,10 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
             <section className="arc-persona-invoice" key={section.label} aria-label="Invoice persona">
               <img src={section.image} alt="Invoice persona project folder" />
             </section>
-          ) : section.className === 'arc-logic-plus' ? (
-            <section className="arc-logic-plus" key={section.label} aria-label="Two logic approaches">
-              <span aria-hidden="true">+</span>
-            </section>
           ) : section.className === 'arc-logic-two' ? (
             <section className="arc-logic-two" key={section.label} aria-label="Logic project folder">
-              <img src={section.image} alt="Logic project folder" />
+              <img src={logicOneImage} alt="Logic project folder - part 1" />
+              <img src={logicTwoImage} alt="Logic project folder - part 2" />
             </section>
           ) : section.className === 'arc-figma-launch' ? (
             <section className="arc-figma-section arc-figma-launch" key={section.label}>
@@ -843,26 +887,23 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                   <h1>{section.title}{section.accent && <><br /><em>{section.accent.split(' & ').map((part, index) => <span key={part}>{index > 0 && <small className="arc-ampersand">&amp;</small>}{part}</span>)}</em></>}</h1>
                 )
                 })()}{section.className === 'arc-figma-exploration' && /^Key design decision [12]$/.test(String(section.title)) && <p className="arc-ai-agent-copy">Key design decision <span className="arc-decision-number">{String(section.title).match(/(\d+)$/)?.[1]}</span></p>}{!isReconciliation && section.title === 'Key design decision 1' && <p className="arc-ai-agent-body">Discovering &amp; identifying the right patterns to ensure when an error occurs, customers know what to do next or what they should see next.</p>}{!isReconciliation && section.title === 'Key design decision 2' && <p className="arc-ai-agent-body">Mid-fi exploration with PM &amp; Engineering to identify complex line-item scenarios, then brought these explorations into broader design critiques to uncover similar use cases and patterns across teams and drive a consistent One Microsoft experience.</p>}{isReconciliation && section.label === '10 / Exploration' && <p className="arc-cela-disclaimer-copy">The challenge was to make modifiers recognizable within a constrained viewport and complex data structure. I tested the design with the same group of users who had provided the initial feedback.</p>}{section.className !== 'arc-figma-decisions' && !((section.className === 'arc-figma-exploration') && typeof section.title === 'string' && /^Key design decision [123]$/.test(section.title)) && <p className={isReconciliation && section.className === 'arc-figma-hero' ? 'arc-reconciliation-hero-body' : undefined}>{section.body}</p>}{isReconciliation && section.label === '11 / Exploration' && <p className="arc-cela-disclaimer-copy">A mandatory review of content and AI disclaimer in our products which we ship <span className="arc-cela-accent">before designs could be finalized.</span></p>}{(section.className === 'arc-figma-exploration') && typeof section.title === 'string' && section.title !== 'Key design decision 2' && section.title !== 'Key design decision 1' && /^Key design decision [123]$/.test(section.title) && <p className="arc-ai-agent-copy">Key design decision <span className="arc-decision-number">{section.title.match(/(\d+)$/)?.[1]}</span></p>}{isReconciliation && section.label === '11.5 / Exploration' && <p className="arc-cela-disclaimer-copy">Reconciliation and insights could take up to five minutes—or fail altogether. I therefore had to define what users needed to know during processing, what they could act on, and how much visibility the system should provide before the final result was ready.</p>}{section.className === 'arc-figma-decisions' && isReconciliation && <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('research')}><Maximize2 size={14} aria-hidden="true" /><span>View research</span></button>}{section.className === 'arc-figma-hero' && <img className="arc-m365-mark" src={microsoft365Image} alt="Microsoft 365" />}</div>
-              {!isReconciliation && section.title === 'Key design decision 3' && <p className="arc-ai-agent-body">Evaluating two placement options for &ldquo;Test&rdquo; actions with scalability in mind, considering future requirements like token consumption and richer execution details.</p>}
-              {section.className === 'arc-figma-decisions' ? <div className="arc-customer-research-visual">
+              {!isReconciliation && section.title === 'Key design decision 3' && <p className="arc-ai-agent-body">Desided after 1st preview feedback &amp; PM broader monitization context</p>}
+              {section.className === 'arc-figma-decisions' ? <>
+                <div className="arc-customer-research-visual">
+                {!isReconciliation && <p className="arc-chart-takeaway"><strong>Key takeaway</strong><br />Most users manually searched for and corrected PO numbers, making it a major source of errors and a key bottleneck. Suggested to be resolved in the backend.</p>}
                 <div className="arc-research-outcomes">
                   <div className="arc-research-cards">
-                    <span>Focus on semi-structured invoices as the primary target</span>
-                    <span>Improve PO number extraction across ERPs and emails</span>
-                    <span>Prioritise invoices that need human attention</span>
-                    <span>Enable admin approval of high-value invoices</span>
-                    <span>Identify and prevent recurring vendor-specific errors</span>
-                    <span><s>Inconsistent vendor invoice templates</s> — <strong>Out of scope</strong></span>
+                    <span>Improve PO number extraction across ERPs and emails<CheckCircle2 className="arc-research-card-icon arc-research-card-icon-check" size={20} aria-label="Complete" /></span>
                   </div>
                 </div>
-                {!isReconciliation && <p className="arc-chart-takeaway"><strong>Key takeaway:</strong> Most users manually search and correct PO numbers, highlighting an opportunity to design clearer UI actions for reviewing and correcting extraction errors.</p>}
                 {!isReconciliation && <button className="arc-research-view-button" type="button" onClick={() => setOpenArcImage('research')}><Maximize2 size={14} aria-hidden="true" /><span>View more</span></button>}
-                {!isReconciliation && <img src={surveyTwoImage} alt="Customer research survey" />}
-              </div> : section.className === 'arc-figma-exploration' && section.label === '10 / Exploration' ? <div className="arc-exploration-visual" aria-label="Exploration card concepts">
+                </div>
+                {!isReconciliation && <img className="arc-survey-chart" src={surveyTwoImage} alt="Customer research survey" />}
+              </> : section.className === 'arc-figma-exploration' && section.label === '10 / Exploration' ? <div className="arc-exploration-visual" aria-label="Exploration card concepts">
                 <div className="arc-exploration-cards">
                   {(isReconciliation ? reconciliationExplorationCards : arcStudioExplorationCards).map((card, index) => (
                     <div key={card.src} className={`arc-exploration-card ${card.accent ? 'is-accent' : ''}`} style={{ '--card-index': index } as CSSProperties}>
-                      {(index === 0 || index === 1) && <span className="arc-exploration-card-tag">{index === 0 ? 'A' : 'B'}</span>}
+                      {(!isReconciliation && (index === 0 || index === 3)) && <span className={`arc-exploration-card-tag${index === 3 ? ' arc-exploration-card-tag-b' : ''}`}>{index === 0 ? 'A' : 'B'}</span>}
                       {card.accent && (
                         <>
                           <span className="arc-exploration-check" aria-label="Selected option">✓</span>
@@ -877,7 +918,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
               </div> : section.label === '11 / Exploration' && isReconciliation ? <div className="arc-cela-visual" aria-label="CELA compliance review screens">
                 <figure><img src={celaOneImage} alt="CELA compliance review screen 1" /><figcaption>1. No AI needed for later screens as it&apos;s in App</figcaption></figure>
                 <figure><img src={celaTwoImage} alt="CELA compliance review screen 2" /><figcaption>2. Copilot AI suggestions</figcaption></figure>
-                <figure><img src={celaThreeImage} alt="CELA compliance review screen 3" /><figcaption>3. Copilot suggestions</figcaption></figure>
+                <figure><img src={celaThreeImage} alt="CELA compliance review screen 3" /><span className="arc-cela-check-badge" aria-label="Approved"><Check size={13} strokeWidth={3} /></span><figcaption>3. Copilot suggestions</figcaption></figure>
               </div> : section.label === '12 / CELA outcome' && isReconciliation ? <div className="arc-cela-visual arc-cela-outcome-visual" aria-label="CELA compliance outcome screen">
                 <img src={reconciliationOutcomeImage} alt="CELA compliance outcome screen" />
               </div> : section.className === 'arc-reconciliation-before-scroll' ? <div className="arc-reconciliation-before-scroll-container" aria-label="Customer feedback - Before reconcile">
@@ -911,13 +952,17 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
               </div> : section.title === 'Key design decision 3' && !isReconciliation ? <div className="arc-exploration-visual arc-final-decision-visual" aria-label="Final design card concepts">
                 <div className="arc-exploration-cards arc-final-decision-cards">
                   <div className="arc-final-decision-option">
-                    <img src={cardTestImage} alt="Card test concept" />
+                    <span className="arc-final-decision-tag">A</span>
+                    <img src={runTestThreeImage} alt="Card test concept" />
                     <p>For a particular field or row?</p>
                   </div>
                   <div className="arc-final-decision-card arc-final-decision-card-selected">
-                    <span className="arc-final-decision-check" aria-label="Selected card">✓</span>
                     <span className="arc-final-decision-note">Viable for loading shimmer and tenet token numbers</span>
-                    <img src={cardTestTwoImage} alt="Card test secondary concept" />
+                    <div className="arc-final-decision-image-wrap">
+                      <span className="arc-final-decision-tag">B</span>
+                      <span className="arc-final-decision-check" aria-label="Selected card">✓</span>
+                      <img src={runTestTwoImage} alt="Card test secondary concept" />
+                    </div>
                     <p>Against entire invoice in workspace view?</p>
                   </div>
                 </div>
@@ -932,7 +977,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
           </div>
         </section>
       </article>
-      {openArcImage && <div className="arc-research-image-popover" role="dialog" aria-modal="true" aria-label={openArcImage === 'workshop' ? 'Workshop image' : openArcImage === 'landscape' ? 'Landscape content' : 'Customer research survey'} onClick={() => setOpenArcImage(null)}><div className={`arc-research-image-panel ${openArcImage === 'landscape' ? 'arc-landscape-drawer' : openArcImage === 'research' ? 'arc-survey-drawer' : ''}`} onClick={(event) => event.stopPropagation()}><button className="arc-research-image-close" type="button" aria-label="Close image" onClick={() => setOpenArcImage(null)}><X size={20} /></button>{openArcImage === 'landscape' ? <><h2>Landscape</h2><div className="arc-landscape-drawer-grid"><div><h3>Business</h3><p>At the broader organizational level, Power Apps and other Microsoft teams had already invested in agentic capabilities for invoice processing and document intelligence. With M365 serving 15M+ paid seats, there was a clear opportunity to bring these capabilities closer to Finance &amp; Accounting users.</p></div><div><h3>Design</h3><p>I had to decide feature scope and scenario within a rapidly evolving M365 and AI landscape, aligning with partners on emerging capabilities and identifying where we could leverage existing patterns.</p></div><div><h3>Product</h3><p>PMs were navigating a fragmented product landscape, with capabilities spread across Microsoft platforms and ERP systems. The key question was what Finance Agent should own, leverage, or scale.</p></div></div></> : openArcImage === 'research' ? <><div className="arc-survey-tabs" role="tablist" aria-label="Customer research views"><button type="button" role="tab" aria-selected={researchTab === 'questions'} className={researchTab === 'questions' ? 'is-active' : ''} onClick={() => setResearchTab('questions')}>Questions</button><button type="button" role="tab" aria-selected={researchTab === 'post'} className={researchTab === 'post' ? 'is-active' : ''} onClick={() => setResearchTab('post')}>Post</button></div>{researchTab === 'questions' ? <ol className="arc-survey-questions"><li>What is your role and responsibility?</li><li>How many invoices do you process in a typical day?</li><li>Which part of invoice processing takes the most time?</li><li>How often do you manually enter or correct invoice information?</li><li>Where do you usually find the PO number?</li><li>How often do you encounter an incorrect or missing PO number?</li><li>What do you do when the PO number is incorrect?</li><li>What are the most common reasons for PO/invoice matching failures?</li><li>How much time do you spend resolving PO/invoice mismatches?</li><li>How often do vendors use inconsistent invoice formats?</li><li>How do you prioritize invoices that need attention?</li><li>How valuable would automated invoice extraction, PO matching be?</li></ol> : <img src={surveyVivaImage} alt="Customer research survey post" />}</> : <img src={workshopM365Image} alt="Workshop alignment board" />}</div></div>}
+      {openArcImage && <div className="arc-research-image-popover" role="dialog" aria-modal="true" aria-label={openArcImage === 'workshop' ? 'Workshop image' : openArcImage === 'landscape' ? 'Landscape content' : 'Customer research survey'} onClick={() => setOpenArcImage(null)}><div className={`arc-research-image-panel ${openArcImage === 'landscape' ? 'arc-landscape-drawer' : openArcImage === 'research' ? 'arc-survey-drawer' : ''}`} onClick={(event) => event.stopPropagation()}><button className="arc-research-image-close" type="button" aria-label="Close image" onClick={() => setOpenArcImage(null)}><X size={20} /></button>{openArcImage === 'landscape' ? <><h2>Landscape</h2><div className="arc-landscape-drawer-grid"><div><h3>Business</h3><p>At the broader organizational level, Power Apps and other Microsoft teams had already invested in agentic capabilities for invoice processing and document intelligence. With M365 serving 15M+ paid seats, there was a clear opportunity to bring these capabilities closer to Finance &amp; Accounting users.</p></div><div><h3>Design</h3><p>I had to decide feature scope and scenario within a rapidly evolving M365 and AI landscape, aligning with partners on emerging capabilities and identifying where we could leverage existing patterns.</p></div><div><h3>Product</h3><p>PMs were navigating a fragmented product landscape, with capabilities spread across Microsoft platforms and ERP systems. The key question was what Finance Agent should own, leverage, or scale.</p></div></div></> : openArcImage === 'research' ? <><div className="arc-survey-tabs" role="tablist" aria-label="Customer research views"><button type="button" role="tab" aria-selected={researchTab === 'questions'} className={researchTab === 'questions' ? 'is-active' : ''} onClick={() => setResearchTab('questions')}>Questions</button><button type="button" role="tab" aria-selected={researchTab === 'post'} className={researchTab === 'post' ? 'is-active' : ''} onClick={() => setResearchTab('post')}>Post</button></div>{researchTab === 'questions' ? <ol className="arc-survey-questions"><li>What is your role and responsibility?</li><li>How many invoices do you process in a typical day?</li><li>Which part of invoice processing takes the most time?</li><li>How often do you manually enter or correct invoice information?</li><li>Where do you usually find the PO number?</li><li>How often do you encounter an incorrect or missing PO number?</li><li>What do you do when the PO number is incorrect?</li><li>What are the most common reasons for PO/invoice matching failures?</li><li>How much time do you spend resolving PO/invoice mismatches?</li><li>How do you prioritize invoices that need attention?</li><li>How valuable would automated invoice extraction, PO matching be?</li><li>Is there anything we missed to ask and you would like to add?</li></ol> : <img src={surveyVivaImage} alt="Customer research survey post" />}</> : <img src={workshopM365Image} alt="Workshop alignment board" />}</div></div>}
       {showArcTop && <button className="arc-figma-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top"><ArrowUp size={20} /></button>}
     </main>
   )
