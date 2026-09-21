@@ -606,13 +606,13 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
   const [showArcTop, setShowArcTop] = useState(false)
   const sections = [
     { label: '01 / Context', title: 'Context', body: 'Easily described to a 10 year old', image: isReconciliation ? contextMatchingImage : contextInvoiceImage, className: 'arc-context' },
-    ...(isReconciliation ? [{ label: '01.5 / Fail faster', title: 'Fail faster', body: '', className: 'arc-fail-faster' }] : []),
     { label: '02 / Overview', title: 'Invoice', accent: 'Extraction & Automation', body: isReconciliation ? 'Financial reconciliation key\nmatching & configuration' : 'AI-powered invoice processing that automates extraction, validation, and processing for Finance & Accounting.', image: isReconciliation ? reconciliationHeroImage : financeLaptopImage, className: 'arc-figma-hero' },
     { label: '03 / My role', title: 'Product Designer', body: 'Own & deliver design, research & product demo video', image: financeAgentLogo, className: 'arc-figma-role' },
     { label: '04 / Opportunity', title: 'Opportunity', body: '', image: financeLaptopImage, className: 'arc-figma-opportunity' },
     { label: '05 / Impact', title: 'Impact', body: 'Post redesign', image: financeProfileImage, className: 'arc-figma-impact' },
     { label: '06 / Design Montage', title: 'Design Montage', body: 'Exhausting tokens...', image: designMontageImage, className: 'arc-figma-montage' },
     { label: '08 / Customer research', title: 'Conducting workshop for alignment...', body: '', image: workshopM365Image, className: 'arc-figma-research' },
+    ...(isReconciliation ? [{ label: '09 / Fail faster', title: 'Fail faster', body: '', className: 'arc-fail-faster' }] : []),
     ...(!isReconciliation ? [{ label: '09 / Design decisions', title: 'Survey with Admin customers', body: 'Key design decisions 1', image: surveyVivaImage, className: 'arc-figma-decisions' }] : []),
     ...(!isReconciliation ? [{ label: '09.25 / User feedback', title: 'Influencing in a room of PMs & Eng. leaders needs strong evidence to push', body: '', image: surveyVivaImage, className: 'arc-user-comment' }] : []),
     ...(!isReconciliation ? [{ label: '09.5 / Persona', title: 'Invoice persona', body: '', image: personaInvoiceImage, className: 'arc-persona-invoice' }] : []),
@@ -664,7 +664,8 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
               <h1 id="fail-faster-title">FAIL<br />FASTER</h1>
               <div className="arc-fail-faster-copy">
                 <p className="arc-fail-faster-callout"><strong>Adding a feature takes a meeting; removing one takes a seminar</strong></p>
-                <p className="arc-fail-faster-description">As time was limited, I proposed testing a slightly imperfect but holistic design solution in a steel-thread build rather than releasing features incrementally and testing in Private Preview. Fragmented releases would have made it harder for me to assess the overall experience.</p>
+                <p className="arc-fail-faster-description">As time was limited, I proposed testing a slightly imperfect but holistic design solution through a <strong>steel-thread build</strong>, rather than releasing features incrementally for Private Preview before being released for GA. A fragmented release would have made it harder to evaluate the experience holistically and understand how the individual pieces worked together.</p>
+                <p className="arc-fail-faster-description">As part of this approach, the designs were <strong>initially tested with</strong> <strong>one focused customer group</strong> to validate the proposed approach to modifier control and visibility.</p>
               </div>
             </section>
           ) : section.className === 'arc-figma-role' ? (
