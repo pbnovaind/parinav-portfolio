@@ -329,8 +329,8 @@
 .arc-reconciliation-fail-faster h1 { width: auto; text-align: left; }
 .arc-reconciliation-fail-faster .arc-fail-faster-copy { display: block; width: 100%; }
 .arc-reconciliation-fail-faster .arc-fail-faster-body { margin-top: 1.25rem; }
-.arc-reconciliation-fail-faster .arc-fail-faster-callout { margin-bottom: 1.25rem; font-weight: 700; }
-.arc-reconciliation-fail-faster .arc-fail-faster-callout strong { font-weight: 700; }
+.arc-reconciliation-fail-faster .arc-fail-faster-callout { margin-bottom: 1.25rem; color: #4a4a4a; font-weight: 700; }
+.arc-reconciliation-fail-faster .arc-fail-faster-callout strong { color: #4a4a4a; font-weight: 700; }
 .arc-reconciliation-fail-faster .arc-fail-faster-description { margin-top: 1rem; font-weight: 400; }
 .arc-fail-faster h1 { width: 70vw; margin: 0; color: #1d1d1d; font-family: 'Racing Sans One', sans-serif; font-size: clamp(3rem, 8vw, 8rem); font-weight: 400; line-height: .9; text-align: center; text-transform: uppercase; white-space: nowrap; }
 .arc-reconciliation-fail-faster.is-revealed h1 { color: transparent; background: linear-gradient(110deg, #1d1d1d 30%, #d6d6d6 45%, #1d1d1d 60%); background-size: 250% 100%; background-clip: text; -webkit-background-clip: text; animation: arc-fail-faster-text-flow 1.8s ease-out 1 both; }
@@ -342,9 +342,9 @@
 .arc-fail-faster-body { display: grid; gap: 1.25rem; font-weight: 400; }
 .arc-reconciliation-fail-faster .arc-fail-faster-copy,
 .arc-reconciliation-fail-faster .arc-fail-faster-copy p,
-.arc-reconciliation-fail-faster .arc-fail-faster-copy strong { font-weight: 400; }
+.arc-reconciliation-fail-faster .arc-fail-faster-copy strong { color: #4a4a4a; font-weight: 400; }
 .arc-reconciliation-fail-faster .arc-fail-faster-copy strong,
-.arc-reconciliation-fail-faster .arc-fail-faster-callout strong { font-weight: 700; }
+.arc-reconciliation-fail-faster .arc-fail-faster-callout strong { color: #4a4a4a; font-weight: 700; }
 .arc-reconciliation-fail-faster .arc-fail-faster-lead > span { color: #1d1d1d; font-weight: 700; }
 .arc-reconciliation-fail-faster .arc-fail-faster-lead .arc-fail-faster-lead-intro { color: #1d1d1d; font-weight: 400; }
 .arc-reconciliation-fail-faster .arc-fail-faster-learning { color: #1d1d1d; font-weight: 400; }
