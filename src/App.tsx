@@ -763,7 +763,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
             <section className={`arc-figma-section arc-figma-impact${isReconciliation ? ' arc-reconciliation-impact' : ''}`} key={section.label}>
               <div className="arc-impact-grid">
                 <ImpactMetric value={isReconciliation ? 90 : 95} format={(v) => `${Math.round(v)}%`} suffix="~" label={isReconciliation ? 'Drop in complaint tickets' : 'Invoice Touch-less rate'} note={!isReconciliation ? 'Compared to 5% ~ in PowerApps semi structure invoices' : undefined} noteBreakAfter={!isReconciliation ? 5 : undefined} />
-                {!isReconciliation && <><ImpactMetric value={2.5} format={(v) => v.toFixed(1)} suffix="minutes" label="Average invoice processing time" note="Compared to 10 minutes in PowerApps for complex and unstructured documents" noteBreakAfter={5} /><ImpactMetric value={20} format={(v) => `${Math.round(v)}+M`} label="Q1 2026 Paid seats" /></>}
+                {!isReconciliation && <><ImpactMetric value={2.5} format={(v) => v.toFixed(1)} suffix="minutes" label="Average invoice processing time" note="Compared to 10 minutes in PowerApps for complex and unstructured documents" noteBreakAfter={5} /><ImpactMetric value={20} format={(v) => `${Math.round(v)}+M`} label="Q1 2026 Paid seats" note="Combined contribution" /></>}
                 {isReconciliation && <><ImpactMetric value={66.5} format={(v) => `${v.toFixed(1)}%`} label="Improvement in CSAT rating" /><ImpactMetric value={400} format={(v) => `${Math.round(v)}K+`} label="Report reconciliation with positive thumb" note="Compared to less than 1K" /></>}
               </div>
               <div className="arc-impact-head">
