@@ -1005,7 +1005,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [activePixelRole, setActivePixelRole] = useState(0)
-  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+  const [currentPath, setCurrentPath] = useState(window.location.pathname.replace(/\/+$/, '') || '/')
   const [isScrolled, setIsScrolled] = useState(window.scrollY > 24)
   const [sourceSection, setSourceSection] = useState<string | null>(null)
   const heroRef = useRef<HTMLElement>(null)
@@ -1037,7 +1037,7 @@ function App() {
 
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname)
+      setCurrentPath(window.location.pathname.replace(/\/+$/, '') || '/')
       window.scrollTo({ top: 0, behavior: 'instant' })
     }
     window.addEventListener('popstate', handlePopState)
