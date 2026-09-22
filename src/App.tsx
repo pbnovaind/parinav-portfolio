@@ -739,7 +739,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
               <section className={`arc-figma-section arc-figma-challenge${isReconciliation ? ' arc-reconciliation-challenge' : ''}`} key={`${section.label}-challenge`}>
                 <div className="arc-opp-col">
                   <h1>Design Challenge</h1>
-                  {isReconciliation ? <ul><li>How might we make the agent's selection and prioritization transparent, and easy for users to adjust when needed?</li></ul> : <ul><li>How might we help Finance Agent handle invoice exceptions more intelligently while creating a continuous learning loop that improves touchless processing over time?</li></ul>}
+                  {isReconciliation ? <ul><li>How might we make the agent's selection and prioritization transparent, and easy for users to adjust when needed?</li></ul> : <ul><li>How might we help our customers handle invoice exceptions intuitively while creating a continuous learning loop that improves system touchless processing over time?</li></ul>}
                   {!isReconciliation && (
                     <div className="arc-design-tasks-wrap">
                       <h2 className="arc-design-tasks-heading">3 Design Tasks</h2>
