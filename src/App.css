@@ -206,8 +206,8 @@
 .case-footer-back:hover, .case-footer-back:focus-visible { color: var(--case-paper); background: var(--case-ink); }
 .case-footer-back:focus-visible { outline: 2px solid var(--case-ink); outline-offset: 3px; }
 
-.arc-figma-page > article > section.arc-key-decisions-gradient:nth-of-type(15) .arc-ai-agent-body { font-size: 0; }
-.arc-figma-page > article > section.arc-key-decisions-gradient:nth-of-type(15) .arc-ai-agent-body::after { content: "Prioritizing alignment by bringing PM and Engineering together to vote on complex line-item scenarios, distinguish edge cases from rare occurrences, and lock the scenarios we design for."; display: block; font-size: 16px; }
+.arc-figma-page > article > section.arc-key-decisions-gradient:has(.arc-final-decision-visual) > .arc-ai-agent-body { font-size: 0; }
+.arc-figma-page > article > section.arc-key-decisions-gradient:has(.arc-final-decision-visual) > .arc-ai-agent-body::after { content: "Ensuring the positioning of the \"test feature\" was scalable, accounting for future tenant token and failure state scenarios."; display: block; font-size: 16px; }
 .arc-figma-page {
   --arc-ink: #1d1d1d;
   --arc-muted: #595959;
@@ -455,8 +455,8 @@
   font-weight: 400;
   line-height: 1.45;
 }
-.arc-figma-page > article > section.arc-key-decisions-gradient:nth-of-type(14) .arc-ai-agent-body { font-size: 0; }
-.arc-figma-page > article > section.arc-key-decisions-gradient:nth-of-type(14) .arc-ai-agent-body::after { content: "Prioritizing customer decision-making by defining clear patterns for uncertainty—so when the agent isn’t confident, customers know exactly what to review, decide, or do next."; display: block; font-size: 16px; }
+.arc-figma-page > article > section.arc-key-decisions-gradient:has(> img[alt=""]) .arc-ai-agent-body { font-size: 0; }
+.arc-figma-page > article > section.arc-key-decisions-gradient:has(> img[alt=""]) .arc-ai-agent-body::after { content: "Prioritizing alignment by bringing PM and Engineering together to vote on complex line-item scenarios, distinguish edge cases from rare occurrences, and lock the scenarios we design for."; display: block; font-size: 16px; }
 .arc-figma-exploration:has(.arc-final-decision-visual) > .arc-ai-agent-body {
   grid-column: 1;
   grid-row: 2;
