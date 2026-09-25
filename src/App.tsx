@@ -677,7 +677,6 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                   <div><h2>Team</h2><p>1 Principal PM<br />1 Eng. PM<br />1 Senior Data Scientist<br />3 Developers<br /><span className="arc-product-designer-accent">1 Product Designer 2</span></p></div>
                   <div className="arc-role-tools-compact"><h2>Tools</h2><ul>
                     <li>VS Code + GithubCopilot</li>
-                    <li>MS Clarity</li>
                     <li>Figma</li>
                     <li>Viva engage</li>
                   </ul></div>
@@ -692,7 +691,6 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                   <div className="arc-role-tools-compact"><h2>Tools</h2><ul>
                     <li>VS Code + GithubCopilot</li>
                     <li>Figma</li>
-                    <li>MS Clarity</li>
                     <li>Viva Engage</li>
                   </ul></div>
                 </div>
