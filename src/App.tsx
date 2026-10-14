@@ -53,8 +53,8 @@ import celaOneImage from '../Images/cela1.svg'
 import celaTwoImage from '../Images/cela2.svg'
 import celaThreeImage from '../Images/cela3.svg'
 import flowFinalReconcileImage from '../Images/flowui.svg'
-import contextInvoiceImage from '../Images/context invoice.svg'
 import contextMatchingImage from '../Images/context matching.svg'
+import arcContextImage from '../Images/tp1.svg'
 
 const projects = [
   {
@@ -606,7 +606,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
   const [showArcTop, setShowArcTop] = useState(false)
   const sections = [
     { label: '01 / Overview', title: 'Invoice', accent: 'Extraction & Automation', body: isReconciliation ? 'Financial reconciliation key\nmatching & configuration' : 'AI-powered invoice processing that automates extraction, validation, and processing for Finance & Accounting.', image: isReconciliation ? reconciliationHeroImage : financeLaptopImage, className: 'arc-figma-hero' },
-    { label: '02 / Context', title: 'Context', body: 'Easily described to a 10 year old', image: isReconciliation ? contextMatchingImage : contextInvoiceImage, className: 'arc-context' },
+    { label: '02 / Context', title: 'Context', body: 'Easily described to a 10 year old', image: isReconciliation ? contextMatchingImage : arcContextImage, className: 'arc-context' },
     { label: '03 / My role', title: 'Product Designer', body: 'Own & deliver design, research & product demo video', image: financeAgentLogo, className: 'arc-figma-role' },
     { label: '04 / Opportunity', title: 'Opportunity', body: '', image: financeLaptopImage, className: 'arc-figma-opportunity' },
     { label: '05 / Impact', title: 'Impact', body: 'Post redesign', image: financeProfileImage, className: 'arc-figma-impact' },
