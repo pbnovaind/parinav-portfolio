@@ -605,8 +605,8 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
   const [researchTab, setResearchTab] = useState<'questions' | 'post'>(isReconciliation ? 'questions' : 'post')
   const [showArcTop, setShowArcTop] = useState(false)
   const sections = [
-    { label: '01 / Context', title: 'Context', body: 'Easily described to a 10 year old', image: isReconciliation ? contextMatchingImage : contextInvoiceImage, className: 'arc-context' },
-    { label: '02 / Overview', title: 'Invoice', accent: 'Extraction & Automation', body: isReconciliation ? 'Financial reconciliation key\nmatching & configuration' : 'AI-powered invoice processing that automates extraction, validation, and processing for Finance & Accounting.', image: isReconciliation ? reconciliationHeroImage : financeLaptopImage, className: 'arc-figma-hero' },
+    { label: '01 / Overview', title: 'Invoice', accent: 'Extraction & Automation', body: isReconciliation ? 'Financial reconciliation key\nmatching & configuration' : 'AI-powered invoice processing that automates extraction, validation, and processing for Finance & Accounting.', image: isReconciliation ? reconciliationHeroImage : financeLaptopImage, className: 'arc-figma-hero' },
+    { label: '02 / Context', title: 'Context', body: 'Easily described to a 10 year old', image: isReconciliation ? contextMatchingImage : contextInvoiceImage, className: 'arc-context' },
     { label: '03 / My role', title: 'Product Designer', body: 'Own & deliver design, research & product demo video', image: financeAgentLogo, className: 'arc-figma-role' },
     { label: '04 / Opportunity', title: 'Opportunity', body: '', image: financeLaptopImage, className: 'arc-figma-opportunity' },
     { label: '05 / Impact', title: 'Impact', body: 'Post redesign', image: financeProfileImage, className: 'arc-figma-impact' },
@@ -726,7 +726,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                 <section className="arc-figma-section arc-figma-opportunity" key={`${section.label}-business`}>
                   <div className="arc-opp-col">
                     <h1>Opportunity</h1>
-                    <p><strong>Extend invoice automation into Finance Agent in Microsoft 365 Copilot, enabling AI to handle exceptions and move invoice processing toward a near-touchless experience.</strong></p>
+                    <p><strong>Extend invoice automation into Finance Agent in Microsoft 365 Copilot, enabling AI to <span className="arc-exception-highlight">handle exceptions</span> and move invoice processing toward a near-touchless experience.</strong></p>
                   </div>
                   <div className="arc-opp-col arc-business-statement-col">
                     <h1 className="arc-business-statement-heading">Business statement</h1>
@@ -741,15 +741,15 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                   {!isReconciliation && (
                     <div className="arc-design-tasks-wrap">
                       <h2 className="arc-design-tasks-heading">3 Design Tasks</h2>
-                      <ol className="arc-design-tasks">
+                      <ol className="arc-design-tasks arc-design-tasks-no-numbering">
                         <li>
-                          <h3>01 — Understand the customer</h3>
+                          <h3><span className="arc-design-task-lead">Exception Visibility</span>: Determining when and where customers encounter and recognize errors.</h3>
                         </li>
                         <li>
-                          <h3>02 — Define the AI experience</h3>
+                          <h3><span className="arc-design-task-lead">Agent Intervention</span>: Defining when agents should intervene versus operate invisibly in the background.</h3>
                         </li>
                         <li>
-                          <h3>03 — Deliver a One Microsoft experience</h3>
+                          <h3><span className="arc-design-task-lead">Experience Consistency</span>: Delivering a seamless, consistent One Microsoft experience across workflows.</h3>
                         </li>
                       </ol>
                     </div>
@@ -762,7 +762,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
               <div className="arc-impact-grid">
                 <ImpactMetric value={isReconciliation ? 90 : 95} format={(v) => `${Math.round(v)}%`} suffix="~" label={isReconciliation ? 'Drop in complaint tickets' : 'Invoice Touch-less rate'} note={!isReconciliation ? 'Compared to 5% ~ in PowerApps semi structure invoices' : undefined} noteBreakAfter={!isReconciliation ? 5 : undefined} />
                 {!isReconciliation && <><ImpactMetric value={2.5} format={(v) => v.toFixed(1)} suffix="minutes" label="Average invoice processing time" note="Compared to 10 minutes for semi structured in PowerApps" noteBreakAfter={5} /><ImpactMetric value={20} format={(v) => `${Math.round(v)}+M`} label="Q1 2026 Paid seats" note="Combined contribution" /></>}
-                {isReconciliation && <><ImpactMetric value={66.5} format={(v) => `${v.toFixed(1)}%`} label="Improvement in CSAT rating" /><ImpactMetric value={400} format={(v) => `${Math.round(v)}K+`} label="Report reconciliation with positive thumb" note="Compared to less than 1K" /></>}
+                {isReconciliation && <><ImpactMetric value={66.5} format={(v) => `${v.toFixed(1)}%`} label="Improvement in CSAT rating" /><ImpactMetric value={400} format={(v) => `${Math.round(v)}K+`} label="Report reconciliation with positive thumb" /></>}
               </div>
               <div className="arc-impact-head">
                 {!isReconciliation ? <><h1>Impact</h1><p>Private preview June 2026</p></> : <><h1>Impact</h1><p>Post design - shipped in GA from Oct 25-Jan 26</p></>}
