@@ -241,6 +241,8 @@
 .arc-context-copy { position: relative; z-index: 2; display: flex; flex: 0 0 180px; width: 100%; height: 180px; max-height: 180px; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 1rem; background: #f4f4f4; }
 .arc-context-copy h1 { width: 100%; margin: 0; color: #1d1d1d; font-size: 40px; font-weight: 700; letter-spacing: -.03em; line-height: 1.1; text-align: center; }
 .arc-context-copy p { width: 100%; margin: 0; color: #4c4c4c; font-family: 'Allura', cursive; font-size: 34px; font-weight: 300; line-height: 1; text-align: center; }
+.arc-roam-page .arc-context-copy h1 { color: #1d1d1d; font-size: clamp(2.4rem, 3.5vw, 3.4rem); font-weight: 400; letter-spacing: -.04em; line-height: 1; white-space: nowrap; }
+.arc-roam-page .arc-context-copy p { color: #000; font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 300; }
 .arc-context > img { position: relative; z-index: 1; align-self: center; display: block; width: 125%; height: auto; max-width: none; max-height: 55vh; margin-top: auto; margin-bottom: auto; object-fit: contain; object-position: center; }
 .arc-figma-hero .arc-figma-copy { position: relative; z-index: 2; }
 .arc-figma-hero .arc-figma-copy { color: #1d1d1d; font-weight: 700; }
@@ -383,6 +385,8 @@
 .arc-reconciliation-opportunity .arc-opp-col li strong,
 .arc-reconciliation-challenge .arc-opp-col li,
 .arc-reconciliation-challenge .arc-opp-col li strong { font-weight: 800; }
+.arc-roam-page .arc-roam-red-text { color: #d32f2f; }
+.arc-roam-page .arc-roam-purple-text { color: #7b4dff; }
 .arc-reconciliation-opportunity .arc-opportunity-metric { position: relative; top: 1rem; display: flex; align-items: baseline; gap: .75rem; margin-top: -.75rem; color: #f2dfe3; }
 .arc-reconciliation-opportunity .arc-opportunity-metric strong { font-size: clamp(1rem, 1.1vw, 1.2rem); font-weight: 700; line-height: 1.4; }
 .arc-reconciliation-opportunity .arc-opportunity-metric span { font-size: clamp(1rem, 1.1vw, 1.2rem); font-weight: 700; }

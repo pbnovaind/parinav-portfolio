@@ -699,8 +699,8 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
           ) : section.className === 'arc-context' ? (
             <section className="arc-figma-section arc-context" key={section.label}>
               <div className="arc-context-copy">
-                <h1>Context</h1>
-                <p>Easily described to a 10 year old</p>
+                <h1 className={isReconciliation ? 'scroll-reveal' : undefined}>Context</h1>
+                <p className={isReconciliation ? 'scroll-reveal' : undefined}>Easily described to a 10 year old</p>
               </div>
               <img src={section.image} alt={isReconciliation ? 'Financial reconciliation context' : 'Invoice extraction context'} />
             </section>
@@ -710,8 +710,8 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
                 <section className={`arc-figma-section arc-figma-opportunity arc-reconciliation-opportunity`} key={`${section.label}-problem`}>
                   <div className="arc-opp-col">
                     <h1>Problem</h1>
-                    <ul><li><strong>&lt;1K</strong> reconciled reports with positive feedback</li><li><strong>Increased complaint tickets &amp; reduced CSAT rating</strong></li></ul>
-                    <p>The first release of Reconciliation exposed a critical gap: customers could see the output, but not understand how it got there. Complaints centered on report accuracy, limited visibility into what was happening, and unclear explanations for the actions and decisions it made.</p>
+                    <ul><li><strong>&lt;1K</strong> reconciled reports with positive feedback</li><li><strong><span className="arc-roam-red-text">Increased complaint tickets</span> &amp; reduced CSAT rating</strong></li></ul>
+                    <p>The first release of Finance agent reconciliation exposed a critical gap: customers could see the output, but not understand how it got there. Complaints centered on <span className="arc-roam-red-text">report accuracy</span>, limited visibility into what was happening, and <span className="arc-roam-red-text">unclear explanations</span> for the actions and decisions it made.</p>
                   </div>
                 </section>
               )}
@@ -737,7 +737,7 @@ function ArcStudioFigmaPage({ onBack, isReconciliation = false }: { onBack: () =
               <section className={`arc-figma-section arc-figma-challenge${isReconciliation ? ' arc-reconciliation-challenge' : ''}`} key={`${section.label}-challenge`}>
                 <div className="arc-opp-col">
                   <h1>Design Challenge</h1>
-                  {isReconciliation ? <ul><li>How might we make the agent's selection and prioritization transparent, and easy for users to adjust when needed?</li></ul> : <ul><li>How might we help our customers handle invoice exceptions intuitively while creating a continuous learning loop that improves system touchless processing over time?</li></ul>}
+                  {isReconciliation ? <ul><li>How might we make the <span className="arc-roam-purple-text">agent's item selection and prioritization transparent</span>, and easy for users to adjust when needed?</li></ul> : <ul><li>How might we help our customers handle invoice exceptions intuitively while creating a continuous learning loop that improves system touchless processing over time?</li></ul>}
                   {!isReconciliation && (
                     <div className="arc-design-tasks-wrap">
                       <h2 className="arc-design-tasks-heading">3 Design Tasks</h2>
@@ -1124,7 +1124,7 @@ function App() {
   }, [currentPath])
 
   useEffect(() => {
-    const revealTargets = document.querySelectorAll<HTMLElement>('.section-heading > *, .project, .about-section > .kicker, .about-grid > *, .post, footer > .kicker, .contact-cta-group > h2, .email-link, .about-page-top, .case-study-nav, .case-hero-copy > *, .case-hero-art, .case-section > .kicker, .case-section-grid > *, .case-impact > *, .case-showcase > *, .case-chapter > .kicker, .case-chapter-heading > *, .case-insights > *, .case-personas > *, .case-visual > *, .case-priority-list > *, .case-feature-grid > *, .case-system-grid > *, .case-test-results > *, .case-template-hero > *, .case-template-section > *, .case-template-footer > *, .case-opportunity-grid > *, .case-workshop-grid > *, .case-moscow-grid > *, .case-assets-grid > *, .case-release-list > *, .case-team-list > *, .case-design-montage h2, .arc-figma-copy:not(.arc-figma-final .arc-figma-copy), .arc-figma-section > img:not(.arc-figma-final > img), .arc-launch-art, .arc-exploration-cards, .arc-figma-montage, .arc-fail-faster, .arc-role-overview > *, .arc-tool-grid > *, .arc-opp-col > *, .arc-impact-head > *, .arc-impact-metric, .arc-landscape-title, .arc-landscape-col, .arc-research-copy > *, .arc-research-visual, .arc-cela-visual figure')
+    const revealTargets = document.querySelectorAll<HTMLElement>('.section-heading > *, .project, .about-section > .kicker, .about-grid > *, .post, footer > .kicker, .contact-cta-group > h2, .email-link, .about-page-top, .case-study-nav, .case-hero-copy > *, .case-hero-art, .case-section > .kicker, .case-section-grid > *, .case-impact > *, .case-showcase > *, .case-chapter > .kicker, .case-chapter-heading > *, .case-insights > *, .case-personas > *, .case-visual > *, .case-priority-list > *, .case-feature-grid > *, .case-system-grid > *, .case-test-results > *, .case-template-hero > *, .case-template-section > *, .case-template-footer > *, .case-opportunity-grid > *, .case-workshop-grid > *, .case-moscow-grid > *, .case-assets-grid > *, .case-release-list > *, .case-team-list > *, .case-design-montage h2, .arc-figma-copy:not(.arc-figma-final .arc-figma-copy), .arc-figma-section > img:not(.arc-figma-final > img), .arc-launch-art, .arc-exploration-cards, .arc-figma-montage, .arc-fail-faster, .arc-role-overview > *, .arc-tool-grid > *, .arc-opp-col > *, .arc-context-copy > .scroll-reveal, .arc-impact-head > *, .arc-impact-metric, .arc-landscape-title, .arc-landscape-col, .arc-research-copy > *, .arc-research-visual, .arc-cela-visual figure')
     revealTargets.forEach((element, index) => {
       element.classList.add('scroll-reveal')
       element.style.setProperty('--reveal-delay', `${(index % 4) * 110}ms`)
